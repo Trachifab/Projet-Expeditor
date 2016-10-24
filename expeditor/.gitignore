@@ -1,6 +1,8 @@
+# IDE Files
 /.jsdtscope
 /org.eclipse.wst.common.component
 /org.eclipse.wst.common.project.facet.core.xml
 /org.eclipse.wst.jsdt.ui.superType.container
 /org.eclipse.wst.jsdt.ui.superType.name
 /org.eclipse.jdt.core.prefs
+*.iml
