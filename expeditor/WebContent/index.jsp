@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/connexion.css">
 </head>
 <body>
-
 <!-- Le conteneur, centré en milieu de page -->
 <div id="main-container" class="ui raised very padded text container segment">
 

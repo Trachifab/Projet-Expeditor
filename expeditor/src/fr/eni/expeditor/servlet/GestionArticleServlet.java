@@ -1,5 +1,6 @@
 package fr.eni.expeditor.servlet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +21,8 @@ public class GestionArticleServlet extends AbstractServlet {
 
     @Override
     void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher dispatcher = null;
+        dispatcher = request.getRequestDispatcher("/WEB-INF/views/manager/gestionArticle.jsp");
+        dispatcher.forward(request, response);
     }
 }
