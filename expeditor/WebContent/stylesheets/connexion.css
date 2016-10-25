@@ -4,21 +4,18 @@
 }
 
 /** Texte **/
-p.centered{
+p{
     text-align: center;
 }
 
 /** Formulaire **/
-#login-form.centered{
-    margin: 0 auto
-}
-
-#login-form.small{
+#login-form{
+    margin: 0 auto;
     max-width: 200px;
 }
 
 /** Bouton **/
-#connection-button.centered{
+#connection-button{
     /** Utilisé pour centré le bouton de connection par rapport à son conteneur **/
     margin-left: 20%;
 }

@@ -18,7 +18,7 @@
     <p class="centered">Vous devez vous connecter pour accéder à l'espace expedition</p>
 
     <!-- Formulaire de connexion -->
-    <form id="login-form" class="ui form centered small">
+    <form id="login-form" class="ui form">
         <!-- Identifiant -->
         <div class="field">
             <label>
@@ -33,7 +33,7 @@
                 <input type="password" name="motDePasse">
             </label>
         </div>
-        <button id="connection-button" class="ui button centered" type="submit">Connexion</button>
+        <button id="connection-button" class="ui button" type="submit">Connexion</button>
     </form>
 </div>
 
