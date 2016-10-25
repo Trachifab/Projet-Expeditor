@@ -1,0 +1,24 @@
+/** Conteneur principal **/
+.ui.container{
+    margin-top: 5%;
+}
+
+/** Texte **/
+p.centered{
+    text-align: center;
+}
+
+/** Formulaire **/
+.ui.form.centered{
+    margin: 0 auto
+}
+
+.ui.form.small{
+    max-width: 200px;
+}
+
+/** Bouton **/
+.ui.button.centered{
+    /** Utilisé pour centré le bouton de connection par rapport à son conteneur **/
+    margin-left: 20%;
+}
