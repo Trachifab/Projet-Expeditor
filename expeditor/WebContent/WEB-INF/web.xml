@@ -13,13 +13,21 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
-		<description></description>
 		<display-name>TestServlet</display-name>
 		<servlet-name>TestServlet</servlet-name>
 		<servlet-class>fr.eni.expeditor.servlet.TestServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<display-name>EmployeServlet</display-name>
+		<servlet-name>EmployeServlet</servlet-name>
+		<servlet-class>fr.eni.expeditor.servlet.EmployeServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>TestServlet</servlet-name>
 		<url-pattern>/TestServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmployeServlet</servlet-name>
+		<url-pattern>/EmployeServlet</url-pattern>
 	</servlet-mapping>
 </web-app>
