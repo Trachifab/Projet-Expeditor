@@ -14,6 +14,15 @@ p{
     max-width: 200px;
 }
 
+/** Mot de passe oublié **/
+#forgotten-password{
+    text-align: right;
+    font-size: 0.8em;
+    color: rgba(0, 0, 177, 0.7);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 /** Bouton **/
 #connection-button{
     /** Utilisé pour centré le bouton de connection par rapport à son conteneur **/

@@ -33,6 +33,9 @@
                 <input type="password" name="motDePasse">
             </label>
         </div>
+
+        <!-- Mot de passe oublié -->
+        <p id="forgotten-password" class="right floated">Mot de passe oublié ?</p>
         <button id="connection-button" class="ui button" type="submit">Connexion</button>
     </form>
 </div>
