@@ -12,6 +12,8 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+
+    <!-- SERVLET -->
 	<servlet>
 		<display-name>TestServlet</display-name>
 		<servlet-name>TestServlet</servlet-name>
@@ -22,6 +24,32 @@
 		<servlet-name>EmployeServlet</servlet-name>
 		<servlet-class>fr.eni.expeditor.servlet.EmployeServlet</servlet-class>
 	</servlet>
+    <servlet>
+        <display-name>ConsultCommandeServlet</display-name>
+        <servlet-name>ConsultCommandeServlet</servlet-name>
+        <servlet-class>fr.eni.expeditor.servlet.ConsultCommandeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <display-name>GestionEmployeServlet</display-name>
+        <servlet-name>GestionEmployeServlet</servlet-name>
+        <servlet-class>fr.eni.expeditor.servlet.GestionEmployeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <display-name>GestionArticleServlet</display-name>
+        <servlet-name>GestionArticleServlet</servlet-name>
+        <servlet-class>fr.eni.expeditor.servlet.GestionArticleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <display-name>EspacePersoServlet</display-name>
+        <servlet-name>EspacePersoServlet</servlet-name>
+        <servlet-class>fr.eni.expeditor.servlet.EspacePersoServlet</servlet-class>
+    </servlet>
+
+    <!-- SERVLET MAPPING -->
+    <servlet-mapping>
+        <servlet-name>ConsultCommandeServlet</servlet-name>
+        <url-pattern>/ConsultCommandeServlet</url-pattern>
+    </servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>TestServlet</servlet-name>
 		<url-pattern>/TestServlet</url-pattern>
@@ -30,4 +58,16 @@
 		<servlet-name>EmployeServlet</servlet-name>
 		<url-pattern>/EmployeServlet</url-pattern>
 	</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GestionEmployeServlet</servlet-name>
+        <url-pattern>/GestionEmployeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GestionArticleServlet</servlet-name>
+        <url-pattern>/GestionArticleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EspacePersoServlet</servlet-name>
+        <url-pattern>/EspacePersoServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
