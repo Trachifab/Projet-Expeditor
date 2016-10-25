@@ -10,8 +10,15 @@
 <head>
     <title>Expeditor</title>
 
+    <!-- Semantic UI -->
+    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
+    <script src="resources/semanticUI/semantic.min.js"></script>
 </head>
+
 <body>
+
+<%@include file="/WEB-INF/views/partial/menu.jsp" %>
+
 Vue du manager : toutes les commandes et statistiques
 </body>
 </html>
