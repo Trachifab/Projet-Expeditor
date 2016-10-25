@@ -5,16 +5,19 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 @Entity
 public class LigneCommande {
 
-	@Id
-	private Integer id;
+	@EmbeddedId
+	private IdLigneCommande id;
 
+	@MapsId("commande_numeros")
 	@ManyToOne
 	private Commande commande;
 
+	@MapsId("article_id")
 	@ManyToOne
 	private Article article;
 
@@ -44,11 +47,11 @@ public class LigneCommande {
 		this.quantite = quantite;
 	}
 
-	public Integer getId() {
+	public IdLigneCommande getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(IdLigneCommande id) {
 		this.id = id;
 	}
 

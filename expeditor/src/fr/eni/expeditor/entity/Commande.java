@@ -21,20 +21,30 @@ public class Commande {
 	@ManyToOne
 	private Client client;
 
-	/*
-	 * @OneToMany private List<LigneCommande> lstCommande;
-	 */
+	@OneToMany
+	private List<LigneCommande> lstCommande;
 
 	@ManyToOne
 	private Collaborateur collaborateur;
 
-	// public List<LigneCommande> getLstCommande() {
-	// return lstCommande;
-	// }
-	//
-	// public void setLstCommande(List<LigneCommande> lstCommande) {
-	// this.lstCommande = lstCommande;
-	// }
+	@ManyToOne
+	private Etat etat;
+
+	public Etat getEtat() {
+		return etat;
+	}
+
+	public void setEtat(Etat etat) {
+		this.etat = etat;
+	}
+
+	public List<LigneCommande> getLstCommande() {
+		return lstCommande;
+	}
+
+	public void setLstCommande(List<LigneCommande> lstCommande) {
+		this.lstCommande = lstCommande;
+	}
 
 	public Collaborateur getCollaborateur() {
 		return collaborateur;
