@@ -47,6 +47,11 @@
         <servlet-name>EspacePersoServlet</servlet-name>
         <servlet-class>fr.eni.expeditor.servlet.EspacePersoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <display-name>ConnectionServlet</display-name>
+        <servlet-name>ConnectionServlet</servlet-name>
+        <servlet-class>fr.eni.expeditor.servlet.ConnexionServlet</servlet-class>
+    </servlet>
 
     <!-- SERVLET MAPPING -->
     <servlet-mapping>
@@ -72,5 +77,9 @@
     <servlet-mapping>
         <servlet-name>EspacePersoServlet</servlet-name>
         <url-pattern>/EspacePersoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConnectionServlet</servlet-name>
+        <url-pattern>/connexion</url-pattern>
     </servlet-mapping>
 </web-app>

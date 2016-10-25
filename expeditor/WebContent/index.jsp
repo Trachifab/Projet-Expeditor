@@ -17,7 +17,7 @@
     <p class="centered">Vous devez vous connecter pour accéder à l'espace expedition</p>
 
     <!-- Formulaire de connexion -->
-    <form id="login-form" class="ui form">
+    <form id="login-form" class="ui form" method="POST" action="${pageContext.request.contextPath}/connexion">
         <!-- Identifiant -->
         <div class="field">
             <label>
@@ -35,6 +35,21 @@
 
         <!-- Mot de passe oublié -->
         <p id="forgotten-password" class="right floated">Mot de passe oublié ?</p>
+
+        <!-- Message d'erreur -->
+        <%if ((request.getAttribute("error") != null) && ((Boolean)request.getAttribute("error"))){ %>
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                Il y a eu une erreur lors de la tentative de connexion
+            </div>
+            <ul class="list">
+                <li>L'identifiant n'existe peut-être pas.</li>
+                <li>Le mot de passe est peut-être erroné.</li>
+                <li>Si vous avez oublié votre mot de passe, cliquez sur le lien ci-dessus.</li>
+            </ul>
+        </div>
+        <%}%>
         <button id="connection-button" class="ui button" type="submit">Connexion</button>
     </form>
 </div>

@@ -10,6 +10,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries(
+		@NamedQuery(name="SelectCollaborateurByLogin", query="Select collabo from Collaborateur collabo where collabo.email = :email")
+)
 public class Collaborateur {
 
 	@Id

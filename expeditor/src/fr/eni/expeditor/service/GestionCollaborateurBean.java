@@ -1,8 +1,10 @@
 package fr.eni.expeditor.service;
 
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 import fr.eni.expeditor.entity.Collaborateur;
+import org.jboss.logging.Logger;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
  */
 @Stateless
 public class GestionCollaborateurBean extends AbstractService {
+    private static Logger LOGGER = Logger.getLogger(GestionCollaborateurBean.class.getName());
 
     /**
      * Ajoute un nouvel utilisateur
@@ -43,12 +46,15 @@ public class GestionCollaborateurBean extends AbstractService {
 
     /**
      * Rnvoie un collaborateur par son login
-     * @param login
+     * @param email
      * @return
      */
-    public Collaborateur rechercherParLogin(String login){
-
-        return getEntityManager().find(Collaborateur.class, login);
+    public Collaborateur rechercherParLogin(String email){
+        LOGGER.info("Passage dans rechercherParLogin");
+        LOGGER.info("Paramètre email : " + email);
+        Query q = getEntityManager().createNamedQuery("SelectCollaborateurByLogin");
+        q.setParameter("email", email);
+        return (Collaborateur)q.getSingleResult();
     }
 
     /**
