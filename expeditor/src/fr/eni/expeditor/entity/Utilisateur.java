@@ -1,7 +1,5 @@
 package fr.eni.expeditor.entity;
 
-import java.math.BigInteger;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
