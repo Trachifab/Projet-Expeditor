@@ -32,18 +32,16 @@ public class AbstractService {
 		Table annotation = (Table) type.getAnnotation(Table.class);
 
 		String value = null;
-
 		if (annotation != null) {
 			value = annotation.name();
 		}
 		if (value == null) {
 			value = type.getSimpleName();
 		}
-
 		Query query = getEntityManager().createQuery("SELECT u FROM " + value + " u");
 
 		return query.getResultList();
-
 	}
+
 
 }
