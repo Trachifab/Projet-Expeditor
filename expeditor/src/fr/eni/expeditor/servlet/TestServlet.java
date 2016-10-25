@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +17,7 @@ import fr.eni.expeditor.service.GestionUtilisateurBean;
 /**
  * Servlet implementation class TestServlet
  */
-public class TestServlet extends HttpServlet {
+public class TestServlet extends AbstractServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static Logger LOGGER = Logger.getLogger(TestServlet.class.getName());
@@ -29,32 +29,32 @@ public class TestServlet extends HttpServlet {
 	 * Default constructor.
 	 */
 	public TestServlet() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	@Override
+	void action(String action, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		doProcess(request, response);
+		RequestDispatcher dispatcher = null;
+
+		switch (action) {
+		case "action1":
+			LOGGER.info("toto1: redirection");
+
+			dispatcher = request.getRequestDispatcher("");
+			dispatcher.forward(request, response);
+
+			break;
+		case "action":
+			LOGGER.info("toto2");
+			break;
+		}
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doProcess(request, response);
-	}
-
-	private void doProcess(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	@Override
+	void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LOGGER.info("Test hibernate " + gestionUtilisateurBean == null);
 
 		Utilisateur user = new Utilisateur();
@@ -64,9 +64,11 @@ public class TestServlet extends HttpServlet {
 
 		gestionUtilisateurBean.ajouter(user);
 
-		List<Utilisateur> lstUser = gestionUtilisateurBean.getAll();
+		List<Utilisateur> lstUser = (List<Utilisateur>) gestionUtilisateurBean.consulter(Utilisateur.class);
 
 		LOGGER.info(lstUser.size());
+
+		// request.setAttribute(arg0, arg1);
 
 	}
 
