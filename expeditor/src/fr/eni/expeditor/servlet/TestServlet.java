@@ -22,8 +22,9 @@ public class TestServlet extends AbstractServlet {
 
 	private static Logger LOGGER = Logger.getLogger(TestServlet.class.getName());
 
-	@EJB
-	private GestionUtilisateurBean gestionUtilisateurBean;
+	/*
+	 * @EJB private GestionUtilisateurBean gestionUtilisateurBean;
+	 */
 
 	/**
 	 * Default constructor.
@@ -55,20 +56,22 @@ public class TestServlet extends AbstractServlet {
 
 	@Override
 	void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LOGGER.info("Test hibernate " + gestionUtilisateurBean == null);
-
-		Utilisateur user = new Utilisateur();
-
-		user.setLogin("Toto");
-		user.setPassword("test");
-
-		gestionUtilisateurBean.ajouter(user);
-
-		List<Utilisateur> lstUser = (List<Utilisateur>) gestionUtilisateurBean.consulter(Utilisateur.class);
-
-		LOGGER.info(lstUser.size());
-
-		// request.setAttribute(arg0, arg1);
+		/*
+		 * LOGGER.info("Test hibernate " + gestionUtilisateurBean == null);
+		 * 
+		 * Utilisateur user = new Utilisateur();
+		 * 
+		 * user.setLogin("Toto"); user.setPassword("test");
+		 * 
+		 * gestionUtilisateurBean.ajouter(user);
+		 * 
+		 * List<Utilisateur> lstUser = (List<Utilisateur>)
+		 * gestionUtilisateurBean.consulter(Utilisateur.class);
+		 * 
+		 * LOGGER.info(lstUser.size());
+		 * 
+		 * // request.setAttribute(arg0, arg1);
+		 */
 
 	}
 
