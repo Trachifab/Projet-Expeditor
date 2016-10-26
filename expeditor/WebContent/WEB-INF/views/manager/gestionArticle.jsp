@@ -25,54 +25,69 @@
 	<!-- Inclusion du menu -->
 	<%@include file="/WEB-INF/views/partial/menu.jsp"%>
 
-	<%
-		List<Article> lstArticles = (List<Article>) request.getAttribute("lstArticle");
 
-		if (lstArticles == null || lstArticles.isEmpty()) {
-	%>
-	<p>Pas d'article trouvé.</p>
+	<div class="ui equal width center aligned padded grid">
+		<div class="row">
+			<div class="two wide column"></div>
+			<div class="twelve wide column">
 
-	<%
-		} else {
-	%>
-	<!-- Tableaux liste des articles -->
-	<table class="ui celled table">
-		<thead>
-			<tr>
-				<th>Libellé</th>
-				<th>Description</th>
-				<th>Poids (gr)</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%
-				for (Article article : lstArticles) {
-			%>
-			<tr>
+				<%
+					List<Article> lstArticles = (List<Article>) request.getAttribute("lstArticle");
 
-				<td><%=article.getLibelle()%></td>
-				<td><%=article.getDescription()%></td>
-				<td><%=article.getPoids()%></td>
-				<td><input type="button" value="Modifier"
-					onclick="afficherModalArticle('<%=article.getId()%>',
+					if (lstArticles == null || lstArticles.isEmpty()) {
+				%>
+				<p>Pas d'article trouvé.</p>
+
+				<%
+					} else {
+				%>
+
+
+				<!-- Tableaux liste des articles -->
+				<table class="ui selectable celled table">
+					<thead>
+						<tr>
+							<th>Libellé</th>
+							<th>Description</th>
+							<th>Poids (gr)</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							for (Article article : lstArticles) {
+						%>
+						<tr>
+
+							<td><%=article.getLibelle()%></td>
+							<td><%=article.getDescription()%></td>
+							<td><%=article.getPoids()%></td>
+							<td><button type="button" class="ui button"
+									onclick="afficherModalArticle('<%=article.getId()%>',
 					'<%=StringEscapeUtils.escapeEcmaScript(article.getLibelle())%>',
 					'<%=StringEscapeUtils.escapeEcmaScript(article.getDescription())%>',
-					'<%=article.getPoids()%>')"></td>
-			</tr>
+					'<%=article.getPoids()%>')">
+									<i class="edit icon"></i>
+								</button></td>
+						</tr>
 
-			<%
-				}
-			%>
-		</tbody>
-	</table>
-	<%
-		}
-	%>
-	<input type="button" value="ajouter"
-		onclick="afficherModalArticle('popupAjout','','','','')">
-
- 	<!-- popup d'ajout et de modifications des articles -->
+						<%
+							}
+						%>
+					</tbody>
+				</table>
+				<%
+					}
+				%>
+				<button type="button" value="ajouter" class="ui green button"
+					onclick="afficherModalArticle('','','','','')">
+					<i class="add square icon"></i> ajouter
+				</button>
+			</div>
+			<div class="two wide column"></div>
+		</div>
+	</div>
+	<!-- popup d'ajout et de modifications des articles -->
 	<div id="popupArticle" class="ui small modal">
 
 		<div class="header">Ajouter article</div>
@@ -133,5 +148,6 @@
 	<%
 		}
 	%>
+
 </body>
 </html>
