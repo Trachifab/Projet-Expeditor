@@ -52,7 +52,9 @@
                 <tr class="<% if (collaborateur.getRole().getCode().equals("MANA")) { %>  positive  <% } else { %> warning <% } %>">
                     <td><%= collaborateur.getId() %>
                     </td>
-                    <td><%= collaborateur.getRole().getLibelle() %>
+                    <td>
+                        <i class="<% if (collaborateur.getRole().getCode().equals("MANA")) { %>  spy  <% } else { %> user <% } %> icon "></i>
+                        <%= collaborateur.getRole().getLibelle() %>
                     </td>
                     <td><%= collaborateur.getNom() %>
                     </td>
