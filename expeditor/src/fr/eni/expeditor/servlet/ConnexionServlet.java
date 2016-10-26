@@ -62,12 +62,12 @@ public class ConnexionServlet extends AbstractServlet {
             switch (role.getCode()) {
                 // Employé
                 case "EMPL":
-                    request.getSession().setAttribute("utilisateur", collaborateur);
+                    request.getSession().setAttribute("collaborateur", collaborateur);
                     rediriger("/employe", request, response);
                     break;
                 // Manager
                 case "MANA":
-                    request.getSession().setAttribute("utilisateur", collaborateur);
+                    request.getSession().setAttribute("collaborateur", collaborateur);
                     rediriger("/manager", request, response);
                     break;
                 default:
