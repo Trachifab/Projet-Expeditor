@@ -30,7 +30,6 @@ public class ConnexionServlet extends AbstractServlet {
 
     @Override
     void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        LOGGER.info("Passage dans init");
         try {
             connecterUtilisateur(request, response);
         } catch (ConnexionException ce) {
@@ -49,6 +48,7 @@ public class ConnexionServlet extends AbstractServlet {
      */
     private void connecterUtilisateur(HttpServletRequest request, HttpServletResponse response) throws ConnexionException, ServletException, IOException {
         String email = request.getParameter("identifiant");
+        LOGGER.info("Tentative de connexion avec l'identifiant " + email);
 
         // Détection de l'existence de l'utilisateur
         if (!gestionCollaborateurBean.collaborateurExiste(email)) {
@@ -89,6 +89,6 @@ public class ConnexionServlet extends AbstractServlet {
         // L'identifiant n'existe pas, il faut donc afficher un message d'erreur sur le template
         request.setAttribute("error", true);
         // Rediriger l'utilisateur sur la page de login
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }
