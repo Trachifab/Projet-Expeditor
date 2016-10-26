@@ -6,16 +6,17 @@
     <title>Expeditor</title>
 
     <!-- Semantic UI -->
-    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
-    <script src="resources/semanticUI/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.css">
+    <script src="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.js"></script>
 
 </head>
 <body>
 
-    <jsp:include page="../partial/menu.jsp" />
-    <div class="ui one column grid">
+    <jsp:include page="/WEB-INF/views/partial/menu.jsp" />
+    <div class="ui equal width aligned padded grid">
         <div class="row">
-            <div class="column">
+            <div class="two wide column"></div>
+            <div class="twelve wide column">
 
                 <div class="ui top attached tabular menu">
                     <div class="active item">Détails de la commande</div>
@@ -47,15 +48,16 @@
                 </div>
 
             </div>
+            <div class="two wide column"></div>
         </div>
         <div class="row">
-
-            <div class="column">
+            <div class="two wide column"></div>
+            <div class="twelve wide column">
 
                 contenu de la ligne 2 (à diviser en deux colonnes)
 
             </div>
-
+            <div class="two wide column"></div>
         </div>
     </div>
 
