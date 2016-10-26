@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ page import="fr.eni.expeditor.entity.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils"%>
 
 <html>
 <head>
@@ -15,11 +16,14 @@
 	href="resources/semanticUI/semantic.min.css">
 <script src="resources/semanticUI/semantic.min.js"></script>
 
-<link href="stylesheets/gestionArticle.css" rel="stylesheet"
+<link href="resources/stylesheets/gestionArticle.css" rel="stylesheet"
 	type="text/css" />
 <script type="text/javascript" src="resources/js/gestionArticle.js"></script>
 </head>
 <body>
+
+	<!-- Inclusion du menu -->
+	<%@include file="/WEB-INF/views/partial/menu.jsp"%>
 
 	<%
 		List<Article> lstArticles = (List<Article>) request.getAttribute("lstArticle");
@@ -31,6 +35,7 @@
 	<%
 		} else {
 	%>
+	<!-- Tableaux liste des articles -->
 	<table class="ui celled table">
 		<thead>
 			<tr>
@@ -49,7 +54,11 @@
 				<td><%=article.getLibelle()%></td>
 				<td><%=article.getDescription()%></td>
 				<td><%=article.getPoids()%></td>
-				<td></td>
+				<td><input type="button" value="Modifier"
+					onclick="afficherModalArticle('<%=article.getId()%>',
+					'<%=StringEscapeUtils.escapeEcmaScript(article.getLibelle())%>',
+					'<%=StringEscapeUtils.escapeEcmaScript(article.getDescription())%>',
+					'<%=article.getPoids()%>')"></td>
 			</tr>
 
 			<%
@@ -61,22 +70,24 @@
 		}
 	%>
 	<input type="button" value="ajouter"
-		onclick="afficherModal('popupAjout')">
+		onclick="afficherModalArticle('popupAjout','','','','')">
 
-
-	<div id="popupAjout" class="ui small modal">
+ 	<!-- popup d'ajout et de modifications des articles -->
+	<div id="popupArticle" class="ui small modal">
 
 		<div class="header">Ajouter article</div>
 
 		<form class="ui form" method="post" action="GestionArticleServlet">
-
+			<input type="hidden" name="articleId" id="articleId" />
 			<div class="content ">
+
+
 				<div class="field">
 					<label>Libelle</label> <input type="text" name="articleLibelle" />
 				</div>
 				<div class="field">
 					<label>Description</label>
-					<textarea rows="2"></textarea>
+					<textarea name="articleDescription" rows="2"></textarea>
 				</div>
 				<div class="field">
 					<label>Poids</label> <input type="number" name="articlePoids" />
@@ -89,7 +100,7 @@
 
 				<button class="ui button cancel">Annuler</button>
 
-				<!-- <div class="ui cancel button">Annuler</div> -->
+
 			</div>
 		</form>
 	</div>
@@ -98,6 +109,7 @@
 
 		if (erreurs != null && erreurs.size() > 0) {
 	%>
+	<!-- popup d'affichage des erreurs -->
 	<div id="popupErreurs" class="ui small modal">
 		<div class="header">Erreur de validation</div>
 

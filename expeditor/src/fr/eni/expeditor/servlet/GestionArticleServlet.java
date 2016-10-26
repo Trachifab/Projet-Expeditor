@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.jboss.logging.Logger;
 
 import fr.eni.expeditor.entity.Article;
@@ -53,11 +54,23 @@ public class GestionArticleServlet extends AbstractServlet {
 			init(request, response);
 
 			break;
+
+		case "modifier":
+
+			modifierArticle(request);
+			init(request, response);
+
+			break;
 		}
 
 	}
 
+	/**
+	 * Gestion de l'ajout d'article
+	 * @param request
+	 */
 	private void ajouterArticle(HttpServletRequest request) {
+
 		String libelle = request.getParameter("articleLibelle");
 		String description = request.getParameter("articleDescription");
 		String poids = request.getParameter("articlePoids");
@@ -69,6 +82,43 @@ public class GestionArticleServlet extends AbstractServlet {
 		}
 
 		Article article = new Article();
+		article.setLibelle(libelle);
+		article.setDescription(description);
+		article.setPoids(poidsInt);
+
+		List<String> erreurs = gestionArticleBean.verifierRG(article);
+
+		if (erreurs == null || erreurs.isEmpty()) {
+			gestionArticleBean.enregistrerArticle(article);
+		} else {
+			request.setAttribute("erreurs", erreurs);
+		}
+
+	}
+
+	/**
+	 * Gestion de la modification d'article
+	 * @param request
+	 */
+	private void modifierArticle(HttpServletRequest request) {
+
+		String id = request.getParameter("articleId");
+
+		
+		
+		String libelle = request.getParameter("articleLibelle");
+		String description = request.getParameter("articleDescription");
+		String poids = request.getParameter("articlePoids");
+		Integer poidsInt = null;
+		Integer idInt = null;
+		try {
+			idInt = Integer.parseInt(id);
+			poidsInt = Integer.parseInt(poids);
+		} catch (NumberFormatException ex) {
+
+		}
+
+		Article article = gestionArticleBean.rechercherParIdentifiant(idInt);
 		article.setLibelle(libelle);
 		article.setDescription(description);
 		article.setPoids(poidsInt);

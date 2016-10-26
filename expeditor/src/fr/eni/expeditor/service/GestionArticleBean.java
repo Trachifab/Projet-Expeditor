@@ -18,14 +18,19 @@ public class GestionArticleBean extends AbstractService {
 		return (List<Article>) consulter(Article.class);
 	}
 
-	public Article rechercherParIdentifiant(Article article) {
-		return getEntityManager().find(Article.class, article);
+	public Article rechercherParIdentifiant(Integer id) {
+		return getEntityManager().find(Article.class, id);
 	}
 
 	public Article rechercherParIdentifiantExterne(Article article) {
 		return getEntityManager().find(Article.class, article.getIdExterne());
 	}
 
+	/**
+	 * Insert ou met à jour les articles en base (gère l'afféctation de l'idExterne)
+	 * @param article
+	 * @return l'article persisté
+	 */
 	public Article enregistrerArticle(Article article) {
 
 		if (article.getId() == null) {
@@ -40,6 +45,12 @@ public class GestionArticleBean extends AbstractService {
 		return article;
 	}
 
+	/**
+	 * Valide les différentes règles de gestion d'enregistrement des articles
+	 * 
+	 * @param article
+	 * @return liste des erreurs
+	 */
 	public List<String> verifierRG(Article article) {
 
 		List<String> erreurs = new ArrayList<String>();
@@ -51,16 +62,15 @@ public class GestionArticleBean extends AbstractService {
 				erreurs.add("Le libelle est obligatoire");
 			}
 		}
-		
-		if (article.getPoids() == null ) {
+
+		if (article.getPoids() == null) {
 			erreurs.add("Le poids est obligatoire");
 		} else {
 			if (article.getPoids() < 0) {
 				erreurs.add("Le poids doit être supérieur ou égale à 0");
 			}
 		}
-		
-		
+
 		return erreurs;
 
 	}

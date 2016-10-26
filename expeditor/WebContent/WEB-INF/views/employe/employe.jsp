@@ -1,4 +1,5 @@
 <%@ page import="fr.eni.expeditor.entity.Commande" %>
+<%@ page import="fr.eni.expeditor.entity.LigneCommande" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,11 +21,29 @@
                     <div class="active item">Détails de la commande</div>
                 </div>
                 <div class="ui bottom attached active tab segment">
-                    <% Commande commandeATraiter=(Commande)request.getAttribute("commandeATraiter"); %>
-                    Identifiant commande : <%=commandeATraiter.getNumero()%>
-                    Date de commande : <%=commandeATraiter.getDateCommande()%>
-                    Informations client : <%=commandeATraiter.getDateCommande()%>
 
+                    <% Commande commandeATraiter=(Commande)request.getAttribute("commandeATraiter"); %>
+                    <p>Identifiant commande : <%=commandeATraiter.getNumero()%></p>
+                    <p>Date de commande : <%=commandeATraiter.getDateCommande()%></p>
+                    <p>Informations client : </p>
+                    <ul>
+                        <li><%=commandeATraiter.getClient().getRaisonSociale()%></li>
+                        <li><%=commandeATraiter.getClient().getAdresse1()%></li>
+                        <%if(commandeATraiter.getClient().getAdresse2() != null){%>
+                            <li><%=commandeATraiter.getClient().getAdresse2()%></li>
+                        <%}%>
+                        <%if(commandeATraiter.getClient().getAdresse3() != null){%>
+                            <li><%=commandeATraiter.getClient().getAdresse3()%></li>
+                        <%}%>
+                        <li><%=commandeATraiter.getClient().getCp()%></li>
+                        <li><%=commandeATraiter.getClient().getVille()%></li>
+                    </ul>
+                    <p>Informations commandes : </p>
+                    <ul>
+                    <% for (LigneCommande ligne : commandeATraiter.getLignesCommande()) { %>
+                        <li><%=ligne.getArticle().getLibelle()%> (<%=ligne.getQuantite() %>)</li>
+                    <% } %>
+                    </ul>
                 </div>
 
             </div>
