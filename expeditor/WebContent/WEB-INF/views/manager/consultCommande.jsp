@@ -11,7 +11,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <html>
 <head>
-    <title>Expeditor</title>
+    <title>Commandes</title>
 
     <!-- Semantic UI -->
     <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">

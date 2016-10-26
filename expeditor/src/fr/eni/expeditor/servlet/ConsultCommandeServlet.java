@@ -9,14 +9,10 @@ import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.*;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -62,8 +58,8 @@ public class ConsultCommandeServlet extends AbstractServlet {
 
         managerCourant.setRole(roleManager);
 
-        session.setAttribute("collaborateur", employeCourant);
-//        session.setAttribute("collaborateur", managerCourant);
+//        session.setAttribute("collaborateur", employeCourant);
+        session.setAttribute("collaborateur", managerCourant);
         //</editor-fold>
 
         // récupération de la liste des commandes en attente ou en cours de traitement
