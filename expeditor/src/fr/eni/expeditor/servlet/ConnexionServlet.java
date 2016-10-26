@@ -1,5 +1,6 @@
 package fr.eni.expeditor.servlet;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,9 @@ import org.jboss.logging.Logger;
 public class ConnexionServlet extends AbstractServlet {
     private static Logger LOGGER = Logger.getLogger(ConnexionServlet.class.getName());
 
+    @EJB
+    GestionCollaborateurBean gestionCollaborateurBean;
+
     @Override
     void action(String action, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -25,7 +29,6 @@ public class ConnexionServlet extends AbstractServlet {
         String identifiant = request.getParameter("identifiant");
 
         // Détection de l'existence de l'utilisateur
-        GestionCollaborateurBean gestionCollaborateurBean = new GestionCollaborateurBean();
         Collaborateur collaborateur = gestionCollaborateurBean.rechercherParLogin(identifiant);
         if(collaborateur != null){
             LOGGER.info(collaborateur);
@@ -35,6 +38,6 @@ public class ConnexionServlet extends AbstractServlet {
         // L'identifiant n'existe pas, il faut donc afficher un message d'erreur sur le template
         request.setAttribute("error", true);
         // Rediriger l'utilisateur sur la page de login
-        request.getRequestDispatcher("/").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

@@ -8,15 +8,6 @@
 
 		<jta-data-source>java:/ExpeditorDs</jta-data-source>
 
-
-		<class>fr.eni.expeditor.Role</class>
-		<class>fr.eni.expeditor.Etat</class>
-		<class>fr.eni.expeditor.Article</class>
-		<class>fr.eni.expeditor.Client</class>
-		<class>fr.eni.expeditor.Collaborateur</class>
-		<class>fr.eni.expeditor.Commande</class>
-		<class>fr.eni.expeditor.LigneCommande</class>
-
 		<properties>
 		<!-- 	<property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
 			<property name="hibernate.show_sql" value="false" />

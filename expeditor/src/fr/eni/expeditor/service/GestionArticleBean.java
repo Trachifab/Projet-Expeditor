@@ -5,13 +5,16 @@ import fr.eni.expeditor.entity.Collaborateur;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 /**
  * Created by d1502doreyf on 25/10/2016.
  */
+@Stateless
 public class GestionArticleBean extends AbstractService{
 
     public List<Article> rechercherTous(){
-        return (List<Article>) consulter(Collaborateur.class);
+        return (List<Article>) consulter(Article.class);
     }
 
     public Article  rechercherParIdentifiant(Article article){
