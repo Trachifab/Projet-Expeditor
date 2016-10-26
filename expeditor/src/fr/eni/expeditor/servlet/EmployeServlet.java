@@ -68,6 +68,6 @@ public class EmployeServlet extends AbstractServlet {
         // L'identifiant n'existe pas, il faut donc afficher un message d'erreur sur le template
         request.setAttribute("error", true);
         // Rediriger l'utilisateur sur la page de login
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }

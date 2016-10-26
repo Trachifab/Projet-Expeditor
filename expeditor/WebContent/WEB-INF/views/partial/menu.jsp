@@ -1,10 +1,6 @@
-<%@ page import="fr.eni.expeditor.entity.Collaborateur" %><%--
-  Created by IntelliJ IDEA.
-  User: d1503betournej
-  Date: 25/10/2016
-  Time: 14:08
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="fr.eni.expeditor.entity.Collaborateur" %>
+<!-- Faut pas faire ça, mais fait chier de le mettre dans tous les templates sinon -->
+<script src="${pageContext.request.contextPath}/resources/js/menu.js"></script>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="ui attached stackable menu">
@@ -30,6 +26,8 @@
         <a class="item">
             <i class="red sign out icon"></i>
         </a>
+        <form id="deconnexionForm" style="display: none;" action="${pageContext.request.contextPath}/deconnexion" method="POST">
+            <button class="ui transparent button deconnexion" type="submit"></button>
+        </form>
     </div>
 </div>
-
