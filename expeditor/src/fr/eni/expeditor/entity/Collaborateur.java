@@ -12,7 +12,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries(
         {
-                @NamedQuery(name = "CollaborateurLoginExists", query = "Select count(*) from Collaborateur collabo where collabo.email = :email"),
+                @NamedQuery(name = "CollaborateurLoginExists", query = "Select count(collabo) from Collaborateur collabo where collabo.email = :email"),
                 @NamedQuery(name = "SelectCollaborateurByLoginMotDePasse", query = "Select collabo from Collaborateur collabo where collabo.email = :email and collabo.motDePasse = :motDePasse")
         }
 )

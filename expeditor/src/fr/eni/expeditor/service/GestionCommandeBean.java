@@ -3,6 +3,7 @@ package fr.eni.expeditor.service;
 import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.entity.Commande;
 import fr.eni.expeditor.servlet.TestServlet;
+import fr.eni.expeditor.entity.Commande;
 import org.jboss.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -11,8 +12,8 @@ import javax.persistence.Query;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by d1502doreyf on 26/10/2016.
+/*
+ * Service sous forme d'EJB permattant de gérer les entités Commandes
  */
 @Stateless
 public class GestionCommandeBean extends AbstractService{
