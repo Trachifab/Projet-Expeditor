@@ -1,10 +1,13 @@
 package fr.eni.expeditor.service;
 
 import javax.ejb.Stateless;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import fr.eni.expeditor.entity.Collaborateur;
+import fr.eni.expeditor.entity.Commande;
 import fr.eni.expeditor.exception.ConnexionException;
 import org.jboss.logging.Logger;
 

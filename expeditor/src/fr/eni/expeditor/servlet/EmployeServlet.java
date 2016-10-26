@@ -2,6 +2,7 @@ package fr.eni.expeditor.servlet;
 
 import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.entity.Commande;
+import fr.eni.expeditor.entity.Etat;
 import fr.eni.expeditor.service.GestionCommandeBean;
 import java.io.IOException;
 
@@ -49,6 +50,13 @@ public class EmployeServlet extends AbstractServlet {
 
         Collaborateur connectedCollaborateur = (Collaborateur) request.getSession().getAttribute("collaborateur");
         Commande commandeATraiter = commandeEjb.recupererCommandeATraiter(connectedCollaborateur);
+
+        Etat etat = new Etat();
+        etat.setCode("ENCO");
+        etat.setLibelle("En cours de traitement");
+
+        commandeEjb.modifierEtatCommande(commandeATraiter, etat);
+        commandeEjb.affecterCollaborateurACommande(connectedCollaborateur, commandeATraiter);
 
         RequestDispatcher dispatcher = null;
         request.setAttribute("commandeATraiter", commandeATraiter);
