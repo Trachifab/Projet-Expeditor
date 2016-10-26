@@ -24,7 +24,7 @@
             </div>
         </div>
         <a href="EspacePersoServlet" class="right item">
-            <% session.getAttribute("collaborateur");  %>
+            <%= session.getAttribute("collaborateur")  %>
             <i class="user icon"></i>
         </a>
         <a class="item">
