@@ -6,9 +6,11 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@NamedQueries(
+@NamedQueries({
+        @NamedQuery(name = "COMMANDE.RECUPERER.DERNIERE.COMMANDE.EN.ATTENTE", query = "select c from Commande c where c.etat.libelle = 'ATTE' order by c.dateCommande asc"),
+        @NamedQuery(name = "COMMANDE.RECUPERER.COMMANDE.EN.COURS.POUR.EMPLOYE", query = "select c from Commande c where c.collaborateur.id = :col_id"),
         @NamedQuery(name="listerCommandesManager", query="Select c from Commande c where c.etat.code IN :etats order by c.numero")
-)
+})
 public class Commande {
 
     @Id

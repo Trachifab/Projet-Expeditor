@@ -67,6 +67,10 @@
 		<url-pattern>/employe</url-pattern>
 	</servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ConsultCommandeServlet</servlet-name>
+        <url-pattern>/manager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>GestionEmployeServlet</servlet-name>
         <url-pattern>/GestionEmployeServlet</url-pattern>
     </servlet-mapping>

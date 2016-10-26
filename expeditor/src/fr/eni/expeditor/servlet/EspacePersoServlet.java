@@ -2,7 +2,9 @@ package fr.eni.expeditor.servlet;
 
 import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.entity.Role;
+import fr.eni.expeditor.service.GestionCollaborateurBean;
 
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,41 +21,49 @@ import java.io.IOException;
 public class EspacePersoServlet extends AbstractServlet {
 
     private Collaborateur employeCourant;
+    private HttpSession session;
+
+    @EJB
+    private GestionCollaborateurBean gestionCollaborateurBean;
 
     @Override
     void action(String action, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        switch (action){
+            case "modifier":
+                modifier(request);
+                init(request, response);
+                break;
+            case "annuler":
+                init(request, response);
+                break;
 
+            default:
+                break;
+        }
+    }
+
+    /**
+     *
+     * @param request
+     */
+    private void modifier(HttpServletRequest request) {
+        employeCourant.setNom(request.getParameter("nomCollabo"));
+        employeCourant.setPrenom(request.getParameter("prenomCollabo"));
+        employeCourant.setEmail(request.getParameter("emailCollabo"));
+        employeCourant.setMotDePasse(request.getParameter("mdpCollabo"));
+
+        //appel a l'EJB
+        gestionCollaborateurBean.enregistrerCollaborateur(employeCourant);
+
+        //set du nouveau collaborateur
+        session.setAttribute("collaborateur",employeCourant);
     }
 
     @Override
     void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //<editor-fold desc="BOUCHON SESSION">
-        HttpSession session = request.getSession();
-        employeCourant = new Collaborateur();
-        employeCourant.setEmail("emp@bouchon.com");
-        employeCourant.setNom("BERNARD");
-        employeCourant.setPrenom("Jean");
-        employeCourant.setMotDePasse("motDePasse");
-
-        Role roleEmploye = new Role();
-        roleEmploye.setCode("EMPL");
-        roleEmploye.setLibelle("Employé");
-        employeCourant.setRole(roleEmploye);
-
-        Collaborateur managerCourant = new Collaborateur();
-        managerCourant.setEmail("man@bouchon.com");
-        managerCourant.setNom("DUPONT");
-        managerCourant.setPrenom("Thierry");
-
-        Role roleManager = new Role();
-        roleManager.setCode("MANA");
-        roleManager.setLibelle("Manager");
-
-        managerCourant.setRole(roleManager);
-
-        session.setAttribute("collaborateur",employeCourant);
-        //</editor-fold>
+        session = request.getSession();
+        employeCourant = (Collaborateur)session.getAttribute("collaborateur");
 
         RequestDispatcher dispatcher = null;
         dispatcher = request.getRequestDispatcher("/WEB-INF/views/utilisateur/espacePerso.jsp");

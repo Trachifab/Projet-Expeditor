@@ -1,5 +1,8 @@
 package fr.eni.expeditor.service;
 
+import fr.eni.expeditor.entity.Collaborateur;
+import fr.eni.expeditor.entity.Commande;
+import fr.eni.expeditor.servlet.TestServlet;
 import fr.eni.expeditor.entity.Commande;
 import org.jboss.logging.Logger;
 
@@ -9,12 +12,56 @@ import javax.persistence.Query;
 import java.util.Arrays;
 import java.util.List;
 
-/**
+/*
  * Service sous forme d'EJB permattant de gérer les entités Commandes
  */
 @Stateless
-public class GestionCommandeBean extends AbstractService {
-    private static Logger LOGGER = Logger.getLogger(GestionCommandeBean.class.getName());
+public class GestionCommandeBean extends AbstractService{
+
+    private static Logger LOGGER = Logger.getLogger(TestServlet.class.getName());
+
+    public Commande recupererCommandeATraiter(Collaborateur col){
+
+        Commande commande = new Commande();
+
+        //On vérfie si le collaborateur n'a pas déjà une commande en cours
+        commande = recupererCommandeEncours(col);
+        if(commande == null){
+            //sinon on récupére la commance la plus ancienne en attente
+            recupererDerniereCommande();
+        }
+        return commande;
+    }
+
+    /**
+     * Récupére la dernière commande non traité
+     * @return dernière commande en cours
+     */
+    private Commande recupererDerniereCommande() {
+
+        List results = getEntityManager().createNamedQuery("COMMANDE.RECUPERER.DERNIERE.COMMANDE.EN.ATTENTE").getResultList();
+        if (results.isEmpty()){
+            LOGGER.error("La requête n'a pas trouvé la commande la plus ancienne.");
+            return null;
+        }
+        return (Commande) results.get(0);
+    }
+
+    /**
+     * Récupérer la commande en cours pour l'utilisateur
+     * @return
+     */
+    private Commande recupererCommandeEncours(Collaborateur col) {
+
+        Query q = getEntityManager().createNamedQuery("COMMANDE.RECUPERER.COMMANDE.EN.COURS.POUR.EMPLOYE");
+        q.setParameter("col_id", col.getId());
+        List results =  q.getResultList();
+        if (results.isEmpty()){
+            LOGGER.error("La requête n'a pas trouvé de commande en cours pour l'employé");
+            return null;
+        }
+        return (Commande) results.get(0);
+    }
 
     /**
      * Ajoute une nouvelle commande
