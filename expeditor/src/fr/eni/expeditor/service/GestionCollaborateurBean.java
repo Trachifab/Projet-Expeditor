@@ -18,13 +18,15 @@ public class GestionCollaborateurBean extends AbstractService {
     private static Logger LOGGER = Logger.getLogger(GestionCollaborateurBean.class.getName());
 
     /**
-     * Ajoute un nouvel utilisateur
+     * Ajoute ou modifie un utilisateur
      * @param user
      */
-    public void ajouter(Collaborateur user) {
-
-        getEntityManager().merge(user);
-
+    public void enregistrerCollaborateur(Collaborateur user) {
+        if (user.getId() == null) {
+            getEntityManager().persist(user);
+        } else {
+            user = getEntityManager().merge(user);
+        }
     }
 
     /**
@@ -73,6 +75,11 @@ public class GestionCollaborateurBean extends AbstractService {
         getEntityManager().remove(login);
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public Boolean collaborateurExiste(String email) {
         LOGGER.info("Recherche du collaborateur dont l'identifiant est " + email);
         Query q = getEntityManager().createNamedQuery("CollaborateurLoginExists");
@@ -81,6 +88,13 @@ public class GestionCollaborateurBean extends AbstractService {
         return ((Long)q.getSingleResult()) != 0;
     }
 
+    /**
+     *
+     * @param email
+     * @param motDePasse
+     * @return
+     * @throws ConnexionException
+     */
     public Collaborateur rechercherParLoginMotDePasse(String email, String motDePasse) throws ConnexionException {
         LOGGER.info(String.format("Tentative de connexion de l'utilisateur '%s'", email));
         Query q = getEntityManager().createNamedQuery("SelectCollaborateurByLoginMotDePasse");
