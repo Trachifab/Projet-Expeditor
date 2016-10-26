@@ -1,13 +1,13 @@
 package fr.eni.expeditor.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 @Entity
 public class Article {
@@ -20,11 +20,13 @@ public class Article {
 	private String idExterne;
 
 	private String libelle;
-	
+
 	@Lob
 	private String description;
-	
+
 	private Integer poids;
+
+	private Date dateArchive;
 
 	public Integer getId() {
 		return id;
@@ -66,6 +68,12 @@ public class Article {
 		this.poids = poid;
 	}
 
-	
-	
+	public Date getDateArchive() {
+		return dateArchive;
+	}
+
+	public void setDateArchive(Date dateArchive) {
+		this.dateArchive = dateArchive;
+	}
+
 }

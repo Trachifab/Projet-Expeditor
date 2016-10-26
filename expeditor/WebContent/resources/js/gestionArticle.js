@@ -4,6 +4,13 @@ function afficherModal(id) {
 
 }
 
+function afficherModalArchiver(idArticle) {
+	$('#popupValidationArchivage [name=articleId]').val(idArticle);
+
+	afficherModal('popupValidationArchivage')
+
+}
+
 function afficherModalArticle(idArticle, articleLibelle, articleDescription,
 		articlePoids) {
 

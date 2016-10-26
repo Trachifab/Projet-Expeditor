@@ -1,6 +1,7 @@
 package fr.eni.expeditor.servlet;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -56,12 +57,19 @@ public class GestionArticleServlet extends AbstractServlet {
 			init(request, response);
 
 			break;
+
+		case "archiver":
+			archiverArticle(request);
+			init(request, response);
+
+			break;
 		}
 
 	}
 
 	/**
 	 * Gestion de l'ajout d'article
+	 * 
 	 * @param request
 	 */
 	private void ajouterArticle(HttpServletRequest request) {
@@ -93,14 +101,13 @@ public class GestionArticleServlet extends AbstractServlet {
 
 	/**
 	 * Gestion de la modification d'article
+	 * 
 	 * @param request
 	 */
 	private void modifierArticle(HttpServletRequest request) {
 
 		String id = request.getParameter("articleId");
 
-		
-		
 		String libelle = request.getParameter("articleLibelle");
 		String description = request.getParameter("articleDescription");
 		String poids = request.getParameter("articlePoids");
@@ -128,4 +135,21 @@ public class GestionArticleServlet extends AbstractServlet {
 
 	}
 
+	private void archiverArticle(HttpServletRequest request) {
+		String id = request.getParameter("articleId");
+		Integer idInt = null;
+		try {
+			idInt = Integer.parseInt(id);
+
+		} catch (NumberFormatException ex) {
+
+		}
+
+		Article article = gestionArticleBean.rechercherParIdentifiant(idInt);
+
+		article.setDateArchive(new Date());
+
+		gestionArticleBean.enregistrerArticle(article);
+
+	}
 }
