@@ -2,7 +2,6 @@ package fr.eni.expeditor.servlet;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -11,15 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.jboss.logging.Logger;
 
 import fr.eni.expeditor.entity.Article;
 import fr.eni.expeditor.service.GestionArticleBean;
 
-/**
- * Created by Administrateur on 25/10/2016.
- */
 @WebServlet(name = "GestionArticleServlet")
 public class GestionArticleServlet extends AbstractServlet {
 
