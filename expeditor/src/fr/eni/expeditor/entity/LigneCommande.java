@@ -13,7 +13,7 @@ public class LigneCommande {
 	@EmbeddedId
 	private IdLigneCommande id;
 
-	@MapsId("commande_numeros")
+	@MapsId("commande_numero")
 	@ManyToOne
 	private Commande commande;
 
