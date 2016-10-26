@@ -8,7 +8,7 @@
     <script src="resources/semanticUI/semantic.min.js"></script>
 
     <!-- Expeditor stylesheets -->
-    <link rel="stylesheet" type="text/css" href="stylesheets/connexion.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/connexion.css">
 </head>
 <body>
 <!-- Le conteneur, centré en milieu de page -->
