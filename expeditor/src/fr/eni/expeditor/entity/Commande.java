@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries(
-        @NamedQuery(name="listerCommandesManager", query="Select commande from Commande commande where commande.etat.code IN :etats order by commande.numero")
+        @NamedQuery(name="listerCommandesManager", query="Select c from Commande c where c.etat.code IN :etats order by c.numero")
 )
 public class Commande {
 
