@@ -9,30 +9,51 @@ p{
 }
 
 /** Formulaire **/
-#login-form{
-    /*margin: 0 auto;*/
-    /*max-width: 200px;*/
-}
-
 #login-inputs{
     margin: 0 auto;
     max-width: 200px;
 }
 
 /** Mot de passe oublié **/
-#forgotten-password{
-    text-align: right;
+#mdpOublieContainer{
+    position: relative;
+    height: 20px;
+}
+#mdpOublie{
+    position: absolute;
+    right: 0;
     font-size: 0.8em;
     color: rgba(0, 0, 177, 0.7);
     text-decoration: underline;
     cursor: pointer;
 }
 
-/** Bouton **/
-#connection-button{
-    /** Utilisé pour centrer le bouton de connection par rapport à son conteneur **/
+/** Modal mdp oublié **/
+.modal.mdpOublie .inputConteneur{
     display: block;
-    margin: 15px auto 0;
+    width: 250px;
+    margin: 0 auto;
+}
+.modal.mdpOublie .inputConteneur .input{
+    width: 100%;
+}
+.modal.mdpOublie .inputConteneur .conteneurBoutons{
+    position: relative;
+    min-height: 40px;
+    margin-top: 15px;
+}
+.modal.mdpOublie .inputConteneur .conteneurBoutons .button{
+    width: 45%;
+}
+
+.modal.mdpOublie .inputConteneur .conteneurBoutons.actions .button.left{
+    margin-left: 0;
+}
+
+/** Bouton **/
+.connexion{
+    margin: 0 auto;
+    width: 110px;
 }
 
 /** Message d'erreur **/

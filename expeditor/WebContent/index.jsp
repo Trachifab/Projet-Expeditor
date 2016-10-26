@@ -41,7 +41,15 @@
             </div>
 
             <!-- Mot de passe oublié -->
-            <p id="forgotten-password" class="right floated">Mot de passe oublié ?</p>
+            <div id="mdpOublieContainer">
+                <p id="mdpOublie" class="right floated">Mot de passe oublié ?</p>
+            </div>
+        </div>
+
+        <!-- Message de validation -->
+        <div class="ui success message">
+            <i class="close icon"></i>
+            <p>Un email à été envoyé à l'adresse indiquée.</p>
         </div>
 
         <!-- Message d'erreur -->
@@ -58,9 +66,21 @@
             </ul>
         </div>
         <%}%>
-        <button id="connection-button" class="ui button" type="submit">Connexion</button>
+
+        <!-- Bouton de connexion -->
+        <div class="connexion">
+            <button class="ui green center floated animated button" type="submit">
+                <div class="visible content">Connexion</div>
+                <div class="hidden content">
+                    <i class="sign in icon"></i>
+                </div>
+            </button>
+        </div>
+
     </form>
 </div>
+
+<%@include file="/WEB-INF/views/partial/motDePasseOublie.jsp" %>
 
 </body>
 </html>
