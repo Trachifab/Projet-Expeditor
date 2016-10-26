@@ -10,6 +10,11 @@ p{
 
 /** Formulaire **/
 #login-form{
+    /*margin: 0 auto;*/
+    /*max-width: 200px;*/
+}
+
+#login-inputs{
     margin: 0 auto;
     max-width: 200px;
 }
@@ -25,6 +30,12 @@ p{
 
 /** Bouton **/
 #connection-button{
-    /** Utilisé pour centré le bouton de connection par rapport à son conteneur **/
-    margin-left: 20%;
+    /** Utilisé pour centrer le bouton de connection par rapport à son conteneur **/
+    display: block;
+    margin: 15px auto 0;
+}
+
+/** Message d'erreur **/
+#message-erreur{
+    display: block;
 }
