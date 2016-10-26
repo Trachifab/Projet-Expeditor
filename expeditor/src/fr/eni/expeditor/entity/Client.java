@@ -18,7 +18,7 @@ public class Client {
 	@Column(unique = true)
 	private String idExterne;
 
-	private String raisonSocial;
+	private String raisonSociale;
 
 	private String adresse1;
 
@@ -46,12 +46,12 @@ public class Client {
 		this.idExterne = idExterne;
 	}
 
-	public String getRaisonSocial() {
-		return raisonSocial;
+	public String getRaisonSociale() {
+		return raisonSociale;
 	}
 
-	public void setRaisonSocial(String raisonSocial) {
-		this.raisonSocial = raisonSocial;
+	public void setRaisonSociale(String raisonSociale) {
+		this.raisonSociale = raisonSociale;
 	}
 
 	public String getAdresse1() {

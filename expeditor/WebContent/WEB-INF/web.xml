@@ -64,7 +64,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>EmployeServlet</servlet-name>
-		<url-pattern>/EmployeServlet</url-pattern>
+		<url-pattern>/employe</url-pattern>
 	</servlet-mapping>
     <servlet-mapping>
         <servlet-name>GestionEmployeServlet</servlet-name>

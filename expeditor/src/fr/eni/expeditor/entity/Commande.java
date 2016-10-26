@@ -11,79 +11,86 @@ import javax.persistence.OneToMany;
 @Entity
 public class Commande {
 
-	@Id
-	private Integer numeros;
+    @Id
+    private Integer numero;
 
-	private Date dateComande;
+    private Date dateCommande;
 
-	private Date dateTraitment;
+    private Date dateTraitement;
 
-	@ManyToOne
-	private Client client;
+    @ManyToOne
+    private Client client;
 
-	@OneToMany
-	private List<LigneCommande> lstCommande;
+    @OneToMany(mappedBy = "commande")
+    private List<LigneCommande> lignesCommande;
 
-	@ManyToOne
-	private Collaborateur collaborateur;
+    @ManyToOne
+    private Collaborateur collaborateur;
 
-	@ManyToOne
-	private Etat etat;
+    @ManyToOne
+    private Etat etat;
 
-	public Etat getEtat() {
-		return etat;
-	}
+    public Etat getEtat() {
+        return etat;
+    }
 
-	public void setEtat(Etat etat) {
-		this.etat = etat;
-	}
+    public void setEtat(Etat etat) {
+        this.etat = etat;
+    }
 
-	public List<LigneCommande> getLstCommande() {
-		return lstCommande;
-	}
+    public Collaborateur getCollaborateur() {
+        return collaborateur;
+    }
 
-	public void setLstCommande(List<LigneCommande> lstCommande) {
-		this.lstCommande = lstCommande;
-	}
+    public void setCollaborateur(Collaborateur collaborateur) {
+        this.collaborateur = collaborateur;
+    }
 
-	public Collaborateur getCollaborateur() {
-		return collaborateur;
-	}
+    public Client getClient() {
+        return client;
+    }
 
-	public void setCollaborateur(Collaborateur collaborateur) {
-		this.collaborateur = collaborateur;
-	}
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
-	public Client getClient() {
-		return client;
-	}
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
+    public Integer getNumero() {
+        return numero;
+    }
 
-	public Integer getNumeros() {
-		return numeros;
-	}
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
 
-	public void setNumeros(Integer numeros) {
-		this.numeros = numeros;
-	}
+    public Date getDateCommande() {
+        return dateCommande;
+    }
 
-	public Date getDateComande() {
-		return dateComande;
-	}
+    public void setDateCommande(Date dateCommande) {
+        this.dateCommande = dateCommande;
+    }
 
-	public void setDateComande(Date dateComande) {
-		this.dateComande = dateComande;
-	}
+    public Date getDateTraitement() {
+        return dateTraitement;
+    }
 
-	public Date getDateTraitment() {
-		return dateTraitment;
-	}
+    public void setDateTraitement(Date dateTraitement) {
+        this.dateTraitement = dateTraitement;
+    }
 
-	public void setDateTraitment(Date dateTraitment) {
-		this.dateTraitment = dateTraitment;
-	}
+    public List<LigneCommande> getLignesCommande() {
+        return lignesCommande;
+    }
 
+    public void setLignesCommande(List<LigneCommande> lignesCommande) {
+        this.lignesCommande = lignesCommande;
+    }
+
+    @Override
+    public String toString() {
+        return "Commande n°" + numero +
+                ", effectuée le " + dateCommande +
+                ". Etat : " + etat;
+    }
 }

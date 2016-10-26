@@ -1,4 +1,4 @@
-<%--
+<%@ page import="fr.eni.expeditor.entity.Collaborateur" %><%--
   Created by IntelliJ IDEA.
   User: Administrateur
   Date: 25/10/2016
@@ -25,37 +25,59 @@
 
 </head>
 <body>
-    <div class="ui secondary  menu">
-        <div class="right menu">
-            <div class="item">
-                <div class="ui dropdown">
-                    Jeanne Oscour<i class="user icon"></i>
-                </div>
-            </div>
-        </div>
-            <div class="item">
-                <div class="ui dropdown">
-                    <i class="content icon"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <jsp:include page="../partial/menu.jsp"/>
+    <% Collaborateur courant = (Collaborateur)session.getAttribute("collaborateur");  %>
 
     <div class="flex-container">
-        <div class="ui large form">
-            <div class="two fields">
-                <div class="field">
-                    <label>First Name</label>
-                    <input placeholder="First Name" type="text">
-                </div>
-                <div class="field">
-                    <label>Last Name</label>
-                    <input placeholder="Last Name" type="text">
-                </div>
-            </div>
-            <div class="ui submit button">Submit</div>
-        </div>
-    </div>
 
+                <div class="ui equal width form">
+                    <div class="fields">
+                        <div class="field">
+                            <h1 class="ui center header">Bienvenue sur votre espace personnel</h1>
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Nom</label>
+                            <input placeholder="Nom" type="text" value="<%= courant.getNom()%>">
+                        </div>
+                        <div class="field">
+                            <label>Prénom</label>
+                            <input placeholder="Prénom" type="text" value="<%= courant.getPrenom()%>">
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Email</label>
+                            <input placeholder="email" type="email" value="<%= courant.getEmail()%>">
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <label>Mot de passe</label>
+                            <input placeholder="Mot de passe" type="password" value="<%= courant.getMotDePasse()%>">
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="field">
+                            <div class="ui red left floated animated button">
+                                <div class="visible content">Annuler</div>
+                                <div class="hidden content">
+                                    <i class="remove icon"></i>
+                                </div>
+                            </div>
+                            <div class="ui green right floated animated submit button">
+                                <div class="visible content">Modifier</div>
+                                <div class="hidden content">
+                                    <i class="checkmark icon"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
 </body>
 </html>
