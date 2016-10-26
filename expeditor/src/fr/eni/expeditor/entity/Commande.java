@@ -3,12 +3,12 @@ package fr.eni.expeditor.entity;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries(
+        @NamedQuery(name="listerCommandesManager", query="Select commande from Commande commande where commande.etat.code IN :etats order by commande.numero")
+)
 public class Commande {
 
     @Id
