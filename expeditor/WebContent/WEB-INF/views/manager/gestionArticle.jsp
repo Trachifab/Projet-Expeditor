@@ -22,6 +22,9 @@
 </head>
 <body>
 
+	<!-- Inclusion du menu -->
+	<%@include file="/WEB-INF/views/partial/menu.jsp"%>
+
 	<%
 		List<Article> lstArticles = (List<Article>) request.getAttribute("lstArticle");
 
@@ -32,6 +35,7 @@
 	<%
 		} else {
 	%>
+	<!-- Tableaux liste des articles -->
 	<table class="ui celled table">
 		<thead>
 			<tr>
@@ -68,10 +72,8 @@
 	<input type="button" value="ajouter"
 		onclick="afficherModalArticle('popupAjout','','','','')">
 
-
+ 	<!-- popup d'ajout et de modifications des articles -->
 	<div id="popupArticle" class="ui small modal">
-
-
 
 		<div class="header">Ajouter article</div>
 
@@ -98,7 +100,7 @@
 
 				<button class="ui button cancel">Annuler</button>
 
-				<!-- <div class="ui cancel button">Annuler</div> -->
+
 			</div>
 		</form>
 	</div>
@@ -107,6 +109,7 @@
 
 		if (erreurs != null && erreurs.size() > 0) {
 	%>
+	<!-- popup d'affichage des erreurs -->
 	<div id="popupErreurs" class="ui small modal">
 		<div class="header">Erreur de validation</div>
 

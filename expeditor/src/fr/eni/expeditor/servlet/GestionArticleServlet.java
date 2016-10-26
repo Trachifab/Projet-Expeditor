@@ -65,6 +65,10 @@ public class GestionArticleServlet extends AbstractServlet {
 
 	}
 
+	/**
+	 * Gestion de l'ajout d'article
+	 * @param request
+	 */
 	private void ajouterArticle(HttpServletRequest request) {
 
 		String libelle = request.getParameter("articleLibelle");
@@ -92,6 +96,10 @@ public class GestionArticleServlet extends AbstractServlet {
 
 	}
 
+	/**
+	 * Gestion de la modification d'article
+	 * @param request
+	 */
 	private void modifierArticle(HttpServletRequest request) {
 
 		String id = request.getParameter("articleId");
