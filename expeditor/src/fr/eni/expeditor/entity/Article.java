@@ -22,7 +22,7 @@ public class Article {
 	
 	private String description;
 	
-	private Integer poid;
+	private Integer poids;
 
 	public Integer getId() {
 		return id;
@@ -56,12 +56,12 @@ public class Article {
 		this.description = description;
 	}
 
-	public Integer getPoid() {
-		return poid;
+	public Integer getPoids() {
+		return poids;
 	}
 
-	public void setPoid(Integer poid) {
-		this.poid = poid;
+	public void setPoids(Integer poid) {
+		this.poids = poid;
 	}
 
 	

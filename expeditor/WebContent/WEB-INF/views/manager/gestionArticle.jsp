@@ -15,9 +15,9 @@
 	href="resources/semanticUI/semantic.min.css">
 <script src="resources/semanticUI/semantic.min.js"></script>
 
-<script type="text/javascript" src="resources/js/gestionArticle.js">
-	
-</script>
+<link href="stylesheets/gestionArticle.css" rel="stylesheet"
+	type="text/css" />
+<script type="text/javascript" src="resources/js/gestionArticle.js"></script>
 </head>
 <body>
 
@@ -48,7 +48,7 @@
 
 				<td><%=article.getLibelle()%></td>
 				<td><%=article.getDescription()%></td>
-				<td><%=article.getPoid()%></td>
+				<td><%=article.getPoids()%></td>
 				<td></td>
 			</tr>
 
@@ -68,7 +68,6 @@
 
 		<div class="header">Ajouter article</div>
 
-
 		<form class="ui form" method="post" action="GestionArticleServlet">
 
 			<div class="content ">
@@ -80,18 +79,47 @@
 					<textarea rows="2"></textarea>
 				</div>
 				<div class="field">
-					<label>Poids</label> <input type="number" name="articlePoid" />
+					<label>Poids</label> <input type="number" name="articlePoids" />
 				</div>
 			</div>
 
 			<div class="actions">
-				<input type="submit" class="ui positive" vlaue="Ajouter"
-					name="action" />
+				<button type="submit" class="ui button positive" value="ajouter"
+					name="action">Enregistrer</button>
 
-				<div class="ui cancel button">Annuler</div>
+				<button class="ui button cancel">Annuler</button>
+
+				<!-- <div class="ui cancel button">Annuler</div> -->
 			</div>
 		</form>
 	</div>
+	<%
+		List<String> erreurs = (List<String>) request.getAttribute("erreurs");
 
+		if (erreurs != null && erreurs.size() > 0) {
+	%>
+	<div id="popupErreurs" class="ui small modal">
+		<div class="header">Erreur de validation</div>
+
+		<div class="content ">
+			<p>
+				<%
+					for (String erreur : erreurs) {
+				%>
+				<%=erreur%><br />
+				<%
+					}
+				%>
+			</p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(afficherModal('popupErreurs'));
+	</script>
+
+	<%
+		}
+	%>
 </body>
 </html>
