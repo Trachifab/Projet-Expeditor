@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -20,6 +21,7 @@ public class Article {
 
 	private String libelle;
 	
+	@Lob
 	private String description;
 	
 	private Integer poids;

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ page import="fr.eni.expeditor.entity.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils"%>
 
 <html>
 <head>
@@ -15,7 +16,7 @@
 	href="resources/semanticUI/semantic.min.css">
 <script src="resources/semanticUI/semantic.min.js"></script>
 
-<link href="stylesheets/gestionArticle.css" rel="stylesheet"
+<link href="resources/stylesheets/gestionArticle.css" rel="stylesheet"
 	type="text/css" />
 <script type="text/javascript" src="resources/js/gestionArticle.js"></script>
 </head>
@@ -49,7 +50,11 @@
 				<td><%=article.getLibelle()%></td>
 				<td><%=article.getDescription()%></td>
 				<td><%=article.getPoids()%></td>
-				<td></td>
+				<td><input type="button" value="Modifier"
+					onclick="afficherModalArticle('<%=article.getId()%>',
+					'<%=StringEscapeUtils.escapeEcmaScript(article.getLibelle())%>',
+					'<%=StringEscapeUtils.escapeEcmaScript(article.getDescription())%>',
+					'<%=article.getPoids()%>')"></td>
 			</tr>
 
 			<%
@@ -61,22 +66,26 @@
 		}
 	%>
 	<input type="button" value="ajouter"
-		onclick="afficherModal('popupAjout')">
+		onclick="afficherModalArticle('popupAjout','','','','')">
 
 
-	<div id="popupAjout" class="ui small modal">
+	<div id="popupArticle" class="ui small modal">
+
+
 
 		<div class="header">Ajouter article</div>
 
 		<form class="ui form" method="post" action="GestionArticleServlet">
-
+			<input type="hidden" name="articleId" id="articleId" />
 			<div class="content ">
+
+
 				<div class="field">
 					<label>Libelle</label> <input type="text" name="articleLibelle" />
 				</div>
 				<div class="field">
 					<label>Description</label>
-					<textarea rows="2"></textarea>
+					<textarea name="articleDescription" rows="2"></textarea>
 				</div>
 				<div class="field">
 					<label>Poids</label> <input type="number" name="articlePoids" />

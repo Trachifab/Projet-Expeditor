@@ -18,8 +18,8 @@ public class GestionArticleBean extends AbstractService {
 		return (List<Article>) consulter(Article.class);
 	}
 
-	public Article rechercherParIdentifiant(Article article) {
-		return getEntityManager().find(Article.class, article);
+	public Article rechercherParIdentifiant(Integer id) {
+		return getEntityManager().find(Article.class, id);
 	}
 
 	public Article rechercherParIdentifiantExterne(Article article) {
