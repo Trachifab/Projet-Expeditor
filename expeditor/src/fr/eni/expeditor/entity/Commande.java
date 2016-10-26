@@ -3,12 +3,13 @@ package fr.eni.expeditor.entity;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "COMMANDE.RECUPERER.DERNIERE.COMMANDE.EN.ATTENTE", query = "select c from Commande c where c.etat.libelle = 'ATTE' order by c.dateCommande asc"),
+        @NamedQuery(name = "COMMANDE.RECUPERER.COMMANDE.EN.COURS.POUR.EMPLOYE", query = "select c from Commande c where c.collaborateur.id = :col_id")
+})
 public class Commande {
 
     @Id
@@ -18,41 +19,41 @@ public class Commande {
 
     private Date dateTraitement;
 
-    @ManyToOne
-    private Client client;
+	@ManyToOne
+	private Client client;
 
     @OneToMany(mappedBy = "commande")
     private List<LigneCommande> lignesCommande;
 
-    @ManyToOne
-    private Collaborateur collaborateur;
+	@ManyToOne
+	private Collaborateur collaborateur;
 
-    @ManyToOne
-    private Etat etat;
+	@ManyToOne
+	private Etat etat;
 
-    public Etat getEtat() {
-        return etat;
-    }
+	public Etat getEtat() {
+		return etat;
+	}
 
-    public void setEtat(Etat etat) {
-        this.etat = etat;
-    }
+	public void setEtat(Etat etat) {
+		this.etat = etat;
+	}
 
     public Collaborateur getCollaborateur() {
         return collaborateur;
     }
 
-    public void setCollaborateur(Collaborateur collaborateur) {
-        this.collaborateur = collaborateur;
-    }
+	public void setCollaborateur(Collaborateur collaborateur) {
+		this.collaborateur = collaborateur;
+	}
 
-    public Client getClient() {
-        return client;
-    }
+	public Client getClient() {
+		return client;
+	}
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
 
     public Integer getNumero() {
