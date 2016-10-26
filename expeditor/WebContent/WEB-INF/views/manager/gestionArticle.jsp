@@ -62,11 +62,13 @@
 							<td><%=article.getLibelle()%></td>
 							<td><%=article.getDescription()%></td>
 							<td><%=article.getPoids()%></td>
-							<td><input type="button" value="Modifier"
-								onclick="afficherModalArticle('<%=article.getId()%>',
+							<td><button type="button" class="ui button"
+									onclick="afficherModalArticle('<%=article.getId()%>',
 					'<%=StringEscapeUtils.escapeEcmaScript(article.getLibelle())%>',
 					'<%=StringEscapeUtils.escapeEcmaScript(article.getDescription())%>',
-					'<%=article.getPoids()%>')"></td>
+					'<%=article.getPoids()%>')">
+									<i class="edit icon"></i>
+								</button></td>
 						</tr>
 
 						<%
@@ -77,9 +79,10 @@
 				<%
 					}
 				%>
-				<input type="button" value="ajouter"
+				<button type="button" value="ajouter" class="ui green button"
 					onclick="afficherModalArticle('','','','','')">
-
+					<i class="add square icon"></i> ajouter
+				</button>
 			</div>
 			<div class="two wide column"></div>
 		</div>
