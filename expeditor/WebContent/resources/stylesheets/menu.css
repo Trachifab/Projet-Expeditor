@@ -1,0 +1,19 @@
+/** The menu container **/
+#expeditorMenu{
+    background-color: #47475C;
+}
+
+/** The dropdown menu **/
+#expeditorMenu .container .dropdown .menu{
+    background-color: #3A3A4F;
+}
+
+/** The wordings **/
+#expeditorMenu a{
+    color: white !important;
+}
+
+/** The icons **/
+#expeditorMenu i.white{
+    color: white;
+}

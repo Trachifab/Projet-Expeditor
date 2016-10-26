@@ -1,21 +1,23 @@
 <%@ page import="fr.eni.expeditor.entity.Collaborateur" %>
-<!-- Faut pas faire ça, mais fait chier de le mettre dans tous les templates sinon -->
+<!-- menu stylesheets -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/stylesheets/menu.css">
+<!-- menu scripts -->
 <script src="${pageContext.request.contextPath}/resources/js/menu.js"></script>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="ui attached stackable menu">
+<div id="expeditorMenu" class="ui attached stackable menu">
     <div class="ui container">
         <div class=" ui simple dropdown item">
-            <i class="content icon"></i>
-            <i class="dropdown icon"></i>
+            <i class="content icon white"></i>
+            <i class="dropdown icon white"></i>
             <div class="menu">
                 <% if (((Collaborateur) session.getAttribute("collaborateur")).getRole().getCode().equals("MANA")) { %>
-                <a href="ConsultCommandeServlet" class="item"><i class="dashboard icon"></i>Tableau de bord</a>
-                <a href="GestionEmployeServlet" class="item"><i class="cubes icon"></i>Employés</a>
-                <a href="GestionArticleServlet" class="item"><i class="users icon"></i>Articles</a>
+                <a href="ConsultCommandeServlet" class="item"><i class="dashboard icon white"></i>Tableau de bord</a>
+                <a href="GestionEmployeServlet" class="item"><i class="cubes icon white"></i>Employés</a>
+                <a href="GestionArticleServlet" class="item"><i class="users icon white"></i>Articles</a>
                 <a class="item"><i class="file icon"></i>Importer un CSV</a>
                 <% } else {%>
-                <a href="EmployeServlet" class="item"><i class="dropbox icon"></i>Commande</a>
+                <a href="${pageContext.request.contextPath}/employe" class="item"><i class="dropbox icon"></i>Commande</a>
                 <% } %>
             </div>
         </div>
