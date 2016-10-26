@@ -5,6 +5,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import fr.eni.expeditor.entity.Collaborateur;
+import fr.eni.expeditor.exception.ConnexionException;
 import org.jboss.logging.Logger;
 
 import java.util.List;
@@ -79,5 +80,26 @@ public class GestionCollaborateurBean extends AbstractService {
     public void supprimerParLogin(String login) {
 
         getEntityManager().remove(login);
+    }
+
+    public Boolean collaborateurExiste(String email) {
+        LOGGER.info("Recherche du collaborateur dont l'identifiant est " + email);
+        Query q = getEntityManager().createNamedQuery("CollaborateurLoginExists");
+        q.setParameter("email", email);
+        // On fait != 0 pour "caster" le résultat de type "Long" en "Boolean"
+        return ((Long)q.getSingleResult()) != 0;
+    }
+
+    public Collaborateur rechercherParLoginMotDePasse(String email, String motDePasse) throws ConnexionException {
+        LOGGER.info(String.format("Tentative de connexion de l'utilisateur '%s'", email));
+        Query q = getEntityManager().createNamedQuery("SelectCollaborateurByLoginMotDePasse");
+        q.setParameter("email", email);
+        q.setParameter("motDePasse", motDePasse);
+        try{
+            return (Collaborateur)q.getSingleResult();
+        }
+        catch (NoResultException nre){
+            throw new ConnexionException();
+        }
     }
 }

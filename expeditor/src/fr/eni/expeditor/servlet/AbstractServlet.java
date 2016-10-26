@@ -47,6 +47,10 @@ public abstract class AbstractServlet extends HttpServlet {
 
 	}
 
+	protected void rediriger(String url, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.sendRedirect(request.getContextPath() + url);
+	}
+
 	abstract void action(String action, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException;
 
