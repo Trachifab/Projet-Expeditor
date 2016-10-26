@@ -18,27 +18,30 @@
 
     <!-- Formulaire de connexion -->
     <form id="login-form" class="ui form" method="POST" action="${pageContext.request.contextPath}/connexion">
-        <!-- Identifiant -->
-        <div class="field">
-            <label>
-                Identifiant<input type="text" name="identifiant">
-            </label>
-        </div>
 
-        <!-- Mot de passe -->
-        <div class="field">
-            <label>
-                Mot de passe
-                <input type="password" name="motDePasse">
-            </label>
-        </div>
+        <div id="login-inputs">
+            <!-- Identifiant -->
+            <div class="field">
+                <label>
+                    Identifiant<input type="text" name="identifiant">
+                </label>
+            </div>
 
-        <!-- Mot de passe oublié -->
-        <p id="forgotten-password" class="right floated">Mot de passe oublié ?</p>
+            <!-- Mot de passe -->
+            <div class="field">
+                <label>
+                    Mot de passe
+                    <input type="password" name="motDePasse">
+                </label>
+            </div>
+
+            <!-- Mot de passe oublié -->
+            <p id="forgotten-password" class="right floated">Mot de passe oublié ?</p>
+        </div>
 
         <!-- Message d'erreur -->
-        <%if ((request.getAttribute("error") != null) && ((Boolean)request.getAttribute("error"))){ %>
-        <div class="ui error message">
+        <% if ((request.getAttribute("error") != null) && ((Boolean) request.getAttribute("error"))) { %>
+        <div id="message-erreur" class="ui error message">
             <i class="close icon"></i>
             <div class="header">
                 Il y a eu une erreur lors de la tentative de connexion

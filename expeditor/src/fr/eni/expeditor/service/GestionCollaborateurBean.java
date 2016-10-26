@@ -1,6 +1,7 @@
 package fr.eni.expeditor.service;
 
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import fr.eni.expeditor.entity.Collaborateur;
@@ -54,7 +55,12 @@ public class GestionCollaborateurBean extends AbstractService {
         LOGGER.info("Paramètre email : " + email);
         Query q = getEntityManager().createNamedQuery("SelectCollaborateurByLogin");
         q.setParameter("email", email);
-        return (Collaborateur)q.getSingleResult();
+        try {
+            return (Collaborateur) q.getSingleResult();
+        }catch(NoResultException ex)
+        {
+            return null;
+        }
     }
 
     /**
