@@ -52,16 +52,7 @@ public class GestionCollaborateurBean extends AbstractService {
      * @return
      */
     public Collaborateur rechercherParLogin(String email){
-        LOGGER.info("Passage dans rechercherParLogin");
-        LOGGER.info("Paramètre email : " + email);
-        Query q = getEntityManager().createNamedQuery("SelectCollaborateurByLogin");
-        q.setParameter("email", email);
-        try {
-            return (Collaborateur) q.getSingleResult();
-        }catch(NoResultException ex)
-        {
-            return null;
-        }
+        return null;
     }
 
     /**
