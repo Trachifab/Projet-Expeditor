@@ -34,6 +34,7 @@
     SimpleDateFormat formater = new SimpleDateFormat("dd MMMM yyyy 'à' hh:mm:ss");
 
     String csvResult = request.getAttribute("csvResult").toString();
+    String csvError = request.getAttribute("csvError").toString();
 %>
 <!-- Inclusion du menu -->
 <%@include file="/WEB-INF/views/partial/menu.jsp" %>
@@ -41,10 +42,12 @@
 <!-- Table des commandes en attente ou en cours de traitement -->
 <div class="ui equal width center aligned padded grid">
     <!-- Message de validation de l'import -->
-    <% if (!csvResult.isEmpty()) { %>
+    <% if (!csvResult.isEmpty() || !csvError.isEmpty()) { %>
     <div id="messagesRow" class="row">
         <div class="six wide column"></div>
         <div class="four wide column">
+            <!-- Le message de résultat -->
+            <% if (!csvResult.isEmpty()) { %>
             <div class="ui positive message">
                 <i class="close icon"></i>
                 <div class="header">
@@ -53,6 +56,19 @@
                 <p><%= csvResult %>
                 </p>
             </div>
+            <% } %>
+
+            <!-- Le message d'erreur -->
+            <% if (!csvError.isEmpty()) { %>
+            <div class="ui error message">
+                <i class="close icon"></i>
+                <div class="header">
+                    Erreur !
+                </div>
+                <p><%= csvError %>
+                </p>
+            </div>
+            <% } %>
         </div>
         <div class="six wide column"></div>
     </div>

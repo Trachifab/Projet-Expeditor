@@ -50,8 +50,10 @@ public class ConsultCommandeServlet extends AbstractServlet {
         // Récupération du message de résultat d'import du fichier CSV
         String csvResult = null != request.getParameter("csvResult") ? request.getParameter("csvResult").trim() : "";
         request.setAttribute("csvResult", csvResult);
+        // Récupération du message d'erreur lors de la tentative d'import
+        String csvError = null != request.getParameter("csvError") ? request.getParameter("csvError").trim() : "";
+        request.setAttribute("csvError", csvError);
 
         dispatcher.forward(request, response);
-
     }
 }

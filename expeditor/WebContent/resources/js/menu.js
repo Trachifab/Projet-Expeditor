@@ -58,7 +58,7 @@
                     $('#_attachmentName').val(label);
                 }
             } else {
-                alert('file type：<br/> <strong>' + fileExtentionRange + '</strong>');
+                alert('Le format de fichier est incorrect ! (formats supportés : ' + fileExtentionRange + ')');
 
                 $('#attachmentName').removeAttr('name'); // cancel upload file.
             }

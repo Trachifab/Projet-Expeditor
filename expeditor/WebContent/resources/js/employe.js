@@ -144,3 +144,15 @@ function annulerCarton(commandeATraiter){
         }
     )
 }
+
+function annulerCarton(commandeATraiter){
+    $.ajax({
+            method: 'GET',
+            url : 'employe',
+            data : {
+                action : 'annulerCarton',
+                idCommande : commandeATraiter
+            }
+        }
+    )
+}

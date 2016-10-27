@@ -81,7 +81,9 @@ public class ImportCSVServlet extends AbstractServlet {
             int lastDot = fileName.lastIndexOf('.');
             String fileExtension = fileName.substring(lastDot);
             if (!fichiersAutorise.contains(fileExtension)) {
-                LOGGER.info(String.format("L'extension %s n'est pas autorisée.", fileExtension));
+                String erreur = String.format("L'extension %s n'est pas autorisée.", fileExtension);
+                LOGGER.info(erreur);
+                response.sendRedirect(String.format("%s/manager?csvError=%s", request.getContextPath(), URLEncoder.encode(erreur, "UTF-8")));
             }
 
             // On prépare le fichier à uploader et on l'upload
@@ -98,8 +100,12 @@ public class ImportCSVServlet extends AbstractServlet {
             // Enfin, on va lire le fichier et importer les valeurs
             String result = lectureFichierCSVBean.lectureFichierCommandes(uploadedFileNameCompletePath);
             response.sendRedirect(String.format("%s/manager?csvResult=%s", request.getContextPath(), URLEncoder.encode(result, "UTF-8")));
-
         }
+
+        // Si on arrive la c'est qu'il y a eu une erreur lors de la tentative d'import
+        LOGGER.info("Erreur lors de la tentative d'import.");
+        String erreur = "Il y à eu une erreur lors de la tentative d'import du fichier.";
+        response.sendRedirect(String.format("%s/manager?csvError=%s", request.getContextPath(), URLEncoder.encode(erreur, "UTF-8")));
     }
 
     @Override
