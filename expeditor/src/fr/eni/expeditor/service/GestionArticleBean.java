@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  * Created by d1502doreyf on 25/10/2016.
@@ -15,7 +16,10 @@ import javax.ejb.Stateless;
 public class GestionArticleBean extends AbstractService {
 
 	public List<Article> rechercherTous() {
-		return (List<Article>) consulter(Article.class);
+
+		Query query = getEntityManager().createQuery("SELECT a FROM Article a WHERE a.dateArchive is null");
+		return query.getResultList();
+
 	}
 
 	public Article rechercherParIdentifiant(Integer id) {
@@ -27,7 +31,9 @@ public class GestionArticleBean extends AbstractService {
 	}
 
 	/**
-	 * Insert ou met à jour les articles en base (gère l'afféctation de l'idExterne)
+	 * Insert ou met à jour les articles en base (gère l'afféctation de
+	 * l'idExterne)
+	 * 
 	 * @param article
 	 * @return l'article persisté
 	 */

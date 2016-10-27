@@ -106,3 +106,8 @@ ALTER TABLE commande ADD CONSTRAINT FK_commande_id_client FOREIGN KEY (client_id
 ALTER TABLE commande ADD CONSTRAINT FK_commande_code FOREIGN KEY (etat_code) REFERENCES etat(code);
 ALTER TABLE ligneCommande ADD CONSTRAINT FK_ligneCommande_numero FOREIGN KEY (commande_numero) REFERENCES commande(numero);
 ALTER TABLE ligneCommande ADD CONSTRAINT FK_ligneCommande_id FOREIGN KEY (article_id) REFERENCES article(id);
+
+--Archivage article
+ALTER TABLE Article ADD dateArchive datetime;
+
+

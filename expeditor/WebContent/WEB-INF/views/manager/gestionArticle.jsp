@@ -68,6 +68,11 @@
 					'<%=StringEscapeUtils.escapeEcmaScript(article.getDescription())%>',
 					'<%=article.getPoids()%>')">
 									<i class="edit icon"></i>
+								</button>
+
+								<button class="ui button"
+									onclick="afficherModalArchiver('<%=article.getId()%>')">
+									<i class="archive icon"></i>
 								</button></td>
 						</tr>
 
@@ -83,6 +88,9 @@
 					onclick="afficherModalArticle('','','','','')">
 					<i class="add square icon"></i> ajouter
 				</button>
+
+
+
 			</div>
 			<div class="two wide column"></div>
 		</div>
@@ -148,6 +156,30 @@
 	<%
 		}
 	%>
+
+
+	<!-- popup d'affichage des erreurs -->
+	<div id="popupValidationArchivage" class="ui basic modal">
+		<form action="GestionArticleServlet" method="post">
+			<input type="hidden" name="articleId" id="articleId" />
+			<div class="header">
+				<p>
+					Archiver
+				<p>
+			</div>
+			<div class="description">
+				<p>Voulez vous archiver l'article ?</p>
+			</div>
+			<div class="actions">
+				<button type="submit" class="ui button positive inverted"
+					value="archiver" name="action">Oui</button>
+
+				<button class="ui button cancel inverted">Non</button>
+
+
+			</div>
+		</form>
+	</div>
 
 </body>
 </html>
