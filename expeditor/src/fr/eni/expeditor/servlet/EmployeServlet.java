@@ -37,7 +37,6 @@ public class EmployeServlet extends AbstractServlet {
 	void action(String action, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-<<<<<<< HEAD
 		switch (action) {
 		case "valider":
 			validerCommande(request);
@@ -50,19 +49,7 @@ public class EmployeServlet extends AbstractServlet {
 			request.getSession().setAttribute("collaborateur", null);
 			rediriger("/login.jsp", request, response);
 			break;
-=======
-		switch(action){
-			case "annulerCarton":
-				Commande commandeATraiter = new Commande();
-				commandeATraiter.setNumero(Integer.parseInt(request.getParameter("idCommande")));
-				commandeEjb.libererCommande(commandeATraiter);
-				request.getSession().setAttribute("collaborateur", null);
-				rediriger("/login.jsp", request, response);
-				break;
 
-			default:
-				break;
->>>>>>> branch 'master' of https://github.com/Trachifab/Projet-Expeditor.git
 		}
 
 	}
