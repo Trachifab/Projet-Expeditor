@@ -26,10 +26,10 @@ public class Client {
 
 	private String ville;
 
-	public String getAdresse()
-    {
-    	return adresse1+" "+adresse2+" "+adresse3;
-    }
+	public String getAdresse() {
+		return (adresse1 == null ? "" : adresse1 + " ") + (adresse2 == null ? "" : adresse2 + " ")
+				+ (adresse3 == null ? "" : adresse3 + " ");
+	}
 
 	public String getCommune() {
 

@@ -42,7 +42,7 @@ function getArticle(idArticle) {
 
 function ajouterLigneArticle(article) {
 
-	//var htmlTable = $('#tableArticlesAjouter > tbody').html();
+	// var htmlTable = $('#tableArticlesAjouter > tbody').html();
 
 	var htmlTable = "<tr class='positive' idarticle='"
 			+ article.id
@@ -51,7 +51,8 @@ function ajouterLigneArticle(article) {
 			+ "</div></td><td>"
 			+ article.poids
 			+ "</td><td><input type='number' min='0' onChange='afficherPoids()' value='0'/></td><td>"
-			+ "<button type='button' class='ui icon red small button' onClick='retirerLigne(" + article.id
+			+ "<button type='button' class='ui icon red small button' onClick='retirerLigne("
+			+ article.id
 			+ ")'><i class='small minus icon'></i></button></td></tr>";
 
 	$('#tableArticlesAjouter > tbody').append(htmlTable)
@@ -97,7 +98,33 @@ function retirerLigne(idArticle) {
 
 }
 
-function validerCarton(){
+function validerCarton(idCommande) {
 
+	var poidsTotal = 300;
 
+	var donnee = [];
+
+	$('#tableArticlesAjouter tr[idarticle]').each(
+			function(i) {
+				var article = getArticle($(this).attr('idarticle'))
+				var nb = $(
+						'#tableArticlesAjouter tr[idarticle=' + article.id
+								+ '] input[type=number]').val();
+
+				var obj = {
+					idArticle : $(this).attr('idarticle'),
+					nb : nb
+				};
+				if (nb > 0) {
+					donnee[i] = obj;
+					poidsTotal += article.poids * nb;
+				}
+			});
+	poidsTotal /= 1000;
+	
+	var url = "BonLivraisonServlet?idCommande=" + idCommande + "&poidsTotal="
+			+ poidsTotal + "&donnee=" + JSON.stringify(donnee);
+
+	var win = window.open(encodeURI(url), '_blank');
+	win.focus();
 }
