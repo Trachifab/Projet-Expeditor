@@ -14,9 +14,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
-/**
- * Created by d1503betournej on 26/10/2016.
- */
 @Stateless
 public class LectureFichierCSVBean extends AbstractService {
 
@@ -93,9 +90,13 @@ public class LectureFichierCSVBean extends AbstractService {
 
             }
 
-            LOGGER.info(nombreEntrees + " entrées détectées dans le fichier, " + nombreInserees + " commandes insérées.");
-
-            return nombreEntrees + " entrées détectées dans le fichier, " + nombreInserees + " commandes insérées.";
+            // Vérification du nombre d'entrées
+            String result = nombreEntrees > 0 ?
+                    String.format("%s entrées détectées dans le fichier, %s commandes insérées.", nombreEntrees, nombreInserees)
+                    :
+                    "Il n'y à aucune entrées dans ce fichier.";
+            LOGGER.info(result);
+            return result;
         }
     }
 
