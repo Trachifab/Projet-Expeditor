@@ -2,12 +2,23 @@
 *        Script SQLSERVER 
 ------------------------------------------------------------*/
 USE master
+
+
 IF EXISTS(select * from sys.databases where name='expeditor')
+alter database expeditor set single_user with rollback immediate
+GO
+
 DROP DATABASE expeditor;
+
+GO
 
 USE MASTER;
 
+GO
+
 CREATE DATABASE expeditor;
+
+GO
 
 USE expeditor;
 

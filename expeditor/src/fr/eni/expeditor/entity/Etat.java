@@ -6,25 +6,29 @@ import javax.persistence.Id;
 @Entity
 public class Etat {
 
-	@Id
-	private String code;
+    @Id
+    private String code;
 
-	private String libelle;
+    private String libelle;
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	public String getLibelle() {
-		return libelle;
-	}
+    public String getLibelle() {
+        return libelle;
+    }
 
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
 
+    @Override
+    public String toString() {
+        return libelle;
+    }
 }

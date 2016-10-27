@@ -17,12 +17,16 @@ public class GestionClientBean extends AbstractService {
     }
 
     public void enregistrerClient(Client client) {
-        getEntityManager().merge(client);
+        if (client.getId() == null) {
+            client.setIdExterne(client.getRaisonSociale());
+
+            getEntityManager().persist(client);
+        } else {
+            client = getEntityManager().merge(client);
+        }
     }
 
     public Client rechercherParIdentifiantExterne(Client client) {
-//        return getEntityManager().find(Client.class, client.getIdExterne());
-
         Query q = getEntityManager().createNamedQuery("rechercherClientParIdentifiantExterne");
         q.setParameter("idExterne", client.getIdExterne());
         try {

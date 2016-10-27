@@ -26,7 +26,6 @@ public class GestionArticleBean extends AbstractService {
 	}
 
 	public Article rechercherParIdentifiantExterne(Article article) {
-//		return getEntityManager().find(Article.class, article.getIdExterne());
 		Query q = getEntityManager().createNamedQuery("rechercherArticleParIdentifiantExterne");
 		q.setParameter("idExterne", article.getIdExterne());
 		try {
