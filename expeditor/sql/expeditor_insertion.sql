@@ -26,7 +26,7 @@ INSERT INTO collaborateur(nom, prenom,email,motDePasse,role_code) VALUES ('MANAG
 
 INSERT INTO etat(code,libelle) VALUES ('ATTE','En attente');
 INSERT INTO etat(code,libelle) VALUES ('ENCO','En cours de traitement');
-INSERT INTO etat(code,libelle) VALUES ('TRAI','Trait�e');
+INSERT INTO etat(code,libelle) VALUES ('TRAI','Traitée');
 
 INSERT INTO commande(numero, dateCommande, dateTraitement, collaborateur_id, client_id, etat_code) VALUES (101,'02/01/2014 08:00:00','05/01/2014 18:00:00',1,1,'TRAI');
 INSERT INTO commande(numero, dateCommande, dateTraitement, collaborateur_id, client_id, etat_code) VALUES (105,'15/01/2014 05:12:00','22/01/2014 17:00:00',2,3,'TRAI');

@@ -118,7 +118,11 @@ public class LectureFichierCSVBean extends AbstractService {
 
 
         LOGGER.info("recherche/persistence du client " + clientCourant.toString());
-        clientCourant = gestionClientBean.rechercherParIdExterneSinonCreation(clientCourant);
+        clientCourant = gestionClientBean.rechercherParIdentifiantExterne(clientCourant);
+
+        if (clientCourant == null) {
+            gestionClientBean.enregistrerClient(clientCourant);
+        }
 
         return clientCourant;
     }

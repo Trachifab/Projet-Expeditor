@@ -20,15 +20,8 @@ public class GestionClientBean extends AbstractService {
         getEntityManager().merge(client);
     }
 
-    public Client rechercherParIdExterneSinonCreation(Client client) {
-        Query q = getEntityManager().createNamedQuery("rechercherParIdExterneSinonCreation");
-        q.setParameter("idExterne", client.getIdExterne());
-        try {
-            client = (Client) q.getSingleResult();
-        } catch (NoResultException nre) {
-            enregistrerClient(client);
-        }
-        return client;
+    public Client rechercherParIdentifiantExterne(Client client) {
+        return getEntityManager().find(Client.class, client.getIdExterne());
     }
 
 }
