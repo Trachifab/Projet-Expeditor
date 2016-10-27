@@ -69,6 +69,7 @@ public class GestionCommandeBean extends AbstractService{
 
         Query q = getEntityManager().createNamedQuery("COMMANDE.RECUPERER.COMMANDE.EN.COURS.POUR.EMPLOYE");
         q.setParameter("col_id", col.getId());
+        q.setParameter("codeRole", "ENCO");
         List results =  q.getResultList();
         if (results.isEmpty()){
             LOGGER.error("La requête n'a pas trouvé de commande en cours pour l'employé");
@@ -82,6 +83,14 @@ public class GestionCommandeBean extends AbstractService{
         Query q = getEntityManager().createNamedQuery("COMMANDE.ASSIGNER.COLLABORATEUR");
         q.setParameter("collaborateur", collaborateur);
         q.setParameter("id", commande.getNumero());
+        q.executeUpdate();
+    }
+
+    public void libererCommande(Commande commande){
+
+        Query q = getEntityManager().createNamedQuery("COMMANDE.LIBERER.COMMANDE");
+        q.setParameter("id", commande.getNumero());
+        q.setParameter("collabo", null);
         q.executeUpdate();
     }
 

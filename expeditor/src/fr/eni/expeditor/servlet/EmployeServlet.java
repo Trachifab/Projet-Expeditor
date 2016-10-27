@@ -37,6 +37,20 @@ public class EmployeServlet extends AbstractServlet {
 	void action(String action, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		switch (action) {
+		case "valider":
+			validerCommande(request);
+			rediriger("/employe", request, response);
+			break;
+		case "annulerCarton":
+			Commande commandeATraiter = new Commande();
+			commandeATraiter.setNumero(Integer.parseInt(request.getParameter("idCommande")));
+			commandeEjb.libererCommande(commandeATraiter);
+			request.getSession().setAttribute("collaborateur", null);
+			rediriger("/login.jsp", request, response);
+			break;
+		}
+
 	}
 
 	@Override
@@ -93,7 +107,7 @@ public class EmployeServlet extends AbstractServlet {
 					+ StringEscapeUtils.escapeEcmaScript(article.getLibelle()) + "\", description:\""
 					+ StringEscapeUtils.escapeEcmaScript(article.getDescription()) + "\", poids:\"" + article.getPoids()
 					+ "\"}");
-			
+
 			premierObjet = false;
 		}
 		tableauArticle.append("];");
@@ -122,4 +136,23 @@ public class EmployeServlet extends AbstractServlet {
 		// Rediriger l'utilisateur sur la page de login
 		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
+
+	private void validerCommande(HttpServletRequest request) {
+
+		String idCommande = request.getParameter("idCommande");
+
+		Commande commande = commandeEjb.rechercherParNumero(Integer.parseInt(idCommande));
+		
+		Etat etat = new Etat();
+		etat.setCode("TRAI");
+		etat.setLibelle("Traité");
+		
+		commande.setEtat(etat);
+		
+		commandeEjb.ajouter(commande);
+		
+		
+		
+	}
+
 }

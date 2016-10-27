@@ -127,4 +127,20 @@ function validerCarton(idCommande) {
 
 	var win = window.open(encodeURI(url), '_blank');
 	win.focus();
+	
+	window.location.replace("employe?action=valider&idCommande="+idCommande);
+	
+	
+}
+
+function annulerCarton(commandeATraiter){
+    $.ajax({
+            method: 'GET',
+            url : 'employe',
+            data : {
+                action : 'annulerCarton',
+                idCommande : commandeATraiter
+            }
+        }
+    )
 }
