@@ -60,6 +60,11 @@
         <servlet-name>DeconnectionServlet</servlet-name>
         <servlet-class>fr.eni.expeditor.servlet.DeconnexionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <display-name>ImportCSVServlet</display-name>
+        <servlet-name>ImportCSVServlet</servlet-name>
+        <servlet-class>fr.eni.expeditor.servlet.ImportCSVServlet</servlet-class>
+    </servlet>
 
     <!-- SERVLET MAPPING -->
     <servlet-mapping>
@@ -97,5 +102,9 @@
     <servlet-mapping>
         <servlet-name>DeconnectionServlet</servlet-name>
         <url-pattern>/deconnexion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImportCSVServlet</servlet-name>
+        <url-pattern>/ImportCSVServlet</url-pattern>
     </servlet-mapping>
 </web-app>
