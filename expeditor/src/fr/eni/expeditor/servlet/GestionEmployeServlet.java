@@ -3,6 +3,7 @@ package fr.eni.expeditor.servlet;
 import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.entity.Role;
 import fr.eni.expeditor.service.GestionCollaborateurBean;
+import fr.eni.expeditor.service.GestionRoleBean;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
