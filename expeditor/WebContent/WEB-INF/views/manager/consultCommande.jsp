@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrateur
-  Date: 25/10/2016
-  Time: 14:23
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="fr.eni.expeditor.entity.Commande" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -26,12 +19,30 @@
 <%
     ArrayList<Commande> commandes = (ArrayList<Commande>) request.getAttribute("commandes");
     SimpleDateFormat formater = new SimpleDateFormat("dd MMMM yyyy 'à' hh:mm:ss");
+
+    String csvResult = request.getAttribute("csvResult").toString();
 %>
 <!-- Inclusion du menu -->
 <%@include file="/WEB-INF/views/partial/menu.jsp" %>
 
 <!-- Table des commandes en attente ou en cours de traitement -->
 <div class="ui equal width center aligned padded grid">
+    <div class="row">
+        <div class="six wide column"></div>
+        <div class="four wide column">
+            <!-- Message de validation de l'import -->
+            <% if(!csvResult.isEmpty()){ %>
+            <div class="ui positive message">
+                <i class="close icon"></i>
+                <div class="header">
+                    Import de commandes terminés
+                </div>
+                <p><%= csvResult %></p>
+            </div>
+            <% } %>
+        </div>
+        <div class="six wide column"></div>
+    </div>
     <div class="row">
         <div class="two wide column">
         </div>

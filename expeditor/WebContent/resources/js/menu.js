@@ -8,9 +8,6 @@
         // Ouverture de la modale d'import CSV
         $(".item.btnImportCsv").click(function () {
             $('.ui.modal.importCsv')
-                .modal({
-                    blurring: true
-                })
                 .modal('show')
             ;
         });

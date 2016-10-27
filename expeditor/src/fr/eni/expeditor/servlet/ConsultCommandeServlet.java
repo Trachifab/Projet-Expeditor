@@ -12,17 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-
-/**
- * Created by Administrateur on 25/10/2016.
- */
 @WebServlet(name = "ConsultCommandeServlet")
 public class ConsultCommandeServlet extends AbstractServlet {
 
-
     @EJB
     private GestionCommandeBean gestionCommandeBean;
-
 
     @Override
     void action(String action, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +32,10 @@ public class ConsultCommandeServlet extends AbstractServlet {
         dispatcher = request.getRequestDispatcher("/WEB-INF/views/manager/consultCommande.jsp");
         request.setAttribute("commandes", commandes);
 
-        dispatcher.forward(request, response);
+        // Récupération du message de résultat d'import du fichier CSV
+        String csvResult = null != request.getParameter("csvResult") ? request.getParameter("csvResult").trim() : "";
+        request.setAttribute("csvResult", csvResult);
 
+        dispatcher.forward(request, response);
     }
 }
