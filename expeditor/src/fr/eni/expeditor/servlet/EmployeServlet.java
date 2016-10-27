@@ -4,7 +4,6 @@ import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.entity.Commande;
 import fr.eni.expeditor.entity.Etat;
 import fr.eni.expeditor.service.GestionCommandeBean;
-import java.io.IOException;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -12,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by Administrateur on 25/10/2016.

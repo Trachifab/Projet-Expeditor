@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ page import="fr.eni.expeditor.entity.*"%>
-<%@ page import="java.util.*"%>
+<%@ page import="fr.eni.expeditor.entity.Article"%>
 <%@ page import="org.apache.commons.lang3.StringEscapeUtils"%>
+<%@ page import="java.util.List"%>
 
 <html>
 <head>

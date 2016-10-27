@@ -1,9 +1,8 @@
 package fr.eni.expeditor.servlet;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import fr.eni.expeditor.entity.Article;
+import fr.eni.expeditor.service.GestionArticleBean;
+import org.jboss.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -11,11 +10,10 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.jboss.logging.Logger;
-
-import fr.eni.expeditor.entity.Article;
-import fr.eni.expeditor.service.GestionArticleBean;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @WebServlet(name = "GestionArticleServlet")
 public class GestionArticleServlet extends AbstractServlet {

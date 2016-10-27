@@ -1,13 +1,11 @@
 package fr.eni.expeditor.service;
 
 import fr.eni.expeditor.entity.Article;
-import fr.eni.expeditor.entity.Collaborateur;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by d1502doreyf on 25/10/2016.

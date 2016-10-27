@@ -4,7 +4,6 @@ import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.entity.Commande;
 import fr.eni.expeditor.entity.Etat;
 import fr.eni.expeditor.servlet.TestServlet;
-import fr.eni.expeditor.entity.Commande;
 import org.jboss.logging.Logger;
 
 import javax.ejb.Stateless;

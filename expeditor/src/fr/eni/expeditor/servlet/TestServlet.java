@@ -1,13 +1,12 @@
 package fr.eni.expeditor.servlet;
 
-import java.io.IOException;
+import org.jboss.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.jboss.logging.Logger;
+import java.io.IOException;
 
 /**
  * Servlet implementation class TestServlet

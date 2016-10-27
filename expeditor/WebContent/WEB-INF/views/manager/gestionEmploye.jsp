@@ -6,12 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="fr.eni.expeditor.entity.Commande" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.List" %>
 <%@ page import="fr.eni.expeditor.entity.Role" %>
-<%@ page import="fr.eni.expeditor.entity.LigneCommande" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <html>
 <head>
     <title>Employés</title>
