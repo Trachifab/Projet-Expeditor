@@ -32,9 +32,8 @@ public class UtilisateurFilter implements Filter {
         if (cheminActuel.contains("/resources/")) {
             chain.doFilter(request, response);
         }
-
         // Tentative d'accès à la page de login
-        if ("/".equals(cheminActuel) || "/login.jsp".equals(cheminActuel)) {
+        else if ("/".equals(cheminActuel) || "/login.jsp".equals(cheminActuel)) {
             //// Verification de l'existence de la session
             ////// Si session -> redirect vers la page correspondante
             if (collaborateur != null) {

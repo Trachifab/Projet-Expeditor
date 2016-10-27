@@ -1,8 +1,8 @@
 <%@ page import="fr.eni.expeditor.entity.Collaborateur" %>
 <!-- menu stylesheets -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/stylesheets/menu.css">
+<link rel="stylesheet" type="text/css" href="resources/stylesheets/menu.css">
 <!-- menu scripts -->
-<script src="${pageContext.request.contextPath}/resources/js/menu.js"></script>
+<script src="resources/js/menu.js"></script>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="expeditorMenu" class="ui attached stackable menu">

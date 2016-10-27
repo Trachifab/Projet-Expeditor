@@ -7,18 +7,18 @@
     <title>Commandes</title>
 
     <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/resources/JQuery/jquery-3.1.1.min.js"></script>
+    <script src="resources/JQuery/jquery-3.1.1.min.js"></script>
 
     <!-- Semantic UI -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.css">
-    <script src="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
+    <script src="resources/semanticUI/semantic.min.js"></script>
 
     <!-- Highcharts -->
-    <script src="${pageContext.request.contextPath}/resources/js/highcharts.js"></script>
+    <script src="resources/js/highcharts.js"></script>
 
     <!-- Expeditor scripts -->
-    <script src="${pageContext.request.contextPath}/resources/js/statistiquesEmployes.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/consultCommande.js"></script>
+    <script src="resources/js/statistiquesEmployes.js"></script>
+    <script src="resources/js/consultCommande.js"></script>
 </head>
 
 <body>

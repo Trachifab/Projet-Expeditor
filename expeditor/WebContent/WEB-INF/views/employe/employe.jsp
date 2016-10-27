@@ -6,13 +6,13 @@
 <title>Expeditor</title>
 
 <script
-	src="${pageContext.request.contextPath}/resources/JQuery/jquery-3.1.1.min.js"></script>
+	src="resources/JQuery/jquery-3.1.1.min.js"></script>
 
 <!-- Semantic UI -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.css">
+	href="resources/semanticUI/semantic.min.css">
 <script
-	src="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.js"></script>
+	src="resources/semanticUI/semantic.min.js"></script>
 
 
 

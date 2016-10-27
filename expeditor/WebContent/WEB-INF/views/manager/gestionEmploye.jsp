@@ -15,17 +15,17 @@
     <title>Employés</title>
 
     <!-- JQuery -->
-    <script src="${pageContext.request.contextPath}/resources/JQuery/jquery-3.1.1.min.js"></script>
+    <script src="resources/JQuery/jquery-3.1.1.min.js"></script>
 
 
     <!-- Expeditor scripts -->
-    <script src="${pageContext.request.contextPath}/resources/js/gestionEmploye.js"></script>
+    <script src="resources/js/gestionEmploye.js"></script>
 
     <!-- Expeditor stylesheets -->
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/gestionEmploye.css">
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.css">
-    <script src="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
+    <script src="resources/semanticUI/semantic.min.js"></script>
 
 </head>
 
