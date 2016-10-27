@@ -1,3 +1,10 @@
+(function ($) {
+    $(document).ready(function () {
+        // Initialisation du tri sur les tables
+        $('table').tablesort();
+    });
+})(jQuery);
+
 function afficherModal(id) {
 
 	$('#' + id).modal('show');

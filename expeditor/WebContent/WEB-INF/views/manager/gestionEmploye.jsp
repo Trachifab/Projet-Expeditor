@@ -14,6 +14,9 @@
     <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
     <script src="resources/semanticUI/semantic.min.js"></script>
 
+    <!-- tablesort -->
+    <script src="resources/tablesort/tablesort.js"></script>
+
     <!-- Expeditor scripts -->
     <script src="resources/js/gestionEmploye.js"></script>
 
@@ -37,7 +40,7 @@
             <div class="two wide column">
             </div>
             <div class="twelve wide column">
-                <table class="ui selectable celled table">
+                <table class="ui selectable celled sortable table">
                     <thead>
                     <tr>
                         <th>ID</th>

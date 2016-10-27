@@ -3,6 +3,9 @@
     history.pushState('', '', 'manager');
 
     $(document).ready(function () {
+        // Initialisation du tri sur les tables
+        $('table').tablesort();
+
         // Fermeture d'un message
         $("i.icon.close").click(function () {
             $(this).parent().slideUp();

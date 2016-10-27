@@ -16,6 +16,9 @@
     <!-- Highcharts -->
     <script src="resources/highcharts/highcharts.js"></script>
 
+    <!-- tablesort -->
+    <script src="resources/tablesort/tablesort.js"></script>
+
     <!-- Expeditor scripts -->
     <script src="resources/js/statistiquesEmployes.js"></script>
     <script src="resources/js/consultCommande.js"></script>
@@ -58,7 +61,7 @@
         <div class="two wide column">
         </div>
         <div class="twelve wide column">
-            <table class="ui selectable celled table">
+            <table class="ui selectable celled sortable table">
                 <thead>
                 <tr>
                     <th>Numero</th>

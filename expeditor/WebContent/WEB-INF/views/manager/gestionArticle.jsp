@@ -10,13 +10,15 @@
     <!-- JQuery -->
     <script src="resources/JQuery/jquery-3.1.1.min.js"></script>
 
-
-    <!-- Expeditor scripts -->
-    <script src="resources/js/gestionArticle.js"></script>
-
     <!-- Semantic stylesheets -->
     <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
     <script src="resources/semanticUI/semantic.min.js"></script>
+
+    <!-- tablesort -->
+    <script src="resources/tablesort/tablesort.js"></script>
+
+    <!-- Expeditor scripts -->
+    <script src="resources/js/gestionArticle.js"></script>
 
     <!-- Expeditor stylesheets -->
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/gestionEmploye.css">
@@ -47,7 +49,7 @@
 
 
             <!-- Tableaux liste des articles -->
-            <table class="ui selectable celled table">
+            <table class="ui selectable celled sortable table">
                 <thead>
                 <tr>
                     <th>Libellé</th>
