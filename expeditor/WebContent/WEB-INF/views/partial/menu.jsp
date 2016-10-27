@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="button-container">
-                <button class="ui button" type="submit" name="action" value="import">Importer</button>
+                <button class="ui primary button" type="submit" name="action" value="import">Importer</button>
             </div>
         </form>
     </div>
