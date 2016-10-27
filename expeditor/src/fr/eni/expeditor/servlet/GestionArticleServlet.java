@@ -37,8 +37,6 @@ public class GestionArticleServlet extends AbstractServlet {
 
 		request.setAttribute("lstArticle", lstArticle);
 
-		LOGGER.info("toto");
-
 		dispatcher = request.getRequestDispatcher("/WEB-INF/views/manager/gestionArticle.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -100,7 +98,7 @@ public class GestionArticleServlet extends AbstractServlet {
 	}
 
 	private void archiverArticle(HttpServletRequest request) {
-		String id = request.getParameter("articleId");
+		String id = request.getParameter("artId");
 		Integer idInt = null;
 		try {
 			idInt = Integer.parseInt(id);
