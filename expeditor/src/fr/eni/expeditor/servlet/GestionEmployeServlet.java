@@ -65,7 +65,7 @@ public class GestionEmployeServlet extends AbstractServlet {
     private void ajouter(HttpServletRequest request) {
         Collaborateur collabo = new Collaborateur();
 
-        if(request.getParameter("employeId") != null){
+        if(!request.getParameter("employeId").isEmpty()){
             collabo.setId(Integer.parseInt(request.getParameter("employeId")));
         }
 

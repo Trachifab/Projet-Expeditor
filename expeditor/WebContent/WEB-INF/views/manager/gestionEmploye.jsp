@@ -78,7 +78,7 @@
                                                 '<%=collaborateur.getEmail()%>', '<%=collaborateur.getMotDePasse()%>','<%=collaborateur.getRole().getCode()%>')">
                                     <i class="small edit icon"></i>
                                 </button>
-                                <button class="ui icon red small button" onclick="afficherModale('supprimerModale')">
+                                <button class="ui icon red small button" onclick="afficherSuppModale('supprimerModale', '<%=collaborateur.getId()%>')">
                                     <i class="small trash icon"></i>
                                 </button>
                             </div>
