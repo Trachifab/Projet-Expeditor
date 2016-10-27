@@ -53,4 +53,13 @@ public class LigneCommande {
 		this.id = id;
 	}
 
+	@Override
+	public String toString() {
+		return "LigneCommande{" +
+				"id=" + id +
+				", commande=" + commande +
+				", article=" + article +
+				", quantite=" + quantite +
+				'}';
+	}
 }

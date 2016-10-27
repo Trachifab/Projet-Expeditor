@@ -24,7 +24,7 @@ public class Commande {
     @ManyToOne
     private Client client;
 
-    @OneToMany(mappedBy = "commande")
+    @OneToMany(mappedBy = "commande",cascade=CascadeType.ALL)
     private List<LigneCommande> lignesCommande;
 
     @ManyToOne

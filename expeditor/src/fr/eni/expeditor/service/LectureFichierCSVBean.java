@@ -25,6 +25,12 @@ public class LectureFichierCSVBean extends AbstractService {
     private GestionCommandeBean gestionCommandeBean;
 
     @EJB
+    private GestionLigneCommandeBean gestionLigneCommandeBean;
+
+    @EJB
+    private GestionArticleBean gestionArticleBean;
+
+    @EJB
     private GestionClientBean gestionClientBean;
 
     private static Logger LOGGER = Logger.getLogger(LectureFichierCSVBean.class.getName());
@@ -42,7 +48,6 @@ public class LectureFichierCSVBean extends AbstractService {
             List<Commande> commandesCSV = new ArrayList<>();
 
             Commande commandeCourante;
-            Etat etatCourant;
             Client clientCourant;
             LOGGER.info("Début lecture des lignes du fichier csv");
             br.readLine();
@@ -66,7 +71,6 @@ public class LectureFichierCSVBean extends AbstractService {
 
                     commandesCSV.add(commandeCourante);
 
-//                    gestionCommandeBean.ajouter(commandeCourante);
 
                 } catch (Exception ex) {
                     LOGGER.info("--------------- Un élément a été ignoré car il ne correspondait pas aux exigences CSV ----------- ");
@@ -75,6 +79,8 @@ public class LectureFichierCSVBean extends AbstractService {
             LOGGER.info("Récap des commandes CSV");
             for (Commande commande : commandesCSV) {
                 LOGGER.info(commande);
+
+                gestionCommandeBean.ajouter(commande);
             }
         }
     }
@@ -85,7 +91,7 @@ public class LectureFichierCSVBean extends AbstractService {
         String idExterneClient, adresse1Client,
                 codePostalClient, villeClient;
 
-        idExterneClient = data[2];
+        idExterneClient = data[2].trim();
 
         LOGGER.info("idExterne client " + idExterneClient);
 
@@ -118,10 +124,14 @@ public class LectureFichierCSVBean extends AbstractService {
 
 
         LOGGER.info("recherche/persistence du client " + clientCourant.toString());
-        clientCourant = gestionClientBean.rechercherParIdentifiantExterne(clientCourant);
 
-        if (clientCourant == null) {
+
+        Client correspondanceClient = gestionClientBean.rechercherParIdentifiantExterne(clientCourant);
+
+        if (correspondanceClient == null) {
             gestionClientBean.enregistrerClient(clientCourant);
+        } else {
+            clientCourant = correspondanceClient;
         }
 
         return clientCourant;
@@ -156,6 +166,7 @@ public class LectureFichierCSVBean extends AbstractService {
         commandeCourante.setEtat(etatCourant);
         commandeCourante.setLignesCommande(new ArrayList<>());
 
+
         return commandeCourante;
     }
 
@@ -172,7 +183,7 @@ public class LectureFichierCSVBean extends AbstractService {
 
 
             LOGGER.info("split ligne commande " + Arrays.toString(articleQuantite));
-            idExterneArticle = articleQuantite[0];
+            idExterneArticle = articleQuantite[0].trim();
 
             LOGGER.info("idExterne article " + idExterneArticle);
             quantiteArticle = Integer.parseInt(articleQuantite[1].split("\\)")[0]);
@@ -181,6 +192,15 @@ public class LectureFichierCSVBean extends AbstractService {
 
             articleCourant = new Article();
             articleCourant.setIdExterne(idExterneArticle);
+            articleCourant.setLibelle(idExterneArticle);
+
+            Article correspondanceArticle = gestionArticleBean.rechercherParIdentifiantExterne(articleCourant);
+
+            if (correspondanceArticle == null) {
+                gestionArticleBean.enregistrerArticle(articleCourant);
+            } else {
+                articleCourant = correspondanceArticle;
+            }
 
             ligneCommandeCourante = new LigneCommande();
 
@@ -189,6 +209,13 @@ public class LectureFichierCSVBean extends AbstractService {
 
             ligneCommandeCourante.setCommande(commandeCourante);
             commandeCourante.getLignesCommande().add(ligneCommandeCourante);
+
+            IdLigneCommande idLigne = new IdLigneCommande();
+            idLigne.setArticle_id(articleCourant.getId());
+            idLigne.setCommande_numero(commandeCourante.getNumero());
+
+            ligneCommandeCourante.setId(idLigne);
+
         }
 
         return commandeCourante;

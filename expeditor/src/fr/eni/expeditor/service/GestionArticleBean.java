@@ -3,6 +3,7 @@ package fr.eni.expeditor.service;
 import fr.eni.expeditor.entity.Article;
 
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,14 @@ public class GestionArticleBean extends AbstractService {
 	}
 
 	public Article rechercherParIdentifiantExterne(Article article) {
-		return getEntityManager().find(Article.class, article.getIdExterne());
+//		return getEntityManager().find(Article.class, article.getIdExterne());
+		Query q = getEntityManager().createNamedQuery("rechercherArticleParIdentifiantExterne");
+		q.setParameter("idExterne", article.getIdExterne());
+		try {
+			return (Article) q.getSingleResult();
+		} catch (NoResultException nre) {
+			return null;
+		}
 	}
 
 	/**

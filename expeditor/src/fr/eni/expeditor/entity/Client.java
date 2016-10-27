@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @NamedQueries(
         {
-                @NamedQuery(name = "rechercherParIdExterneSinonCreation", query = "select c from Client c where c.idExterne= :idExterne")
+                @NamedQuery(name = "rechercherClientParIdentifiantExterne", query = "select c from Client c where c.idExterne= :idExterne")
         }
 )
 public class Client {

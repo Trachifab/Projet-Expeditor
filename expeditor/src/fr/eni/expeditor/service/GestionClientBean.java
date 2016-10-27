@@ -21,7 +21,16 @@ public class GestionClientBean extends AbstractService {
     }
 
     public Client rechercherParIdentifiantExterne(Client client) {
-        return getEntityManager().find(Client.class, client.getIdExterne());
+//        return getEntityManager().find(Client.class, client.getIdExterne());
+
+        Query q = getEntityManager().createNamedQuery("rechercherClientParIdentifiantExterne");
+        q.setParameter("idExterne", client.getIdExterne());
+        try {
+            return (Client) q.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+
     }
 
 }
