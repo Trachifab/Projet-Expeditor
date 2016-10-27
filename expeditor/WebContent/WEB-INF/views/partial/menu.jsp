@@ -13,8 +13,8 @@
             <div class="menu">
                 <% if (((Collaborateur) session.getAttribute("collaborateur")).getRole().getCode().equals("MANA")) { %>
                 <a href="ConsultCommandeServlet" class="item"><i class="dashboard icon white"></i>Tableau de bord</a>
-                <a href="GestionEmployeServlet" class="item"><i class="cubes icon white"></i>Employés</a>
-                <a href="GestionArticleServlet" class="item"><i class="users icon white"></i>Articles</a>
+                <a href="GestionEmployeServlet" class="item"><i class="users icon white"></i>Employés</a>
+                <a href="GestionArticleServlet" class="item"><i class="cubes icon white"></i>Articles</a>
                 <a class="item btnImportCsv"><i class="file icon"></i>Importer un CSV/XLS</a>
                 <% } else {%>
                 <a href="${pageContext.request.contextPath}/employe" class="item"><i
