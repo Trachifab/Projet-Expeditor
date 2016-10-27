@@ -1,9 +1,7 @@
 package fr.eni.expeditor.servlet;
 
-import fr.eni.expeditor.entity.Collaborateur;
-import fr.eni.expeditor.entity.Commande;
-import fr.eni.expeditor.service.GestionCommandeBean;
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -11,6 +9,14 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringEscapeUtils;
+
+import fr.eni.expeditor.entity.Article;
+import fr.eni.expeditor.entity.Collaborateur;
+import fr.eni.expeditor.entity.Commande;
+import fr.eni.expeditor.entity.Etat;
+import fr.eni.expeditor.service.GestionCommandeBean;
 
 /**
  * Created by Administrateur on 25/10/2016.
@@ -50,12 +56,44 @@ public class EmployeServlet extends AbstractServlet {
         Collaborateur connectedCollaborateur = (Collaborateur) request.getSession().getAttribute("collaborateur");
         Commande commandeATraiter = commandeEjb.recupererCommandeATraiter(connectedCollaborateur);
 
+        Etat etat = new Etat();
+        etat.setCode("ENCO");
+        etat.setLibelle("En cours de traitement");
+
+        commandeEjb.modifierEtatCommande(commandeATraiter, etat);
+        commandeEjb.affecterCollaborateurACommande(connectedCollaborateur, commandeATraiter);
+
+        chargerListArticleFormatJs(request);
+        
         RequestDispatcher dispatcher = null;
         request.setAttribute("commandeATraiter", commandeATraiter);
         dispatcher = request.getRequestDispatcher("/WEB-INF/views/employe/employe.jsp");
         dispatcher.forward(request, response);
     }
 
+	private void chargerListArticleFormatJs(HttpServletRequest request) {
+		List<Article> articles = gestionArticleBean.rechercherTous();
+
+		boolean premierObjet = true;
+		StringBuilder tableauArticle = new StringBuilder("articles = [ ");
+
+		for (Article article : articles) {
+			
+			if(premierObjet)
+			{
+				tableauArticle.append(",");
+			}
+			//On génère l'objet article
+			tableauArticle.append("{id:\"" + article.getId() + "\", libelle:\""
+					+ StringEscapeUtils.escapeEcmaScript(article.getLibelle()) + "\", description:\""
+					+ StringEscapeUtils.escapeEcmaScript(article.getDescription()) + "\", poids:\"" + article.getPoids()
+					+ "\"}");
+		}
+		tableauArticle.append("];");
+		
+		request.setAttribute("articles", articles);
+
+	}
     /**
      * Redirige l'utilisateur vers la page de connexion
      *

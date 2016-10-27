@@ -31,3 +31,6 @@ function afficherModalArticle(idArticle, articleLibelle, articleDescription,
 	afficherModal('popupArticle')
 
 }
+
+
+
