@@ -1,7 +1,7 @@
 package fr.eni.expeditor.servlet;
 
 import fr.eni.expeditor.service.LectureFichierCSVBean;
-import org.apache.commons.lang3.StringEscapeUtils;
+import fr.eni.expeditor.service.XLSToCSVBean;
 import org.jboss.logging.Logger;
 
 import javax.ejb.EJB;
@@ -14,7 +14,6 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
@@ -34,6 +33,9 @@ public class ImportCSVServlet extends AbstractServlet {
 
     @EJB
     private LectureFichierCSVBean lectureFichierCSVBean;
+
+    @EJB
+    private XLSToCSVBean xlsToCSVBean;
 
     @Override
     void action(String action, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,7 +69,7 @@ public class ImportCSVServlet extends AbstractServlet {
                 continue;
             }
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_hh_mm");
 
             // On récupère le header du fichier uploadé afin de récupérer le nom du fichier puisqu'on peut pas récupérer le paramètre...
             String headerContentDisposition = part.getHeader("Content-Disposition");
@@ -87,14 +89,20 @@ public class ImportCSVServlet extends AbstractServlet {
             part.write(uploadedFileNameCompletePath);
             LOGGER.info(String.format("Le fichier %s à bien été importé", uploadedFileName));
 
+            // Changement du format xls en csv
+            if (fileExtension.toLowerCase().equals(".xls")) {
+                uploadedFileNameCompletePath = xlsToCSVBean.xlsToCsv(uploadedFileNameCompletePath);
+            }
+
             // Enfin, on va lire le fichier et importer les valeurs
             String result = lectureFichierCSVBean.lectureFichierCommandes(uploadedFileNameCompletePath);
-            response.sendRedirect(String.format("%s/manager?csvResult=%s", request.getContextPath(),URLEncoder.encode(result, "UTF-8")));
         }
     }
 
     @Override
     void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
+
+
 
 }

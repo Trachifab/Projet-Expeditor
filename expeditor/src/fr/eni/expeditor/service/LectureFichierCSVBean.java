@@ -33,6 +33,9 @@ public class LectureFichierCSVBean extends AbstractService {
     @EJB
     private GestionClientBean gestionClientBean;
 
+    @EJB
+    private XLSToCSVBean xlsToCsvBean;
+
 
     private static Logger LOGGER = Logger.getLogger(LectureFichierCSVBean.class.getName());
 
@@ -77,7 +80,7 @@ public class LectureFichierCSVBean extends AbstractService {
                     lignesCommande = data[4].split(";");
                     LOGGER.debug("split lignes commande ; " + Arrays.toString(lignesCommande));
                     commandeCourante = lectureLignesCommande(lignesCommande, commandeCourante);
-                    LOGGER.info(commandeCourante);
+                    LOGGER.debug(commandeCourante);
 
                     Commande commandeCorrespondante = gestionCommandeBean.rechercherParNumero(commandeCourante.getNumero());
                     if (commandeCorrespondante == null) {
@@ -99,7 +102,7 @@ public class LectureFichierCSVBean extends AbstractService {
     /**
      * Création/mise en correspondance du client du fichier CSV.
      *
-     * @param data          La ligne CSV correspondant aux infos du client.
+     * @param data          La ligne CSV correspondant aux debugs du client.
      * @param clientCourant
      * @return
      * @throws Exception
@@ -159,7 +162,7 @@ public class LectureFichierCSVBean extends AbstractService {
     /**
      * Création de la commande du fichier CSV.
      *
-     * @param data             La ligne CSV correspondant aux infos de la commande.
+     * @param data             La ligne CSV correspondant aux debugs de la commande.
      * @param commandeCourante
      * @return
      */
@@ -177,8 +180,11 @@ public class LectureFichierCSVBean extends AbstractService {
         }
 
         LOGGER.debug("Date commande  " + dateCommande);
-        numeroCommande = Integer.parseInt(data[1].split("Cmd N° ")[1]);
-
+        try {
+            numeroCommande = Integer.parseInt(data[1].split("Cmd N° ")[1]);
+        } catch (IndexOutOfBoundsException ex) {
+            numeroCommande = Integer.parseInt(data[1].split("NC ")[1]);
+        }
 
         LOGGER.debug("Numero commande  " + numeroCommande);
 
@@ -287,4 +293,5 @@ public class LectureFichierCSVBean extends AbstractService {
             is.close();
         }
     }
+
 }
