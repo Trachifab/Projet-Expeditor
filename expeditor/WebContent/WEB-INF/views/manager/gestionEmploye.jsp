@@ -142,7 +142,7 @@
             </div>
             <div class="fields">
                 <div class="field">
-                    <button class="ui red left floated animated button" type="submit" name="action" value="annuler">
+                    <button class="ui red left floated animated button" onclick="fermerModale('modaleEmploye')">
                         <div class="visible content">Annuler</div>
                         <div class="hidden content">
                             <i class="remove icon"></i>
