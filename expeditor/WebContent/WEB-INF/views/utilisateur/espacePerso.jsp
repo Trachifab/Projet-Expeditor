@@ -16,6 +16,7 @@
 
     <!-- Expeditor stylesheets -->
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/espacePerso.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/common.css">
 
 </head>
 <body>
@@ -34,23 +35,23 @@
                     <div class="fields">
                         <div class="field">
                             <label>Nom</label>
-                            <input placeholder="Nom" type="text" name="nomCollabo" value="<%= courant.getNom()%>">
+                            <input placeholder="Nom" type="text" name="nomCollabo" required="required" value="<%= courant.getNom()%>">
                         </div>
                         <div class="field">
                             <label>Prénom</label>
-                            <input placeholder="Prénom" type="text" name="prenomCollabo" value="<%= courant.getPrenom()%>">
+                            <input placeholder="Prénom" type="text" name="prenomCollabo" required="required" value="<%= courant.getPrenom()%>">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="field">
                             <label>Email</label>
-                            <input placeholder="email" type="email" name="emailCollabo" value="<%= courant.getEmail()%>">
+                            <input placeholder="email" type="email" name="emailCollabo" required="required" value="<%= courant.getEmail()%>">
                         </div>
                     </div>
                     <div class="fields">
                         <div class="field">
                             <label>Mot de passe</label>
-                            <input placeholder="Mot de passe" type="password" name="mdpCollabo" value="<%= courant.getMotDePasse()%>">
+                            <input placeholder="Mot de passe" type="password" name="mdpCollabo" required="required" value="<%= courant.getMotDePasse()%>">
                         </div>
                     </div>
                     <div class="fields">

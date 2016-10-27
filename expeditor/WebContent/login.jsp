@@ -12,6 +12,7 @@
 
     <!-- Expeditor stylesheets -->
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/connexion.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/common.css">
     <!-- Expeditor scripts -->
     <script src="resources/js/connexion.js"></script>
 </head>

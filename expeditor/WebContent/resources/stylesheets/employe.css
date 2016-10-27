@@ -1,0 +1,10 @@
+.ui.segment{
+    padding: 15px 30px;
+}
+
+.six.wide.column .ui.segment{
+    height: 100%;
+}
+.six.wide.column .ui.segment #buttonContainer{
+    height: 40px;
+}

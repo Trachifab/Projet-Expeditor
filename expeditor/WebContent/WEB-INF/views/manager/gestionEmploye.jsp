@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrateur
-  Date: 25/10/2016
-  Time: 14:23
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="fr.eni.expeditor.entity.Role" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -17,16 +10,19 @@
     <!-- JQuery -->
     <script src="resources/JQuery/jquery-3.1.1.min.js"></script>
 
+    <!-- SemanticUI -->
+    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
+    <script src="resources/semanticUI/semantic.min.js"></script>
+
+    <!-- tablesort -->
+    <script src="resources/tablesort/tablesort.js"></script>
 
     <!-- Expeditor scripts -->
     <script src="resources/js/gestionEmploye.js"></script>
 
     <!-- Expeditor stylesheets -->
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/gestionEmploye.css">
-
-    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
-    <script src="resources/semanticUI/semantic.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/common.css">
 </head>
 
 <body>
@@ -44,7 +40,7 @@
             <div class="two wide column">
             </div>
             <div class="twelve wide column">
-                <table class="ui selectable celled table">
+                <table class="ui selectable celled sortable table">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -82,7 +78,7 @@
                                                 '<%=collaborateur.getEmail()%>', '<%=collaborateur.getMotDePasse()%>','<%=collaborateur.getRole().getCode()%>')">
                                     <i class="small edit icon"></i>
                                 </button>
-                                <button class="ui icon red small button" onclick="afficherModale('supprimerModale')">
+                                <button class="ui icon red small button" onclick="afficherSuppModale('supprimerModale', '<%=collaborateur.getId()%>')">
                                     <i class="small trash icon"></i>
                                 </button>
                             </div>
@@ -115,23 +111,23 @@
             <div class="fields content">
                 <div class="field">
                     <label>Nom</label>
-                    <input placeholder="Nom" type="text" name="nomCollabo">
+                    <input placeholder="Nom" type="text" name="nomCollabo" required="required" >
                 </div>
                 <div class="field margin">
                     <label>Prénom</label>
-                    <input placeholder="Prénom" type="text" name="prenomCollabo">
+                    <input placeholder="Prénom" type="text" name="prenomCollabo" required="required" >
                 </div>
             </div>
             <div class="fields">
                 <div class="field">
                     <label>Email</label>
-                    <input placeholder="Email" type="email" name="emailCollabo">
+                    <input placeholder="Email" type="email" name="emailCollabo"  required="required">
                 </div>
             </div>
             <div class="fields">
                 <div class="field">
                     <label>Mot de passe</label>
-                    <input placeholder="Mot de passe" type="password" name="mdpCollabo">
+                    <input placeholder="Mot de passe" type="password" name="mdpCollabo"  required="required" >
                 </div>
             </div>
             <div class="fields">
@@ -146,7 +142,7 @@
             </div>
             <div class="fields">
                 <div class="field">
-                    <button class="ui red left floated animated button" type="submit" name="action" value="annuler">
+                    <button class="ui red left floated animated button" onclick="fermerModale('modaleEmploye')">
                         <div class="visible content">Annuler</div>
                         <div class="hidden content">
                             <i class="remove icon"></i>

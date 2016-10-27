@@ -1,9 +1,8 @@
-/**
- * Created by Administrateur on 26/10/2016.
- */
-
 (function($) {
     $(document).ready(function() {
+        // Initialisation du tri sur les tables
+        $('table').tablesort();
+
         jQuery('.dropdown')
             .dropdown()
         ;
