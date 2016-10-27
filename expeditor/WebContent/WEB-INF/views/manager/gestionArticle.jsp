@@ -199,14 +199,13 @@
             <p class="flex-container">Voulez-vous vraiment archiver cet article ?</p>
         </div>
     </div>
-    <div>
+    <div class="actions">
+        <button class="ui left floated red basic inverted deny button">
+            <i class="remove icon"></i>
+            Non
+        </button>
         <form class="form" id="suppForm" method="post" action="GestionArticleServlet">
             <input type="hidden" name="artId" id="artId"/>
-            <button class="ui left floated red basic inverted button"
-                    onclick="fermerModale('popupValidationArchivage')">
-                <i class="remove icon"></i>
-                Non
-            </button>
             <button class="ui right floated green basic inverted button" type="submit" name="action" value="archiver">
                 <i class="checkmark icon"></i>
                 Oui
