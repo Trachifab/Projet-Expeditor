@@ -98,13 +98,13 @@
 		</div>
 		<div class="row">
 
-			<div class="column">
-
-				<!-- contenu de la ligne 2 (à diviser en deux colonnes) -->
 
 
 
-				<div class="ui three column very relaxed grid">
+			<div class="two wide column"></div>
+			<div class="twelve wide column">
+
+				<div class="ui two column very relaxed grid">
 					<div class="column">
 
 
@@ -130,12 +130,14 @@
 						</table>
 
 						<p>
-						Poids total de la commande :<span id="poidsTotal">0,3</span> kg
+							Poids total de la commande :<span id="poidsTotal">0,3</span> kg
 						</p>
 					</div>
-				</div>
-			</div>
 
+				</div>
+
+			</div>
+			<div class="two wide column"></div>
 		</div>
 
 	</div>
