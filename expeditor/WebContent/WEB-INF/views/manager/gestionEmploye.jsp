@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrateur
-  Date: 25/10/2016
-  Time: 14:23
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="fr.eni.expeditor.entity.Role" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -17,16 +10,16 @@
     <!-- JQuery -->
     <script src="resources/JQuery/jquery-3.1.1.min.js"></script>
 
+    <!-- SemanticUI -->
+    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
+    <script src="resources/semanticUI/semantic.min.js"></script>
 
     <!-- Expeditor scripts -->
     <script src="resources/js/gestionEmploye.js"></script>
 
     <!-- Expeditor stylesheets -->
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/gestionEmploye.css">
-
-    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
-    <script src="resources/semanticUI/semantic.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/common.css">
 </head>
 
 <body>

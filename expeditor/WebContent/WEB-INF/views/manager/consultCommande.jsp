@@ -19,6 +19,10 @@
     <!-- Expeditor scripts -->
     <script src="resources/js/statistiquesEmployes.js"></script>
     <script src="resources/js/consultCommande.js"></script>
+
+    <!-- Expeditor Stylesheets -->
+    <link rel="stylesheet" type="text/css"
+          href="resources/stylesheets/common.css">
 </head>
 
 <body>
@@ -34,7 +38,7 @@
 <!-- Table des commandes en attente ou en cours de traitement -->
 <div class="ui equal width center aligned padded grid">
     <!-- Message de validation de l'import -->
-    <% if(!csvResult.isEmpty()){ %>
+    <% if (!csvResult.isEmpty()) { %>
     <div id="messagesRow" class="row">
         <div class="six wide column"></div>
         <div class="four wide column">
@@ -43,7 +47,8 @@
                 <div class="header">
                     Import de commandes terminés
                 </div>
-                <p><%= csvResult %></p>
+                <p><%= csvResult %>
+                </p>
             </div>
         </div>
         <div class="six wide column"></div>

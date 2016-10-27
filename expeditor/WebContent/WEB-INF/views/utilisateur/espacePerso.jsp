@@ -16,6 +16,7 @@
 
     <!-- Expeditor stylesheets -->
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/espacePerso.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/common.css">
 
 </head>
 <body>
