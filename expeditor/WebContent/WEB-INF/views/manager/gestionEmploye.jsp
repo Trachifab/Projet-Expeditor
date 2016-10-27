@@ -75,18 +75,17 @@
                         <td><%= collaborateur.getEmail() %>
                         </td>
                         <td>
-                            <div class>
-
+                            <div class="field">
+                                <button class="ui icon brown small button"
+                                        onclick="afficherEmployeModale('modaleEmploye', '<%=collaborateur.getId()%>',
+                                                '<%=collaborateur.getNom()%>', '<%=collaborateur.getPrenom()%>',
+                                                '<%=collaborateur.getEmail()%>', '<%=collaborateur.getMotDePasse()%>','<%=collaborateur.getRole().getCode()%>')">
+                                    <i class="small edit icon"></i>
+                                </button>
+                                <button class="ui icon red small button" onclick="afficherModale('supprimerModale')">
+                                    <i class="small trash icon"></i>
+                                </button>
                             </div>
-                            <button class="ui icon brown small button"
-                                    onclick="afficherEmployeModale('modaleEmploye', '<%=collaborateur.getId()%>',
-                                        '<%=collaborateur.getNom()%>', '<%=collaborateur.getPrenom()%>',
-                                        '<%=collaborateur.getEmail()%>', '<%=collaborateur.getMotDePasse()%>','<%=collaborateur.getRole().getCode()%>')">
-                                <i class="small edit icon"></i>
-                            </button>
-                            <button class="ui icon red small button" onclick="afficherModale('supprimerModale')">
-                                <i class="small trash icon"></i>
-                            </button>
                         </td>
                     </tr>
                     <% } %>

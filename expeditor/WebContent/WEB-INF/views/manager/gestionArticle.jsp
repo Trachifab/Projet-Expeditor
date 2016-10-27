@@ -64,17 +64,21 @@
 							<td><%=article.getLibelle()%></td>
 							<td><%=article.getDescription()%></td>
 							<td><%=article.getPoids()%></td>
-							<td><button class="small ui icon brown button" type="button"
-									onclick="afficherModalArticle('<%=article.getId()%>',
-					'<%=StringEscapeUtils.escapeEcmaScript(article.getLibelle())%>',
-					'<%=StringEscapeUtils.escapeEcmaScript(article.getDescription())%>',
-					'<%=article.getPoids()%>')">
-									<i class="small edit icon"></i>
-								</button>
+							<td>
+                                <div class="field">
+                                    <button class="small ui icon brown button" type="button"
+                                            onclick="afficherModalArticle('<%=article.getId()%>',
+                                                    '<%=StringEscapeUtils.escapeEcmaScript(article.getLibelle())%>',
+                                                    '<%=StringEscapeUtils.escapeEcmaScript(article.getDescription())%>',
+                                                    '<%=article.getPoids()%>')">
+                                        <i class="small edit icon"></i>
+                                    </button>
 
-								<button class="ui icon red small button" onclick="afficherModalArchiver('<%=article.getId()%>')">
-									<i class="small trash icon"></i>
-								</button></td>
+                                    <button class="ui icon red small button" onclick="afficherModalArchiver('<%=article.getId()%>')">
+                                        <i class="small trash icon"></i>
+                                    </button>
+                                </div>
+                            </td>
 						</tr>
 
 						<%
