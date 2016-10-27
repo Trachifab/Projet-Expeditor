@@ -111,23 +111,23 @@
             <div class="fields content">
                 <div class="field">
                     <label>Nom</label>
-                    <input placeholder="Nom" type="text" name="nomCollabo">
+                    <input placeholder="Nom" type="text" name="nomCollabo" required="required" >
                 </div>
                 <div class="field margin">
                     <label>Prénom</label>
-                    <input placeholder="Prénom" type="text" name="prenomCollabo">
+                    <input placeholder="Prénom" type="text" name="prenomCollabo" required="required" >
                 </div>
             </div>
             <div class="fields">
                 <div class="field">
                     <label>Email</label>
-                    <input placeholder="Email" type="email" name="emailCollabo">
+                    <input placeholder="Email" type="email" name="emailCollabo"  required="required">
                 </div>
             </div>
             <div class="fields">
                 <div class="field">
                     <label>Mot de passe</label>
-                    <input placeholder="Mot de passe" type="password" name="mdpCollabo">
+                    <input placeholder="Mot de passe" type="password" name="mdpCollabo"  required="required" >
                 </div>
             </div>
             <div class="fields">

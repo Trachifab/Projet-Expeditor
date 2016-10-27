@@ -121,10 +121,10 @@
         </div>
         <div class="fields">
             <div class="field">
-                <label>Libelle</label> <input type="text" name="articleLibelle"/>
+                <label>Libelle</label> <input type="text" name="articleLibelle" required="required" />
             </div>
             <div class="field">
-                <label>Poids</label> <input type="number" name="articlePoids"/>
+                <label>Poids</label> <input type="number" name="articlePoids" required="required"/>
             </div>
         </div>
         <div class="fields">
