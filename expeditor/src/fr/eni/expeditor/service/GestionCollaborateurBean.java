@@ -1,13 +1,24 @@
 package fr.eni.expeditor.service;
 
+import javax.ejb.Stateless;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import fr.eni.expeditor.entity.Collaborateur;
+import fr.eni.expeditor.entity.Commande;
 import fr.eni.expeditor.exception.ConnexionException;
 import org.jboss.logging.Logger;
 
+import java.util.*;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.List;
 
 /**
  * Service sous forme d'EJB permattant de gérer les entités Collaborateurs
@@ -107,11 +118,109 @@ public class GestionCollaborateurBean extends AbstractService {
             throw new ConnexionException();
         }
     }
-/*
-    public String recupererStatistiquesCollaboratreur(){
+
+    /**
+     * Récupére les statistiques de tous les collaborateurs de la journée
+     */
+    public JsonElement recupererStatistiques() {
+
+        LOGGER.info("Récupération des statistiques collaborateurs");
+        Query q = getEntityManager().createNamedQuery("COMMANDE.RECUPERER.STATISTIQUES.DU.JOUR");
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(new Date());
+        cal.set(Calendar.HOUR, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+
+        java.sql.Date date = new java.sql.Date(cal.getTimeInMillis());
+
+        q.setParameter("dateDuJour", date);
+        List<Commande> commandesDuJour = q.getResultList();
+
+        List<Collaborateur> tousLesCollaborateurs = rechercherTous();
+        List<Statistiques> statistiques = new ArrayList<>();
+
+        Statistiques currentStat = new Statistiques();
+        for(Collaborateur collaborateur : tousLesCollaborateurs){
+            if(collaborateur.getRole().getCode().equals("EMPL")){
+                currentStat.setCollaborateur(collaborateur);
+                for (Commande commande : commandesDuJour) {
+                    if(commande.getEtat().getCode().equals("TRAI")
+                            && commande.getCollaborateur().getId().equals(collaborateur.getId())){
+
+                        currentStat.incrementerStat();
+                    }
+                }
+                statistiques.add(currentStat);
+                currentStat = new Statistiques();
+            }
+        }
+
+        String colonnes ="";
+        boolean isFirst = true;
+        String valeur ="";
+
+        for(Statistiques stat : statistiques) {
+            colonnes += (isFirst? "":",")+stat.getCollaborateur().getPrenom();
+            valeur += (isFirst? "":",")+stat.getNbCommandesTraites();
+
+            isFirst = false;
+
+        }
+
+      StringBuilder str = new StringBuilder();
+      str.append("{'colonnes':[");
+        str.append(colonnes);
+        str.append("],");
+        str.append("'valeurs':[");
+
+        str.append(valeur);
+        str.append("]}");
 
 
+        JsonParser jsonParser = new JsonParser();
+        JsonElement element = jsonParser.parse(str.toString());
 
+      return element;
     }
-    */
+
+    /**
+     * Classe interne statistiques
+     */
+    private class Statistiques{
+        private Collaborateur collaborateur;
+        private int nbCommandesTraites;
+
+        public Statistiques(){
+
+        }
+
+        public Statistiques(Collaborateur collaborateur, int nbCommandesTraites){
+            this.collaborateur = collaborateur;
+            this.nbCommandesTraites = nbCommandesTraites;
+        }
+
+        public Collaborateur getCollaborateur() {
+            return collaborateur;
+        }
+
+        public Statistiques setCollaborateur(Collaborateur collaborateur) {
+            this.collaborateur = collaborateur;
+            return this;
+        }
+
+        public int getNbCommandesTraites() {
+            return nbCommandesTraites;
+        }
+
+        public Statistiques setNbCommandesTraites(int nbCommandesTraites) {
+            this.nbCommandesTraites = nbCommandesTraites;
+            return this;
+        }
+
+        public void incrementerStat(){
+            this.nbCommandesTraites++;
+        }
+    }
 }

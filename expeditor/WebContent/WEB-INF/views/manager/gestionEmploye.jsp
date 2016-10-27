@@ -84,7 +84,7 @@
                                         '<%=collaborateur.getEmail()%>', '<%=collaborateur.getMotDePasse()%>','<%=collaborateur.getRole().getCode()%>')">
                                 <i class="small edit icon"></i>
                             </button>
-                            <button class="ui icon red small button" onclick="afficherSuppModale('supprimerModale', '<%=collaborateur.getId()%>')">
+                            <button class="ui icon red small button" onclick="afficherModale('supprimerModale')">
                                 <i class="small trash icon"></i>
                             </button>
                         </td>
@@ -147,7 +147,7 @@
             </div>
             <div class="fields">
                 <div class="field">
-                    <button class="ui red left floated animated button" onclick="fermerModale('modaleEmploye')">
+                    <button class="ui red left floated animated button" type="submit" name="action" value="annuler">
                         <div class="visible content">Annuler</div>
                         <div class="hidden content">
                             <i class="remove icon"></i>

@@ -10,9 +10,12 @@
     <script src="${pageContext.request.contextPath}/resources/JQuery/jquery-3.1.1.min.js"></script>
 
     <!-- Semantic UI -->
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.css">
-    <script src="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
+    <script src="resources/semanticUI/semantic.min.js"></script>
+
+    <script src="${pageContext.request.contextPath}/resources/js/highcharts.js"></script>
+
+    <script src="${pageContext.request.contextPath}/resources/js/statistiquesEmployes.js"></script>
 </head>
 
 <body>
@@ -87,6 +90,7 @@
     </div>
 </div>
 
+<div id="histogramme" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 </body>
 </html>

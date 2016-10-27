@@ -1,6 +1,8 @@
 package fr.eni.expeditor.servlet;
 
+import com.google.gson.JsonElement;
 import fr.eni.expeditor.entity.Commande;
+import fr.eni.expeditor.service.GestionCollaborateurBean;
 import fr.eni.expeditor.service.GestionCommandeBean;
 
 import javax.ejb.EJB;
@@ -15,12 +17,25 @@ import java.util.List;
 @WebServlet(name = "ConsultCommandeServlet")
 public class ConsultCommandeServlet extends AbstractServlet {
 
+
     @EJB
     private GestionCommandeBean gestionCommandeBean;
 
+    @EJB
+    private GestionCollaborateurBean gestionCollaborateurBean;
+
+
     @Override
     void action(String action, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        switch(action){
+            case "histo":
+                JsonElement jsonStats = gestionCollaborateurBean.recupererStatistiques();
+                response.getWriter().write(jsonStats.toString());
+                break;
 
+            default:
+                break;
+        }
     }
 
     @Override
@@ -37,5 +52,6 @@ public class ConsultCommandeServlet extends AbstractServlet {
         request.setAttribute("csvResult", csvResult);
 
         dispatcher.forward(request, response);
+
     }
 }

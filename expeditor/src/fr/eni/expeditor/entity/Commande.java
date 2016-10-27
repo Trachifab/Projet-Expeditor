@@ -10,7 +10,8 @@ import java.util.List;
         @NamedQuery(name = "COMMANDE.CHANGER.ETAT", query = "update Commande c set c.etat = :etat where c.id = :id"),
         @NamedQuery(name = "COMMANDE.ASSIGNER.COLLABORATEUR", query = "update Commande c set c.collaborateur = :collaborateur where c.id = :id"),
         @NamedQuery(name = "COMMANDE.RECUPERER.COMMANDE.EN.COURS.POUR.EMPLOYE", query = "select c from Commande c where c.collaborateur.id = :col_id"),
-        @NamedQuery(name="listerCommandesManager", query="Select c from Commande c where c.etat.code IN :etats order by c.numero")
+        @NamedQuery(name="listerCommandesManager", query="Select c from Commande c where c.etat.code IN :etats order by c.numero"),
+        @NamedQuery(name = "COMMANDE.RECUPERER.STATISTIQUES.DU.JOUR", query="Select c from Commande c where c.dateTraitement > :dateDuJour")
 })
 public class Commande {
 

@@ -1,5 +1,6 @@
 package fr.eni.expeditor.servlet;
 
+import com.google.gson.JsonElement;
 import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.entity.Role;
 import fr.eni.expeditor.service.GestionCollaborateurBean;
@@ -25,10 +26,10 @@ public class GestionEmployeServlet extends AbstractServlet {
     private List<Role> roles;
 
     @EJB
-    private GestionCollaborateurBean gestionCollaborateurBean;
+    private GestionRoleBean gestionRoleBean;
 
     @EJB
-    private GestionRoleBean gestionRoleBean;
+    private GestionCollaborateurBean gestionCollaborateurBean;
 
     @Override
     void action(String action, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

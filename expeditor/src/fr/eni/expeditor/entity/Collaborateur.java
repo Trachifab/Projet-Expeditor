@@ -4,12 +4,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@NamedQueries(
-        {
-                @NamedQuery(name = "CollaborateurLoginExists", query = "Select count(collabo) from Collaborateur collabo where collabo.email = :email"),
-                @NamedQuery(name = "SelectCollaborateurByLoginMotDePasse", query = "Select collabo from Collaborateur collabo where collabo.email = :email and collabo.motDePasse = :motDePasse")
-        }
-)
+@NamedQueries({
+    @NamedQuery(name = "CollaborateurLoginExists", query = "Select count(collabo) from Collaborateur collabo where collabo.email = :email"),
+    @NamedQuery(name = "SelectCollaborateurByLoginMotDePasse", query = "Select collabo from Collaborateur collabo where collabo.email = :email and collabo.motDePasse = :motDePasse")
+})
 public class Collaborateur {
 
     @Id
