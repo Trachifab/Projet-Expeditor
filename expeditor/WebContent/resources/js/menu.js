@@ -9,7 +9,7 @@
         });
 
         // Déconnexion de l'utilisateur
-        $(".item .sign.out").click(function () {
+        $("#signout").click(function () {
             $("#deconnexionForm").find("button.deconnexion").click();
         });
 

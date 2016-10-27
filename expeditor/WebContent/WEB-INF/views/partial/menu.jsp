@@ -26,7 +26,7 @@
             <%= session.getAttribute("collaborateur")  %>
             <i class="user icon"></i>
         </a>
-        <a class="item">
+        <a id="signout" class="item">
             <i class="white sign out icon"></i>
         </a>
         <form id="deconnexionForm" style="display: none;" action="${pageContext.request.contextPath}/deconnexion"
