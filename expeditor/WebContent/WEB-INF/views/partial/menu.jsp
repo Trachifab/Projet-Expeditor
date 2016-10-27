@@ -15,7 +15,7 @@
                 <a href="ConsultCommandeServlet" class="item"><i class="dashboard icon white"></i>Tableau de bord</a>
                 <a href="GestionEmployeServlet" class="item"><i class="cubes icon white"></i>Employés</a>
                 <a href="GestionArticleServlet" class="item"><i class="users icon white"></i>Articles</a>
-                <a href="ImportCSVServlet" class="item"><i class="file icon"></i>Importer un CSV</a>
+                <a class="item btnImportCsv"><i class="file icon"></i>Importer un CSV</a>
                 <% } else {%>
                 <a href="${pageContext.request.contextPath}/employe" class="item"><i class="dropbox icon"></i>Commande</a>
                 <% } %>
@@ -30,6 +30,28 @@
         </a>
         <form id="deconnexionForm" style="display: none;" action="${pageContext.request.contextPath}/deconnexion" method="POST">
             <button class="ui transparent button deconnexion" type="submit"></button>
+        </form>
+    </div>
+</div>
+
+<!-- The import CSV modal -->
+<div class="ui modal importCsv">
+    <div class="header">Importer un fichier CSV</div>
+    <div class="content">
+        <form action="ImportCSVServlet" enctype="multipart/form-data" method="POST">
+            <p>Indiquez ci-dessous le chemin vers le fichier CSV à importer.</p>
+            <div>
+                <div class="field">
+                    <div class="ui action input">
+                        <input type="text" id="_attachmentName">
+                        <label for="attachmentName" class="ui icon button btn-file">
+                            <i class="attachment basic icon search"></i>
+                            <input type="file" id="attachmentName" name="attachmentName" style="display: none">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button class="ui button" type="submit" name="action" value="import">Importer</button>
         </form>
     </div>
 </div>
