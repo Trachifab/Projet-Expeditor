@@ -1,4 +1,7 @@
 (function ($) {
+    // Modification de l'url pour enlever le paramètre contenant le paramètre
+    history.pushState('', '', 'manager');
+
     $(document).ready(function () {
         // Fermeture d'un message
         $("i.icon.close").click(function () {

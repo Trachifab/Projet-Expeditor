@@ -33,11 +33,11 @@
 
 <!-- Table des commandes en attente ou en cours de traitement -->
 <div class="ui equal width center aligned padded grid">
+    <!-- Message de validation de l'import -->
+    <% if(!csvResult.isEmpty()){ %>
     <div id="messagesRow" class="row">
         <div class="six wide column"></div>
         <div class="four wide column">
-            <!-- Message de validation de l'import -->
-            <% if(!csvResult.isEmpty()){ %>
             <div class="ui positive message">
                 <i class="close icon"></i>
                 <div class="header">
@@ -45,10 +45,10 @@
                 </div>
                 <p><%= csvResult %></p>
             </div>
-            <% } %>
         </div>
         <div class="six wide column"></div>
     </div>
+    <% } %>
     <div class="row">
         <div class="two wide column">
         </div>
