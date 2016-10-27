@@ -1,6 +1,7 @@
 package fr.eni.expeditor.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
 
 import org.jboss.logging.Logger;
 
@@ -92,7 +94,17 @@ public class GestionArticleServlet extends AbstractServlet {
 		List<String> erreurs = gestionArticleBean.verifierRG(article);
 
 		if (erreurs == null || erreurs.isEmpty()) {
-			gestionArticleBean.enregistrerArticle(article);
+
+			try {
+
+				gestionArticleBean.enregistrerArticle(article);
+			} catch (Exception ex) {
+
+				erreurs = new ArrayList<String>();
+				erreurs.add("Vous ne pouvez pas utilise ce libelle");
+				
+				request.setAttribute("erreurs", erreurs);
+			}
 		} else {
 			request.setAttribute("erreurs", erreurs);
 		}
