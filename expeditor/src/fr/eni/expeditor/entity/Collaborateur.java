@@ -86,4 +86,5 @@ public class Collaborateur {
     public String toString() {
         return prenom + " " + nom;
     }
+
 }

@@ -1,21 +1,22 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrateur
-  Date: 25/10/2016
-  Time: 14:23
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="fr.eni.expeditor.entity.Commande" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="fr.eni.expeditor.entity.LigneCommande" %>
 <html>
 <head>
     <title>Employés</title>
 
+    <script src="${pageContext.request.contextPath}/resources/JQuery/jquery-3.1.1.min.js"></script>
+
     <!-- Semantic UI -->
-    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
-    <script src="resources/semanticUI/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.css">
+    <script src="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.js"></script>
+
+    <script src="${pageContext.request.contextPath}/resources/js/highcharts.js"></script>
+
+    <script src="${pageContext.request.contextPath}/resources/js/statistiquesEmployes.js"></script>
+
 </head>
 
 <body>
@@ -74,6 +75,21 @@
     </div>
 </div>
 
+<div id="histogramme" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script>
+    employes : [];
+</script>
+
+    <% for(Collaborateur col : collaborateurs) {%>
+        <% if(col.getRole().getCode().equals("EMPLOYE")){ %>
+            employes.put('<%=col.getPrenom() + " " + col.getNom()%>');
+        <% } %>
+    <% } %>
+
+<script>
+    afficherHisto(employes, statistiques);
+</script>
 
 </body>
 </html>

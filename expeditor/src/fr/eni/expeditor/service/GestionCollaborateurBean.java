@@ -110,4 +110,11 @@ public class GestionCollaborateurBean extends AbstractService {
             throw new ConnexionException();
         }
     }
+/*
+    public String recupererStatistiquesCollaboratreur(){
+
+
+
+    }
+    */
 }

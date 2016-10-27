@@ -28,6 +28,15 @@ public class GestionEmployeServlet extends AbstractServlet {
     @Override
     void action(String action, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+       /* if(action.equals("histo"))
+        {
+
+
+
+
+            response.getOutputStream().write("JSON");
+        }
+*/
     }
 
     @Override
@@ -38,7 +47,6 @@ public class GestionEmployeServlet extends AbstractServlet {
         RequestDispatcher dispatcher = null;
         dispatcher = request.getRequestDispatcher("/WEB-INF/views/manager/gestionEmploye.jsp");
         request.setAttribute("collaborateurs", collaborateurs);
-
         dispatcher.forward(request, response);
     }
 }
