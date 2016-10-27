@@ -27,10 +27,6 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.css">
     <script src="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.js"></script>
 
-    <script src="${pageContext.request.contextPath}/resources/js/highcharts.js"></script>
-
-    <script src="${pageContext.request.contextPath}/resources/js/statistiquesEmployes.js"></script>
-
 </head>
 
 <body>
@@ -88,7 +84,7 @@
                                         '<%=collaborateur.getEmail()%>', '<%=collaborateur.getMotDePasse()%>','<%=collaborateur.getRole().getCode()%>')">
                                 <i class="small edit icon"></i>
                             </button>
-                            <button class="ui icon red small button" onclick="afficherModale('supprimerModale')">
+                            <button class="ui icon red small button" onclick="afficherSuppModale('supprimerModale', '<%=collaborateur.getId()%>')">
                                 <i class="small trash icon"></i>
                             </button>
                         </td>
@@ -100,25 +96,7 @@
             <div class="two wide column">
             </div>
         </div>
-    </div>
-
-<div id="histogramme" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-<script>
-    employes : [];
-</script>
-
-    <% for(Collaborateur col : collaborateurs) {%>
-        <% if(col.getRole().getCode().equals("EMPLOYE")){ %>
-            employes.put('<%=col.getPrenom() + " " + col.getNom()%>');
-        <% } %>
-    <% } %>
-
-<script>
-    afficherHisto(employes, statistiques);
-</script>
-    <div class="flex-container">
-        <button class="ui green center floated animated button" type="submit" name="ajouterEmploye" onclick="afficherModale('modaleEmploye')">
+        <button class="ui green center aligned animated button" onclick="afficherModale('modaleEmploye')">
             <div class="visible content">Ajouter</div>
             <div class="hidden content">
                 <i class="add icon"></i>
@@ -169,7 +147,7 @@
             </div>
             <div class="fields">
                 <div class="field">
-                    <button class="ui red left floated animated button" type="submit" name="action" value="annuler">
+                    <button class="ui red left floated animated button" onclick="fermerModale('modaleEmploye')">
                         <div class="visible content">Annuler</div>
                         <div class="hidden content">
                             <i class="remove icon"></i>
@@ -187,31 +165,34 @@
 </div>
 
 <!-- modale de suppression -->
-<form id="supprimerModale" class="ui basic modal form" method="post" action="GestionEmployeServlet">
+    <div class="ui basic modal" id="supprimerModale">
         <i class="close icon"></i>
         <div class="header">
-            Suppression
-        </div>
-        <div class="image content">
-            <div class="image">
-                <i class="trash icon"></i>
+            <div class=" flex-container field">
+                    <i class="huge trash icon"></i>
             </div>
-            <div class="description">
-                <p>Voulez-vous vraiment supprimer cet employé ?</p>
+            <div class="flex-container field">
+                Archiver un employé
             </div>
         </div>
-        <div class="actions">
-            <div class="fields">
-                <div class="field">
-                    <button class="ui cancel left floated red basic inverted button" type="submit" name="action" value="annuler">
-                        <i class="remove icon"></i>
-                    </button>
-                    <button class="ui ok right floated green basic inverted button" type="submit" name="action" value="supprimer">
-                        <i class="checkmark icon"></i>
-                    </button>
-                </div>
+        <div class=" image content">
+            <div class="flex-container description">
+                <p class="flex-container">Voulez-vous vraiment archiver cet employé ?</p>
             </div>
         </div>
-</form>
+        <div>
+            <form class="form" id="suppForm" method="post" action="GestionEmployeServlet">
+                <input type="hidden" name="empId" id="empId">
+                <button class="ui left floated red basic inverted button" onclick="fermerModale('supprimerModale')" >
+                    <i class="remove icon"></i>
+                    Non
+                </button>
+                <button class="ui right floated green basic inverted button" type="submit" name="action" value="supprimer">
+                    <i class="checkmark icon"></i>
+                    Oui
+                </button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

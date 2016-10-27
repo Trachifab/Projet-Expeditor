@@ -110,4 +110,6 @@ ALTER TABLE ligneCommande ADD CONSTRAINT FK_ligneCommande_id FOREIGN KEY (articl
 --Archivage article
 ALTER TABLE Article ADD dateArchive datetime;
 
+--Archivage employe
+ALTER TABLE collaborateur ADD dateArchive datetime;
 

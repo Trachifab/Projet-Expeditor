@@ -1,6 +1,7 @@
 package fr.eni.expeditor.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @NamedQueries(
@@ -23,6 +24,8 @@ public class Collaborateur {
     private String email;
 
     private String motDePasse;
+
+    private Date dateArchive;
 
     @ManyToOne
     private Role role;
@@ -73,6 +76,14 @@ public class Collaborateur {
 
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
+    }
+
+    public Date getDateArchive() {
+        return dateArchive;
+    }
+
+    public void setDateArchive(Date dateArchive) {
+        this.dateArchive = dateArchive;
     }
 
     @Override
