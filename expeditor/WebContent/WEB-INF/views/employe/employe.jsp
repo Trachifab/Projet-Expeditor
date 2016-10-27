@@ -16,16 +16,16 @@
 
 
     <!-- Expeditor stylesheets -->
-    <link rel="stylesheet" type="text/css"
-          href="resources/stylesheets/common.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/common.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/employe.css">
 
+    <!-- Expeditor Scripts -->
     <!-- Récupération des articles dans un tableau js appellé articles -->
     <script type="text/javascript">
 
         <%=request.getAttribute("articles")%>
 
     </script>
-
     <script type="text/javascript" src="resources/js/employe.js"></script>
 
 </head>
@@ -105,69 +105,63 @@
         </div>
         <div class="two wide column"></div>
     </div>
+
     <div class="row">
 
         <div class="two wide column"></div>
-        <div class="twelve wide column">
+        <div class="six wide column">
+            <div class="ui segment">
+                <select name="article" class="ui dropdown" id="selectArticle">
 
-            <div class="ui two column very relaxed grid">
-                <div class="column">
+                </select>
+                <button type="button" class="ui green animated button" onclick="ajouterArticle()">
+                    <div class="visible content">Ajouter</div>
+                    <div class="hidden content">
+                        <i class="right arrow icon"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="six wide column">
+            <div class="ui segment">
+                <table class="ui celled table" id="tableArticlesAjouter">
+                    <thead>
+                    <tr>
+                        <th>Article</th>
+                        <th>Poids (g)</th>
+                        <th>Quantité</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
+                    </tbody>
+                </table>
 
-                    <select name="article" class="ui dropdown" id="selectArticle">
+                <p>
+                    Poids total de la commande :<span id="poidsTotal">0,3</span> kg
+                </p>
 
-                    </select>
-                    <button type="button" class="ui green animated button" onclick="ajouterArticle()">
-                        <div class="visible content">Ajouter</div>
+                <div id="buttonContainer" class="field">
+                    <button class="ui  left floated red animated button" onclick="annulerCarton()">
+                        <div class="visible content">Annuler</div>
                         <div class="hidden content">
-                            <i class="right arrow icon"></i>
+                            <i class="cancel icon"></i>
                         </div>
                     </button>
 
+                    <button class="ui right floated green animated button" onclick="validerCarton()">
+                        <div class="visible content">Valider carton</div>
+                        <div class="hidden content">
+                            <i class="checkmark icon"></i>
+                        </div>
+                    </button>
                 </div>
-                <div class="column">
-                    <table class="ui celled table" id="tableArticlesAjouter">
-                        <thead>
-                        <tr>
-                            <th>Article</th>
-                            <th>Poids (g)</th>
-                            <th>Quantité</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-
-                    <p>
-                        Poids total de la commande :<span id="poidsTotal">0,3</span> kg
-                    </p>
-
-                    <div class="field ">
-                        <button class="ui  left floated red animated button" onclick="annulerCarton()">
-                            <div class="visible content">Annuler</div>
-                            <div class="hidden content">
-                                <i class="cancel icon"></i>
-                            </div>
-                        </button>
-
-                        <button class="ui right floated green animated button" onclick="validerCarton()">
-                            <div class="visible content">Valider carton</div>
-                            <div class="hidden content">
-                                <i class="checkmark icon"></i>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-
             </div>
-
         </div>
-        <div class="two wide column">
-
-        </div>
+        <div class="two wide column"></div>
     </div>
+
 
 </div>
 </body>
