@@ -5,9 +5,6 @@ import fr.eni.expeditor.entity.Commande;
 import fr.eni.expeditor.entity.Etat;
 
 import javax.management.relation.Role;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Query;
 
 /**
  * Cet EJB gére les traitments annexes

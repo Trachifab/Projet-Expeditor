@@ -2,8 +2,8 @@ package fr.eni.expeditor.service;
 
 import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.entity.Commande;
+import fr.eni.expeditor.entity.Etat;
 import fr.eni.expeditor.servlet.TestServlet;
-import fr.eni.expeditor.entity.Commande;
 import org.jboss.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -28,9 +28,23 @@ public class GestionCommandeBean extends AbstractService{
         commande = recupererCommandeEncours(col);
         if(commande == null){
             //sinon on récupére la commance la plus ancienne en attente
-            recupererDerniereCommande();
+            commande = recupererDerniereCommande();
         }
         return commande;
+    }
+
+    /**
+     *
+     * @param commande
+     * @param etat
+     */
+    public void modifierEtatCommande(Commande commande, Etat etat){
+
+        Query q = getEntityManager().createNamedQuery("COMMANDE.CHANGER.ETAT");
+        q.setParameter("etat", etat);
+        q.setParameter("id", commande.getNumero());
+        q.executeUpdate();
+
     }
 
     /**
@@ -61,6 +75,14 @@ public class GestionCommandeBean extends AbstractService{
             return null;
         }
         return (Commande) results.get(0);
+    }
+
+    public void affecterCollaborateurACommande(Collaborateur collaborateur, Commande commande){
+
+        Query q = getEntityManager().createNamedQuery("COMMANDE.ASSIGNER.COLLABORATEUR");
+        q.setParameter("collaborateur", collaborateur);
+        q.setParameter("id", commande.getNumero());
+        q.executeUpdate();
     }
 
     /**

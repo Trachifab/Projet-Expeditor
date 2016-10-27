@@ -1,13 +1,12 @@
 package fr.eni.expeditor.service;
 
-import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
-
 import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.exception.ConnexionException;
 import org.jboss.logging.Logger;
 
+import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -107,4 +106,11 @@ public class GestionCollaborateurBean extends AbstractService {
             throw new ConnexionException();
         }
     }
+/*
+    public String recupererStatistiquesCollaboratreur(){
+
+
+
+    }
+    */
 }

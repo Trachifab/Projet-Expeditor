@@ -1,20 +1,17 @@
 package fr.eni.expeditor.servlet;
 
-import javax.ejb.EJB;
-import javax.persistence.NoResultException;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.entity.Role;
 import fr.eni.expeditor.exception.ConnexionException;
 import fr.eni.expeditor.service.GestionCollaborateurBean;
 import org.jboss.logging.Logger;
+
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(name = "ConnexionServlet")
 public class ConnexionServlet extends AbstractServlet {

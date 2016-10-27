@@ -16,6 +16,7 @@ import fr.eni.expeditor.entity.Article;
 import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.entity.Commande;
 import fr.eni.expeditor.entity.Etat;
+import fr.eni.expeditor.service.GestionArticleBean;
 import fr.eni.expeditor.service.GestionCommandeBean;
 
 /**
@@ -24,52 +25,57 @@ import fr.eni.expeditor.service.GestionCommandeBean;
 @WebServlet(name = "EmployeServlet")
 public class EmployeServlet extends AbstractServlet {
 
-    @EJB
-    GestionCommandeBean commandeEjb;
+	@EJB
+	GestionCommandeBean commandeEjb;
 
-    private static org.jboss.logging.Logger LOGGER = org.jboss.logging.Logger.getLogger(EmployeServlet.class.getName());
+	@EJB
+	private GestionArticleBean gestionArticleBean;
 
-    @Override
-    void action(String action, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private static org.jboss.logging.Logger LOGGER = org.jboss.logging.Logger.getLogger(EmployeServlet.class.getName());
 
-    }
+	@Override
+	void action(String action, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    @Override
-    void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
 
-        if(request.getSession().getAttribute("collaborateur") != null){
-            initialiserPage(request, response);
-        } else {
-            redirigerVersConnexion(request, response);
-        }
-    }
+	@Override
+	void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    /**
-     * Initialise toutes les données de la page :
-     *      Commande à traiter
-     *      Combobox de selection des articles
-     * @param request
-     * @param response
-     */
-    private void initialiserPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.getSession().getAttribute("collaborateur") != null) {
+			initialiserPage(request, response);
+		} else {
+			redirigerVersConnexion(request, response);
+		}
+	}
 
-        Collaborateur connectedCollaborateur = (Collaborateur) request.getSession().getAttribute("collaborateur");
-        Commande commandeATraiter = commandeEjb.recupererCommandeATraiter(connectedCollaborateur);
+	/**
+	 * Initialise toutes les données de la page : Commande à traiter Combobox de
+	 * selection des articles
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	private void initialiserPage(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        Etat etat = new Etat();
-        etat.setCode("ENCO");
-        etat.setLibelle("En cours de traitement");
+		Collaborateur connectedCollaborateur = (Collaborateur) request.getSession().getAttribute("collaborateur");
+		Commande commandeATraiter = commandeEjb.recupererCommandeATraiter(connectedCollaborateur);
 
-        commandeEjb.modifierEtatCommande(commandeATraiter, etat);
-        commandeEjb.affecterCollaborateurACommande(connectedCollaborateur, commandeATraiter);
+		Etat etat = new Etat();
+		etat.setCode("ENCO");
+		etat.setLibelle("En cours de traitement");
 
-        chargerListArticleFormatJs(request);
-        
-        RequestDispatcher dispatcher = null;
-        request.setAttribute("commandeATraiter", commandeATraiter);
-        dispatcher = request.getRequestDispatcher("/WEB-INF/views/employe/employe.jsp");
-        dispatcher.forward(request, response);
-    }
+		commandeEjb.modifierEtatCommande(commandeATraiter, etat);
+		commandeEjb.affecterCollaborateurACommande(connectedCollaborateur, commandeATraiter);
+
+		chargerListArticleFormatJs(request);
+
+		RequestDispatcher dispatcher = null;
+		request.setAttribute("commandeATraiter", commandeATraiter);
+		dispatcher = request.getRequestDispatcher("/WEB-INF/views/employe/employe.jsp");
+		dispatcher.forward(request, response);
+	}
 
 	private void chargerListArticleFormatJs(HttpServletRequest request) {
 		List<Article> articles = gestionArticleBean.rechercherTous();
@@ -78,34 +84,40 @@ public class EmployeServlet extends AbstractServlet {
 		StringBuilder tableauArticle = new StringBuilder("articles = [ ");
 
 		for (Article article : articles) {
-			
-			if(premierObjet)
-			{
+
+			if (premierObjet) {
 				tableauArticle.append(",");
 			}
-			//On génère l'objet article
+			// On génère l'objet article
 			tableauArticle.append("{id:\"" + article.getId() + "\", libelle:\""
 					+ StringEscapeUtils.escapeEcmaScript(article.getLibelle()) + "\", description:\""
 					+ StringEscapeUtils.escapeEcmaScript(article.getDescription()) + "\", poids:\"" + article.getPoids()
 					+ "\"}");
 		}
 		tableauArticle.append("];");
-		
+
 		request.setAttribute("articles", articles);
 
 	}
-    /**
-     * Redirige l'utilisateur vers la page de connexion
-     *
-     * @param request  Utilisé pour redirigé l'utilisateur vers la page de connexion
-     * @param response Obligatoire pour faire le forward
-     * @throws ServletException Dans le cas d'une erreur de servlet
-     * @throws IOException      ???
-     */
-    private void redirigerVersConnexion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // L'identifiant n'existe pas, il faut donc afficher un message d'erreur sur le template
-        request.setAttribute("error", true);
-        // Rediriger l'utilisateur sur la page de login
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
-    }
+
+	/**
+	 * Redirige l'utilisateur vers la page de connexion
+	 *
+	 * @param request
+	 *            Utilisé pour redirigé l'utilisateur vers la page de connexion
+	 * @param response
+	 *            Obligatoire pour faire le forward
+	 * @throws ServletException
+	 *             Dans le cas d'une erreur de servlet
+	 * @throws IOException
+	 *             ???
+	 */
+	private void redirigerVersConnexion(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// L'identifiant n'existe pas, il faut donc afficher un message d'erreur
+		// sur le template
+		request.setAttribute("error", true);
+		// Rediriger l'utilisateur sur la page de login
+		request.getRequestDispatcher("/login.jsp").forward(request, response);
+	}
 }
