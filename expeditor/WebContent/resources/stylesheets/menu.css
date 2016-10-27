@@ -1,19 +1,36 @@
 /** The menu container **/
-#expeditorMenu{
+#expeditorMenu {
     background-color: #47475C;
 }
 
 /** The dropdown menu **/
-#expeditorMenu .container .dropdown .menu{
+#expeditorMenu .container .dropdown .menu {
     background-color: #3A3A4F;
 }
 
 /** The wordings **/
-#expeditorMenu a{
+#expeditorMenu a {
     color: white !important;
 }
 
 /** The icons **/
-#expeditorMenu i.white{
+#expeditorMenu i.white {
     color: white;
+}
+
+/** Le formulaire d'import CSV **/
+#formImportCsv {
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+#formImportCsv .field {
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+#formImportCsv .button-container {
+    max-width: 50%;
+    text-align: center;
+    margin: 15px auto 0;
 }

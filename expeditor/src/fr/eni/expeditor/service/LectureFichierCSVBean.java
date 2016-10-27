@@ -43,7 +43,7 @@ public class LectureFichierCSVBean extends AbstractService {
      * @throws FileNotFoundException Impossible de trouver le fichier.
      * @throws IOException
      */
-    public void lectureFichierCommandes(String chemin) throws FileNotFoundException, IOException {
+    public String lectureFichierCommandes(String chemin) throws FileNotFoundException, IOException {
 
         LOGGER.info("Lecture du fichier csv " + chemin);
 
@@ -88,9 +88,9 @@ public class LectureFichierCSVBean extends AbstractService {
 
             }
 
-//            return nombreEntrees + " entrées détectées dans le fichier, " + commandesCSV.size() + " commandes insérées.";
             LOGGER.info(nombreEntrees + " entrées détectées dans le fichier, " + nombreInserees + " commandes insérées.");
 
+            return nombreEntrees + " entrées détectées dans le fichier, " + nombreInserees + " commandes insérées.";
         }
     }
 

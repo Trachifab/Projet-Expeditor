@@ -17,7 +17,8 @@
                 <a href="GestionArticleServlet" class="item"><i class="users icon white"></i>Articles</a>
                 <a class="item btnImportCsv"><i class="file icon"></i>Importer un CSV</a>
                 <% } else {%>
-                <a href="${pageContext.request.contextPath}/employe" class="item"><i class="dropbox icon"></i>Commande</a>
+                <a href="${pageContext.request.contextPath}/employe" class="item"><i
+                        class="dropbox icon"></i>Commande</a>
                 <% } %>
             </div>
         </div>
@@ -28,7 +29,8 @@
         <a class="item">
             <i class="red sign out icon"></i>
         </a>
-        <form id="deconnexionForm" style="display: none;" action="${pageContext.request.contextPath}/deconnexion" method="POST">
+        <form id="deconnexionForm" style="display: none;" action="${pageContext.request.contextPath}/deconnexion"
+              method="POST">
             <button class="ui transparent button deconnexion" type="submit"></button>
         </form>
     </div>
@@ -38,8 +40,8 @@
 <div class="ui modal importCsv">
     <div class="header">Importer un fichier CSV</div>
     <div class="content">
-        <form action="ImportCSVServlet" enctype="multipart/form-data" method="POST">
-            <p>Indiquez ci-dessous le chemin vers le fichier CSV à importer.</p>
+        <form id="formImportCsv" action="ImportCSVServlet" enctype="multipart/form-data" method="POST">
+            <p>Indiquez ci-dessous le chemin vers le fichier CSV à importer, afin d'ajouter les nouvelles commandes à l'application.</p>
             <div>
                 <div class="field">
                     <div class="ui action input">
@@ -51,7 +53,9 @@
                     </div>
                 </div>
             </div>
-            <button class="ui button" type="submit" name="action" value="import">Importer</button>
+            <div class="button-container">
+                <button class="ui button" type="submit" name="action" value="import">Importer</button>
+            </div>
         </form>
     </div>
 </div>

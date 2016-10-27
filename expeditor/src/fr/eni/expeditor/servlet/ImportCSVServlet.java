@@ -86,7 +86,7 @@ public class ImportCSVServlet extends AbstractServlet {
             LOGGER.info(String.format("Le fichier %s à bien été importé", uploadedFileName));
 
             // Enfin, on va lire le fichier et importer les valeurs
-            lectureFichierCSVBean.lectureFichierCommandes(uploadedFileNameCompletePath);
+            String result = lectureFichierCSVBean.lectureFichierCommandes(uploadedFileNameCompletePath);
         }
     }
 
