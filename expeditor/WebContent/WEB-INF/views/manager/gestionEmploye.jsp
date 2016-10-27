@@ -1,15 +1,31 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrateur
+  Date: 25/10/2016
+  Time: 14:23
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="fr.eni.expeditor.entity.Commande" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.List" %>
+<%@ page import="fr.eni.expeditor.entity.Role" %>
 <%@ page import="fr.eni.expeditor.entity.LigneCommande" %>
 <html>
 <head>
     <title>Employés</title>
 
+    <!-- JQuery -->
     <script src="${pageContext.request.contextPath}/resources/JQuery/jquery-3.1.1.min.js"></script>
 
-    <!-- Semantic UI -->
+
+    <!-- Expeditor scripts -->
+    <script src="${pageContext.request.contextPath}/resources/js/gestionEmploye.js"></script>
+
+    <!-- Expeditor stylesheets -->
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/gestionEmploye.css">
+
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.css">
     <script src="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.js"></script>
 
@@ -26,54 +42,67 @@
 %>
 <!-- Inclusion du menu -->
 <%@include file="/WEB-INF/views/partial/menu.jsp" %>
+<% List<Role> roles = (List<Role>) request.getAttribute("roles"); %>
 
-<!-- Table des collaborateurs -->
-<div class="ui equal width center aligned padded grid">
-    <div class="row">
-        <div class="two wide column">
-        </div>
-        <div class="twelve wide column">
-            <table class="ui selectable celled table">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Role</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
+    <!-- Table des collaborateurs -->
+    <div class="ui equal width center aligned padded grid">
+        <div class="row">
+            <div class="two wide column">
+            </div>
+            <div class="twelve wide column">
+                <table class="ui selectable celled table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Role</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                <!-- Parcours de la liste des collaborateurs renvoyés par la servlet -->
-                <% for (Collaborateur collaborateur : collaborateurs) { %>
+                    <!-- Parcours de la liste des collaborateurs renvoyés par la servlet -->
+                    <% for (Collaborateur collaborateur : collaborateurs) { %>
 
-                <!-- On affiche une couleur de ligne différente en fonction du role du collaborateur -->
-                <tr class="<% if (collaborateur.getRole().getCode().equals("MANA")) { %>  positive  <% } else { %> warning <% } %>">
-                    <td><%= collaborateur.getId() %>
-                    </td>
-                    <td>
-                        <i class="<% if (collaborateur.getRole().getCode().equals("MANA")) { %>  spy  <% } else { %> user <% } %> icon "></i>
-                        <%= collaborateur.getRole().getLibelle() %>
-                    </td>
-                    <td><%= collaborateur.getNom() %>
-                    </td>
-                    <td><%= collaborateur.getPrenom() %>
-                    </td>
-                    <td><%= collaborateur.getEmail() %>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <% } %>
-                </tbody>
-            </table>
-        </div>
-        <div class="two wide column">
+                    <!-- On affiche une couleur de ligne différente en fonction du role du collaborateur -->
+                    <tr class="<% if (collaborateur.getRole().getCode().equals("MANA")) { %>  positive  <% } else { %> warning <% } %>">
+                        <td><%= collaborateur.getId() %>
+                        </td>
+                        <td>
+                            <i class="<% if (collaborateur.getRole().getCode().equals("MANA")) { %>  spy  <% } else { %> user <% } %> icon "></i>
+                            <%= collaborateur.getRole().getLibelle() %>
+                        </td>
+                        <td><%= collaborateur.getNom() %>
+                        </td>
+                        <td><%= collaborateur.getPrenom() %>
+                        </td>
+                        <td><%= collaborateur.getEmail() %>
+                        </td>
+                        <td>
+                            <div class>
+
+                            </div>
+                            <button class="ui icon brown small button"
+                                    onclick="afficherEmployeModale('modaleEmploye', '<%=collaborateur.getId()%>',
+                                        '<%=collaborateur.getNom()%>', '<%=collaborateur.getPrenom()%>',
+                                        '<%=collaborateur.getEmail()%>', '<%=collaborateur.getMotDePasse()%>','<%=collaborateur.getRole().getCode()%>')">
+                                <i class="small edit icon"></i>
+                            </button>
+                            <button class="ui icon red small button" onclick="afficherModale('supprimerModale')">
+                                <i class="small trash icon"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="two wide column">
+            </div>
         </div>
     </div>
-</div>
 
 <div id="histogramme" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
@@ -90,6 +119,101 @@
 <script>
     afficherHisto(employes, statistiques);
 </script>
+    <div class="flex-container">
+        <button class="ui green center floated animated button" type="submit" name="ajouterEmploye" onclick="afficherModale('modaleEmploye')">
+            <div class="visible content">Ajouter</div>
+            <div class="hidden content">
+                <i class="add icon"></i>
+            </div>
+        </button>
+    </div>
 
+<!-- popup d'ajout et de modifications des employés -->
+<div id="modaleEmploye" class="ui small modal">
+        <form class="ui equal width form" method="post" action="GestionEmployeServlet">
+            <input type="hidden" name="employeId" id="employeId" />
+            <div class="fields">
+                <div class="field">
+                    <h1 class="ui center header">Ajouter un employé</h1>
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <label>Nom</label>
+                    <input placeholder="Nom" type="text" name="nomCollabo">
+                </div>
+                <div class="field margin">
+                    <label>Prénom</label>
+                    <input placeholder="Prénom" type="text" name="prenomCollabo">
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <label>Email</label>
+                    <input placeholder="Email" type="email" name="emailCollabo">
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <label>Mot de passe</label>
+                    <input placeholder="Mot de passe" type="password" name="mdpCollabo">
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <label>Rôle</label>
+                    <select name="selectRole" class="ui dropdown" id="select">
+                        <% for (Role item: roles) {%>
+                            <option value="<%=item.getCode()%>"><%=item.getLibelle()%></option>
+                        <%}%>
+                    </select>
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <button class="ui red left floated animated button" type="submit" name="action" value="annuler">
+                        <div class="visible content">Annuler</div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </button>
+                    <button class="ui green right floated animated button" type="submit" name="action" value="valider">
+                        <div class="visible content">Valider</div>
+                        <div class="hidden content">
+                            <i class="checkmark icon"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </form>
+</div>
+
+<!-- modale de suppression -->
+<form id="supprimerModale" class="ui basic modal form" method="post" action="GestionEmployeServlet">
+        <i class="close icon"></i>
+        <div class="header">
+            Suppression
+        </div>
+        <div class="image content">
+            <div class="image">
+                <i class="trash icon"></i>
+            </div>
+            <div class="description">
+                <p>Voulez-vous vraiment supprimer cet employé ?</p>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="fields">
+                <div class="field">
+                    <button class="ui cancel left floated red basic inverted button" type="submit" name="action" value="annuler">
+                        <i class="remove icon"></i>
+                    </button>
+                    <button class="ui ok right floated green basic inverted button" type="submit" name="action" value="supprimer">
+                        <i class="checkmark icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+</form>
 </body>
 </html>
