@@ -79,11 +79,13 @@ public class LectureFichierCSVBean extends AbstractService {
                     commandeCourante = lectureLignesCommande(lignesCommande, commandeCourante);
                     LOGGER.info(commandeCourante);
 
-                    gestionCommandeBean.ajouter(commandeCourante);
-                    nombreInserees++;
-
+                    Commande commandeCorrespondante = gestionCommandeBean.rechercherParNumero(commandeCourante.getNumero());
+                    if (commandeCorrespondante == null) {
+                        gestionCommandeBean.ajouter(commandeCourante);
+                        nombreInserees++;
+                    }
                 } catch (Exception ex) {
-                    LOGGER.debug("--------------- Un élément a été ignoré car il ne correspondait pas aux exigences CSV ----------- ");
+                    LOGGER.info("--------------- Un élément a été ignoré car il ne correspondait pas aux exigences CSV ----------- ");
                 }
 
             }
