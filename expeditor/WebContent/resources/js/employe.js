@@ -44,19 +44,17 @@ function ajouterLigneArticle(article) {
 
 	//var htmlTable = $('#tableArticlesAjouter > tbody').html();
 
-	var htmlTable = "<tr idarticle=\""
+	var htmlTable = "<tr class='positive' idarticle='"
 			+ article.id
-			+ "\"><td><div class=\"ui ribbon label\">"
+			+ "'><td><div class='ui ribbon label'>"
 			+ article.libelle
 			+ "</div></td><td>"
 			+ article.poids
-			+ "</td><td><input type=\"number\" onChange=\"afficherPoids()\" value=\"0\"/></td><td>"
-			+ "<button type=\"button\" onClick=\"retirerLigne(" + article.id
-			+ ")\"><i class=\"ban red icon\"></i></button></td></tr>";
+			+ "</td><td><input type='number' min='0' onChange='afficherPoids()' value='0'/></td><td>"
+			+ "<button type='button' class='ui icon red small button' onClick='retirerLigne(" + article.id
+			+ ")'><i class='small minus icon'></i></button></td></tr>";
 
 	$('#tableArticlesAjouter > tbody').append(htmlTable)
-	
-	//$('#tableArticlesAjouter > tbody').html(htmlTable);
 
 	retirerOption(article);
 
@@ -96,5 +94,10 @@ function retirerLigne(idArticle) {
 	}));
 
 	afficherPoids();
+
+}
+
+function validerCarton(){
+
 
 }

@@ -98,9 +98,6 @@
 		</div>
 		<div class="row">
 
-
-
-
 			<div class="two wide column"></div>
 			<div class="twelve wide column">
 
@@ -111,7 +108,12 @@
 						<select name="article" class="ui dropdown" id="selectArticle">
 
 						</select>
-						<button type="button" onclick="ajouterArticle()">Ajouter</button>
+						<button type="button" class="ui green animated button" onclick="ajouterArticle()">
+							<div class="visible content">Ajouter</div>
+							<div class="hidden content">
+								<i class="right arrow icon"></i>
+							</div>
+						</button>
 
 					</div>
 					<div class="column">
@@ -132,15 +134,32 @@
 						<p>
 							Poids total de la commande :<span id="poidsTotal">0,3</span> kg
 						</p>
+
+						<div class="field right floated">
+							<button class="ui red center aligned animated button" onclick="annulerCarton()">
+								<div class="visible content">Annuler</div>
+								<div class="hidden content">
+									<i class="cancel icon"></i>
+								</div>
+							</button>
+
+							<button class="ui green center aligned animated button" onclick="validerCarton()">
+								<div class="visible content">Valider carton</div>
+								<div class="hidden content">
+									<i class="add icon"></i>
+								</div>
+							</button>
+						</div>
 					</div>
 
 				</div>
 
 			</div>
-			<div class="two wide column"></div>
+			<div class="two wide column">
+
+			</div>
 		</div>
 
 	</div>
-
 </body>
 </html>
