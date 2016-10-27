@@ -14,6 +14,7 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
@@ -96,6 +97,8 @@ public class ImportCSVServlet extends AbstractServlet {
 
             // Enfin, on va lire le fichier et importer les valeurs
             String result = lectureFichierCSVBean.lectureFichierCommandes(uploadedFileNameCompletePath);
+            response.sendRedirect(String.format("%s/manager?csvResult=%s", request.getContextPath(), URLEncoder.encode(result, "UTF-8")));
+
         }
     }
 
