@@ -85,7 +85,7 @@ public class EmployeServlet extends AbstractServlet {
 
 		for (Article article : articles) {
 
-			if (premierObjet) {
+			if (!premierObjet) {
 				tableauArticle.append(",");
 			}
 			// On génère l'objet article
@@ -93,10 +93,12 @@ public class EmployeServlet extends AbstractServlet {
 					+ StringEscapeUtils.escapeEcmaScript(article.getLibelle()) + "\", description:\""
 					+ StringEscapeUtils.escapeEcmaScript(article.getDescription()) + "\", poids:\"" + article.getPoids()
 					+ "\"}");
+			
+			premierObjet = false;
 		}
 		tableauArticle.append("];");
 
-		request.setAttribute("articles", articles);
+		request.setAttribute("articles", tableauArticle.toString());
 
 	}
 
