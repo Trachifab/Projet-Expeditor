@@ -4,16 +4,16 @@
     <title>Connexion | Expeditor</title>
 
     <!-- jQuery -->
-    <script src="resources/JQuery/jquery-3.1.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/JQuery/jquery-3.1.1.min.js"></script>
 
     <!-- Semantic UI -->
-    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
-    <script src="resources/semanticUI/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.css">
+    <script src="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.js"></script>
 
     <!-- Expeditor stylesheets -->
-    <link rel="stylesheet" type="text/css" href="resources/stylesheets/connexion.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/stylesheets/connexion.css">
     <!-- Expeditor scripts -->
-    <script src="resources/js/connexion.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/connexion.js"></script>
 </head>
 <body>
 <!-- Le conteneur, centré en milieu de page -->
