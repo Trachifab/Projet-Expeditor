@@ -85,6 +85,14 @@ public class GestionCommandeBean extends AbstractService{
         q.executeUpdate();
     }
 
+    public void libererCommande(Commande commande){
+
+        Query q = getEntityManager().createNamedQuery("COMMANDE.LIBERER.COMMANDE");
+        q.setParameter("id", commande.getNumero());
+        q.setParameter("collabo", null);
+        q.executeUpdate();
+    }
+
     /**
      * Ajoute une nouvelle commande
      *

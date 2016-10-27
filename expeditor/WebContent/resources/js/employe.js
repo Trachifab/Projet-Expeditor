@@ -128,3 +128,15 @@ function validerCarton(idCommande) {
 	var win = window.open(encodeURI(url), '_blank');
 	win.focus();
 }
+
+function annulerCarton(commandeATraiter){
+    $.ajax({
+            method: 'GET',
+            url : 'employe',
+            data : {
+                action : 'annulerCarton',
+                idCommande : commandeATraiter
+            }
+        }
+    )
+}
