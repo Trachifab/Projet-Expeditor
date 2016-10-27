@@ -14,7 +14,7 @@
     <script src="resources/semanticUI/semantic.min.js"></script>
 
     <!-- Highcharts -->
-    <script src="resources/js/highcharts.js"></script>
+    <script src="resources/highcharts/highcharts.js"></script>
 
     <!-- Expeditor scripts -->
     <script src="resources/js/statistiquesEmployes.js"></script>
