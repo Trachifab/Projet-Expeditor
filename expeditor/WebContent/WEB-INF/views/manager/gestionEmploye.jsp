@@ -73,7 +73,7 @@
                         <td>
                             <div class="field">
                                 <button class="ui icon brown small button"
-                                        onclick="afficherEmployeModale('modaleEmploye', '<%=collaborateur.getId()%>',
+                                        onclick="afficherEmployeModale('<%=collaborateur.getId()%>',
                                                 '<%=collaborateur.getNom()%>', '<%=collaborateur.getPrenom()%>',
                                                 '<%=collaborateur.getEmail()%>', '<%=collaborateur.getMotDePasse()%>','<%=collaborateur.getRole().getCode()%>')">
                                     <i class="small edit icon"></i>
@@ -91,7 +91,7 @@
             <div class="two wide column">
             </div>
         </div>
-        <button class="ui green center aligned animated button" onclick="afficherModale('modaleEmploye')">
+        <button class="ui green center aligned animated button" onclick="afficherEmployeModale('', '', '', '', '', '')">
             <div class="visible content">Ajouter</div>
             <div class="hidden content">
                 <i class="add icon"></i>

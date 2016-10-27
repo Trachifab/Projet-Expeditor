@@ -22,7 +22,7 @@ function afficherSuppModale(modale, empId){
     afficherModale(modale);
 }
 
-function afficherEmployeModale(id, idEmploye, nom, prenom, email, password, role){
+function afficherEmployeModale(idEmploye, nom, prenom, email, password, role){
 
     $('#modaleEmploye [name=employeId]').val(idEmploye);
     $('#modaleEmploye [name=nomCollabo]').val(nom);
@@ -30,13 +30,15 @@ function afficherEmployeModale(id, idEmploye, nom, prenom, email, password, role
     $('#modaleEmploye [name=emailCollabo]').val(email);
     $('#modaleEmploye [name=mdpCollabo]').val(password);
 
-    var libelle = $('#modaleEmploye option[value='+role+']').html();
-    $('#modaleEmploye .ui.dropdown.selection div.text').html(libelle);
-    $('#modaleEmploye .item').attr('class', 'item');
-    $('#modaleEmploye .item[data-value='+role+']').attr('class', 'item active selected');
-    $('#modaleEmploye [name=selectRole]').val(role);
+    if (role != ''){
+        var libelle = $('#modaleEmploye option[value='+role+']').html();
+        $('#modaleEmploye .ui.dropdown.selection div.text').html(libelle);
+        $('#modaleEmploye .item').attr('class', 'item');
+        $('#modaleEmploye .item[data-value='+role+']').attr('class', 'item active selected');
+        $('#modaleEmploye [name=selectRole]').val(role);
+    }
 
-    afficherModale(id);
+    afficherModale('modaleEmploye');
 
 }
 
