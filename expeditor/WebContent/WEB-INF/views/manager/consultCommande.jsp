@@ -10,12 +10,15 @@
     <script src="${pageContext.request.contextPath}/resources/JQuery/jquery-3.1.1.min.js"></script>
 
     <!-- Semantic UI -->
-    <link rel="stylesheet" type="text/css" href="resources/semanticUI/semantic.min.css">
-    <script src="resources/semanticUI/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.css">
+    <script src="${pageContext.request.contextPath}/resources/semanticUI/semantic.min.js"></script>
 
+    <!-- Highcharts -->
     <script src="${pageContext.request.contextPath}/resources/js/highcharts.js"></script>
 
+    <!-- Expeditor scripts -->
     <script src="${pageContext.request.contextPath}/resources/js/statistiquesEmployes.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/consultCommande.js"></script>
 </head>
 
 <body>
@@ -30,7 +33,7 @@
 
 <!-- Table des commandes en attente ou en cours de traitement -->
 <div class="ui equal width center aligned padded grid">
-    <div class="row">
+    <div id="messagesRow" class="row">
         <div class="six wide column"></div>
         <div class="four wide column">
             <!-- Message de validation de l'import -->
