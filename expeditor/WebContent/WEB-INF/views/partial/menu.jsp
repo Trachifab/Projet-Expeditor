@@ -27,7 +27,7 @@
             <i class="user icon"></i>
         </a>
         <a class="item">
-            <i class="red sign out icon"></i>
+            <i class="white sign out icon"></i>
         </a>
         <form id="deconnexionForm" style="display: none;" action="${pageContext.request.contextPath}/deconnexion"
               method="POST">
