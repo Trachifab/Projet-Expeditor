@@ -7,7 +7,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="expeditorMenu" class="ui attached stackable menu">
     <div class="ui container">
-        <div class=" ui simple dropdown item">
+        <div class="ui simple dropdown item">
             <i class="content icon white"></i>
             <i class="dropdown icon white"></i>
             <div class="menu">

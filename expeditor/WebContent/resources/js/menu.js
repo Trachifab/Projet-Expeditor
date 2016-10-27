@@ -1,5 +1,13 @@
 (function ($) {
     $(document).ready(function () {
+        $(".ui.dropdown").dropdown({
+            on: 'hover',
+            delay : {
+                hide   : 500,
+                show   : 100
+            }
+        });
+
         // Déconnexion de l'utilisateur
         $(".item .sign.out").click(function () {
             $("#deconnexionForm").find("button.deconnexion").click();
