@@ -54,13 +54,6 @@ public class GestionArticleServlet extends AbstractServlet {
 
 			break;
 
-		case "modifier":
-
-			modifierArticle(request);
-			init(request, response);
-
-			break;
-
 		case "archiver":
 			archiverArticle(request);
 			init(request, response);
@@ -77,27 +70,22 @@ public class GestionArticleServlet extends AbstractServlet {
 	 */
 	private void ajouterArticle(HttpServletRequest request) {
 
-		String libelle = request.getParameter("articleLibelle");
-		String description = request.getParameter("articleDescription");
-		String poids = request.getParameter("articlePoids");
-		Integer poidsInt = null;
-		try {
-			poidsInt = Integer.parseInt(poids);
-		} catch (NumberFormatException ex) {
-
-		}
-
 		Article article = new Article();
-		article.setLibelle(libelle);
-		article.setDescription(description);
-		article.setPoids(poidsInt);
+
+        if(!request.getParameter("articleId").isEmpty()){
+            int idInt = Integer.parseInt(request.getParameter("articleId"));
+            article = gestionArticleBean.rechercherParIdentifiant(idInt);
+        }
+
+        article.setLibelle(request.getParameter("articleLibelle"));
+        article.setDescription(request.getParameter("articleDescription"));
+        article.setPoids(Integer.parseInt(request.getParameter("articlePoids")));
 
 		List<String> erreurs = gestionArticleBean.verifierRG(article);
 
 		if (erreurs == null || erreurs.isEmpty()) {
 
 			try {
-
 				gestionArticleBean.enregistrerArticle(article);
 			} catch (Exception ex) {
 
@@ -109,43 +97,6 @@ public class GestionArticleServlet extends AbstractServlet {
 		} else {
 			request.setAttribute("erreurs", erreurs);
 		}
-
-	}
-
-	/**
-	 * Gestion de la modification d'article
-	 * 
-	 * @param request
-	 */
-	private void modifierArticle(HttpServletRequest request) {
-
-		String id = request.getParameter("articleId");
-
-		String libelle = request.getParameter("articleLibelle");
-		String description = request.getParameter("articleDescription");
-		String poids = request.getParameter("articlePoids");
-		Integer poidsInt = null;
-		Integer idInt = null;
-		try {
-			idInt = Integer.parseInt(id);
-			poidsInt = Integer.parseInt(poids);
-		} catch (NumberFormatException ex) {
-
-		}
-
-		Article article = gestionArticleBean.rechercherParIdentifiant(idInt);
-		article.setLibelle(libelle);
-		article.setDescription(description);
-		article.setPoids(poidsInt);
-
-		List<String> erreurs = gestionArticleBean.verifierRG(article);
-
-		if (erreurs == null || erreurs.isEmpty()) {
-			gestionArticleBean.enregistrerArticle(article);
-		} else {
-			request.setAttribute("erreurs", erreurs);
-		}
-
 	}
 
 	private void archiverArticle(HttpServletRequest request) {

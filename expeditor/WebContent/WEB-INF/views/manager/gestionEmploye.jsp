@@ -109,11 +109,11 @@
         <form class="ui equal width form" method="post" action="GestionEmployeServlet">
             <input type="hidden" name="employeId" id="employeId" />
             <div class="fields">
-                <div class="field">
+                <div class="field header">
                     <h1 class="ui center header">Ajouter un employé</h1>
                 </div>
             </div>
-            <div class="fields">
+            <div class="fields content">
                 <div class="field">
                     <label>Nom</label>
                     <input placeholder="Nom" type="text" name="nomCollabo">

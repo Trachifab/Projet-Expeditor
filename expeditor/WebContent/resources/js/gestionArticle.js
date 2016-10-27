@@ -1,14 +1,16 @@
 function afficherModal(id) {
 
 	$('#' + id).modal('show');
+}
 
+function fermerModale(id){
+	$('#' + id).modal('hide');
 }
 
 function afficherModalArchiver(idArticle) {
-	$('#popupValidationArchivage [name=articleId]').val(idArticle);
+	$('#suppForm [name=artId]').val(idArticle);
 
 	afficherModal('popupValidationArchivage')
-
 }
 
 function afficherModalArticle(idArticle, articleLibelle, articleDescription,
@@ -19,15 +21,6 @@ function afficherModalArticle(idArticle, articleLibelle, articleDescription,
 	$('#popupArticle [name=articleDescription]').html(articleDescription);
 	$('#popupArticle [name=articlePoids]').val(articlePoids);
 
-	if (idArticle == '') {
-		$('#popupArticle [name=action]').html('Ajouter')
-		$('#popupArticle .header').html('Ajouter article')
-		$('#popupArticle [name=action]').val('ajouter')
-	} else {
-		$('#popupArticle [name=action]').html('Modifier')
-		$('#popupArticle .header').html('Modifier article')
-		$('#popupArticle [name=action]').val('modifier')
-	}
 	afficherModal('popupArticle')
 
 }
