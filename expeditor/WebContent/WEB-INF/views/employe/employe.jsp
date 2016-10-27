@@ -135,18 +135,18 @@
 							Poids total de la commande :<span id="poidsTotal">0,3</span> kg
 						</p>
 
-						<div class="field right floated">
-							<button class="ui red center aligned animated button" onclick="annulerCarton()">
+						<div class="field ">
+							<button class="ui  left floated red animated button" onclick="annulerCarton()">
 								<div class="visible content">Annuler</div>
 								<div class="hidden content">
 									<i class="cancel icon"></i>
 								</div>
 							</button>
 
-							<button class="ui green center aligned animated button" onclick="validerCarton()">
+							<button class="ui right floated green animated button" onclick="validerCarton()">
 								<div class="visible content">Valider carton</div>
 								<div class="hidden content">
-									<i class="add icon"></i>
+									<i class="checkmark icon"></i>
 								</div>
 							</button>
 						</div>
