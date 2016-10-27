@@ -70,7 +70,7 @@ public class ImportCSVServlet extends AbstractServlet {
                 continue;
             }
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_hh_mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
 
             // On récupère le header du fichier uploadé afin de récupérer le nom du fichier puisqu'on peut pas récupérer le paramètre...
             String headerContentDisposition = part.getHeader("Content-Disposition");
