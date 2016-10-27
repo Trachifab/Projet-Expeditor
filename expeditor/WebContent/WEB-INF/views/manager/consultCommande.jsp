@@ -96,9 +96,17 @@
         <div class="two wide column">
         </div>
     </div>
+
+    <!-- Histogramme -->
+    <div class="row">
+        <div class="two wide column">
+        </div>
+        <div class="twelve wide column">
+            <div id="histogramme" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
+        <div class="two wide column">
+        </div>
+    </div>
 </div>
-
-<div id="histogramme" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
 </body>
 </html>
