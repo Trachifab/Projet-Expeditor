@@ -14,6 +14,15 @@ function afficherModale(id){
     $('#' + id).modal('show');
 }
 
+function fermerModale(id){
+    $('#' + id).modal('hide');
+}
+
+function afficherSuppModale(modale, empId){
+    $('#suppForm [name=empId]').val(empId);
+    afficherModale(modale);
+}
+
 function afficherEmployeModale(id, idEmploye, nom, prenom, email, password, role){
 
     $('#modaleEmploye [name=employeId]').val(idEmploye);

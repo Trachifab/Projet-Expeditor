@@ -34,7 +34,8 @@ public class GestionCollaborateurBean extends AbstractService {
      */
     public List<Collaborateur> rechercherTous(){
 
-        return (List<Collaborateur>) consulter(Collaborateur.class);
+        Query query = getEntityManager().createQuery("SELECT c FROM Collaborateur c WHERE c.dateArchive is null");
+        return query.getResultList();
     }
 
     /**
