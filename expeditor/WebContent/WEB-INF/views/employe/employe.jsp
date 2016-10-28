@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/employe.css">
 
     <!-- Expeditor Scripts -->
-    <!-- RÃ©cupÃ©ration des articles dans un tableau js appellÃ© articles -->
+    <!-- Récupération des articles dans un tableau js appellé articles -->
     <script type="text/javascript">
 
         <%=request.getAttribute("articles")%>
@@ -38,7 +38,7 @@
         <div class="twelve wide column">
 
             <div class="ui top attached tabular menu">
-                <div class="active item">DÃ©tails de la commande</div>
+                <div class="active item">Détails de la commande</div>
             </div>
             <div class="ui bottom attached active tab segment">
 
@@ -96,7 +96,7 @@
                 <%
                 } else {
                 %>
-                <p>Aucune commande Ã  traiter.</p>
+                <p>Aucune commande à traiter.</p>
                 <%
                     }
                 %>
@@ -129,7 +129,7 @@
                     <tr>
                         <th>Article</th>
                         <th>Poids (g)</th>
-                        <th>QuantitÃ©</th>
+                        <th>Quantité</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
