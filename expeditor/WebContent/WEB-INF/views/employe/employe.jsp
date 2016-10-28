@@ -150,7 +150,7 @@
                         </div>
                     </button>
 
-                    <button class="ui right floated green animated button" onclick="validerCarton()">
+                    <button class="ui right floated green animated button" onclick="validerCarton(<%=commandeATraiter.getNumero()%>)">
                         <div class="visible content">Valider carton</div>
                         <div class="hidden content">
                             <i class="checkmark icon"></i>
