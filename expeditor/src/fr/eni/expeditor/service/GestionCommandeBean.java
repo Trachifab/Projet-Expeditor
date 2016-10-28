@@ -141,10 +141,11 @@ public class GestionCommandeBean extends AbstractService{
      * @return
      */
     public Commande rechercherParNumero(Integer numero) {
+
     	
         Commande commande =  getEntityManager().find(Commande.class, numero);
-        
         getEntityManager().refresh(commande);
+        
         return commande;
     }
 
