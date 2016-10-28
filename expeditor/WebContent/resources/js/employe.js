@@ -63,6 +63,11 @@ function ajouterLigneArticle(article) {
 
 function retirerOption(article) {
 	$('#selectArticle > option[value=' + article.id + ']').remove();
+	
+	var text = $('#selectArticle > option').html();
+	
+	$('.dropdown.selection > div.text').html(text)
+	
 }
 
 function calculerPoids() {
@@ -145,14 +150,4 @@ function annulerCarton(commandeATraiter){
     )
 }
 
-function annulerCarton(commandeATraiter){
-    $.ajax({
-            method: 'GET',
-            url : 'employe',
-            data : {
-                action : 'annulerCarton',
-                idCommande : commandeATraiter
-            }
-        }
-    )
-}
+
