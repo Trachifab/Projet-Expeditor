@@ -6,10 +6,10 @@ import fr.eni.expeditor.entity.Etat;
 import fr.eni.expeditor.servlet.TestServlet;
 import org.jboss.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import javax.persistence.QueryHint;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,6 +20,9 @@ import java.util.List;
 public class GestionCommandeBean extends AbstractService {
 
 	private static Logger LOGGER = Logger.getLogger(TestServlet.class.getName());
+
+	@EJB
+	private GestionMetierBean gestionMetierBean;
 
 	public Commande recupererCommandeATraiter(Collaborateur col) {
 
@@ -73,10 +76,12 @@ public class GestionCommandeBean extends AbstractService {
 
 	public void libererCommande(Commande commande) {
 
-		Query q = getEntityManager().createNamedQuery("COMMANDE.LIBERER.COMMANDE");
-		q.setParameter("id", commande.getNumero());
-		q.setParameter("collabo", null);
-		q.executeUpdate();
+		commande.setCollaborateur(null);
+
+		Etat etat = gestionMetierBean.rechercherParIdentifiant("ATTE");
+		commande.setEtat(etat);
+
+		getEntityManager().merge(commande);
 	}
 
 	/**

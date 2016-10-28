@@ -18,8 +18,8 @@ import javax.persistence.OneToMany;
         @NamedQuery(name = "COMMANDE.RECUPERER.DERNIERE.COMMANDE.EN.ATTENTE", query = "select c from Commande c where c.etat.code = 'ATTE' order by c.dateCommande"),
         @NamedQuery(name = "COMMANDE.RECUPERER.COMMANDE.EN.COURS.POUR.EMPLOYE", query = "select c from Commande c where c.collaborateur.id = :col_id and c.etat.code = :codeRole"),
         @NamedQuery(name="listerCommandesManager", query="Select c from Commande c where c.etat.code IN :etats order by c.numero"),
-        @NamedQuery(name = "COMMANDE.RECUPERER.STATISTIQUES.DU.JOUR", query="Select c from Commande c where c.dateTraitement > :dateDuJour"),
-        @NamedQuery(name = "COMMANDE.LIBERER.COMMANDE", query = "update Commande c set c.etat.code = 'ATTE', c.collaborateur = :collabo where c.id = :id")
+        @NamedQuery(name = "COMMANDE.RECUPERER.STATISTIQUES.DU.JOUR", query="Select c from Commande c where c.dateTraitement > :dateDuJour")
+
 })
 public class Commande {
 
