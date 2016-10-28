@@ -126,7 +126,7 @@ function validerCarton(idCommande) {
 				}
 			});
 	poidsTotal /= 1000;
-	
+
 	var url = "BonLivraisonServlet?idCommande=" + idCommande + "&poidsTotal="
 			+ poidsTotal + "&donnee=" + JSON.stringify(donnee);
 
@@ -137,17 +137,3 @@ function validerCarton(idCommande) {
 	
 	
 }
-
-function annulerCarton(commandeATraiter){
-    $.ajax({
-            method: 'GET',
-            url : 'employe',
-            data : {
-                action : 'annulerCarton',
-                idCommande : commandeATraiter
-            }
-        }
-    )
-}
-
-

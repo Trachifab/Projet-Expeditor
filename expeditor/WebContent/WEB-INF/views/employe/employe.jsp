@@ -143,12 +143,15 @@
                 </p>
 
                 <div id="buttonContainer" class="field">
-                    <button class="ui left floated red animated button" onclick="annulerCarton(<%=commandeATraiter.getNumero()%>)">
-                        <div class="visible content">Annuler</div>
-                        <div class="hidden content">
-                            <i class="cancel icon"></i>
-                        </div>
-                    </button>
+                    <form class="ui equal width form" method="post" action="employe">
+                        <input type="hidden" name="idCommande" id="idCommande" value="<%=commandeATraiter.getNumero()%>"/>
+                        <button class="ui left floated red animated button" type="submit" name="action" value="annulerCarton">
+                            <div class="visible content">Annuler</div>
+                            <div class="hidden content">
+                                <i class="cancel icon"></i>
+                            </div>
+                        </button>
+                    </form>
 
                     <button class="ui right floated green animated button" onclick="validerCarton(<%=commandeATraiter.getNumero()%>)">
                         <div class="visible content">Valider carton</div>
