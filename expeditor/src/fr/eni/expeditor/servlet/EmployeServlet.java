@@ -83,9 +83,11 @@ public class EmployeServlet extends AbstractServlet {
             etat.setLibelle("En cours de traitement");
 
         if(commandeATraiter != null) {
-            commandeEjb.modifierEtatCommande(commandeATraiter, etat);
-            commandeEjb.affecterCollaborateurACommande(connectedCollaborateur, commandeATraiter);
-
+        	
+        	commandeATraiter.setEtat(etat);
+        	commandeATraiter.setCollaborateur(connectedCollaborateur);
+        	commandeATraiter = commandeEjb.ajouter(commandeATraiter);
+        	
             chargerListArticleFormatJs(request);
         }
         RequestDispatcher dispatcher = null;
