@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bon de livraiosn</title>
+<title>Bon de livraison</title>
 </head>
 <body>
 	<%
