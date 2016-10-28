@@ -1,6 +1,7 @@
 package fr.eni.expeditor.servlet;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -149,6 +150,8 @@ public class EmployeServlet extends AbstractServlet {
 		etat.setLibelle("Traité");
 		
 		commande.setEtat(etat);
+		
+		commande.setDateTraitement(new Date());
 		
 		commandeEjb.ajouter(commande);
 		
