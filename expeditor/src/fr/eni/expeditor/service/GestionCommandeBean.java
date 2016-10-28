@@ -9,6 +9,7 @@ import org.jboss.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.QueryHint;
 import java.util.Arrays;
 import java.util.List;
 
@@ -120,6 +121,9 @@ public class GestionCommandeBean extends AbstractService{
      * @return La liste des commandes avec l'état ATTE ou ENCO
      */
     public List<Commande> listerCommandesManager() {
+
+//        raffraichirCache();
+
         Query q = getEntityManager().createNamedQuery("listerCommandesManager");
         List<String> etats = Arrays.asList("ATTE", "ENCO");
         q.setParameter("etats", etats);

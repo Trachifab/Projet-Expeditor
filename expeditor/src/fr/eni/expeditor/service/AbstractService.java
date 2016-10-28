@@ -36,4 +36,9 @@ public class AbstractService {
 	}
 
 
+	protected void raffraichirCache()
+	{
+		factory.getCache().evictAll();
+	}
+
 }
