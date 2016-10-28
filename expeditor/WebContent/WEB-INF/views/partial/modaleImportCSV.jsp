@@ -2,7 +2,7 @@
     <div class="header">Importer un fichier CSV</div>
     <div class="content">
         <form id="formImportCsv" action="ImportCSVServlet" enctype="multipart/form-data" method="POST">
-            <p>Indiquez ci-dessous le chemin vers le fichier CSV à importer, afin d'ajouter les nouvelles commandes à l'application.</p>
+            <p>Indiquez ci-dessous le chemin vers le fichier CSV ou XLS, afin d'ajouter les nouvelles commandes.</p>
             <div>
                 <div class="field">
                     <div class="ui action input">

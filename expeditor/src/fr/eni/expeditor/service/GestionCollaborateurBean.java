@@ -62,33 +62,6 @@ public class GestionCollaborateurBean extends AbstractService {
     }
 
     /**
-     * Rnvoie un collaborateur par son login
-     * @param email
-     * @return
-     */
-    public Collaborateur rechercherParLogin(String email){
-        return null;
-    }
-
-    /**
-     * Supprime un collaborateur par son identifiant
-     * @param identifiant
-     */
-    public void supprimerParIdentifiant(Integer identifiant){
-
-        getEntityManager().remove(identifiant);
-    }
-
-    /**
-     * Supprime un collaborateur par son login
-     * @param login
-     */
-    public void supprimerParLogin(String login) {
-
-        getEntityManager().remove(login);
-    }
-
-    /**
      *
      * @param email
      * @return

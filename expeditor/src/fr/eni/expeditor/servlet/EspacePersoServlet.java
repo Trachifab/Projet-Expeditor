@@ -1,5 +1,6 @@
 package fr.eni.expeditor.servlet;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import fr.eni.expeditor.entity.Collaborateur;
 import fr.eni.expeditor.service.GestionCollaborateurBean;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by Administrateur on 25/10/2016.
@@ -51,10 +53,12 @@ public class EspacePersoServlet extends AbstractServlet {
         employeCourant.setMotDePasse(request.getParameter("mdpCollabo"));
 
         //appel a l'EJB
-        gestionCollaborateurBean.enregistrerCollaborateur(employeCourant);
-
-        //set du nouveau collaborateur
-        session.setAttribute("collaborateur",employeCourant);
+        try{
+            gestionCollaborateurBean.enregistrerCollaborateur(employeCourant);
+            session.setAttribute("collaborateur",employeCourant);
+        }catch (Exception e){
+            request.setAttribute("erreur", e.getMessage());
+        }
     }
 
     @Override

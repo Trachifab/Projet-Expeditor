@@ -1,4 +1,5 @@
 <%@ page import="fr.eni.expeditor.entity.Collaborateur" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -69,9 +70,32 @@
                                 </div>
                             </button>
                         </div>
-
                     </div>
                 </form>
     </div>
+
+    <%
+        String erreur = (String) request.getAttribute("erreur");
+
+        if (erreur != null && erreur.isEmpty()) {
+    %>
+    <!-- popup d'affichage des erreurs -->
+    <div id="popupErreurs" class="ui small modal">
+        <div class="header">Erreur de validation</div>
+
+        <div class="content ">
+            <p>
+                <%=erreur%><br/>
+            </p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(afficherModal('popupErreurs'));
+    </script>
+
+    <%
+        }
+    %>
 </body>
 </html>
