@@ -78,19 +78,21 @@ public class EmployeServlet extends AbstractServlet {
 		Collaborateur connectedCollaborateur = (Collaborateur) request.getSession().getAttribute("collaborateur");
 		Commande commandeATraiter = commandeEjb.recupererCommandeATraiter(connectedCollaborateur);
 
-		Etat etat = new Etat();
-		etat.setCode("ENCO");
-		etat.setLibelle("En cours de traitement");
+            Etat etat = new Etat();
+            etat.setCode("ENCO");
+            etat.setLibelle("En cours de traitement");
 
-		commandeEjb.modifierEtatCommande(commandeATraiter, etat);
-		commandeEjb.affecterCollaborateurACommande(connectedCollaborateur, commandeATraiter);
+        if(commandeATraiter != null) {
+            commandeEjb.modifierEtatCommande(commandeATraiter, etat);
+            commandeEjb.affecterCollaborateurACommande(connectedCollaborateur, commandeATraiter);
 
-		chargerListArticleFormatJs(request);
+            chargerListArticleFormatJs(request);
+        }
+        RequestDispatcher dispatcher = null;
+        request.setAttribute("commandeATraiter", commandeATraiter);
+        dispatcher = request.getRequestDispatcher("/WEB-INF/views/employe/employe.jsp");
+        dispatcher.forward(request, response);
 
-		RequestDispatcher dispatcher = null;
-		request.setAttribute("commandeATraiter", commandeATraiter);
-		dispatcher = request.getRequestDispatcher("/WEB-INF/views/employe/employe.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	private void chargerListArticleFormatJs(HttpServletRequest request) {

@@ -32,6 +32,11 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/partial/menu.jsp"/>
+
+<%
+    Commande commandeATraiter = (Commande) request.getAttribute("commandeATraiter");
+    if (commandeATraiter != null) {
+%>
 <div class="ui equal width aligned padded grid">
     <div class="row">
         <div class="two wide column"></div>
@@ -42,12 +47,6 @@
             </div>
             <div class="ui bottom attached active tab segment">
 
-                <%
-                    Commande commandeATraiter = (Commande) request.getAttribute("commandeATraiter");
-                %>
-                <%
-                    if (commandeATraiter != null) {
-                %>
                 <p>
                     Identifiant commande :
                     <%=commandeATraiter.getNumero()%>
@@ -93,13 +92,6 @@
                         }
                     %>
                 </ul>
-                <%
-                } else {
-                %>
-                <p>Aucune commande à traiter.</p>
-                <%
-                    }
-                %>
             </div>
 
         </div>
@@ -165,6 +157,32 @@
         <div class="two wide column"></div>
     </div>
 
+    <%
+    } else {
+    %>
+
+    <div class="ui equal width aligned padded grid">
+        <div class="row">
+            <div class="two wide column"></div>
+            <div class="twelve wide column">
+
+                <div class="ui top attached tabular menu">
+                    <div class="active item">Détails de la commande</div>
+                </div>
+                <div class="ui bottom attached active tab segment">
+                    Aucune commmandes en attente
+
+                </div>
+
+            </div>
+            <div class="two wide column"></div>
+        </div>
+
+    </div>
+
+    <%
+        }
+    %>
 
 </div>
 </body>
