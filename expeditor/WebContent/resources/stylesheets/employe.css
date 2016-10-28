@@ -3,7 +3,7 @@
 }
 
 .six.wide.column .ui.segment{
-    height: 100%;
+    min-height: 170px;
 }
 .six.wide.column .ui.segment #buttonContainer{
     height: 40px;
